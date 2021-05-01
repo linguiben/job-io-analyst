@@ -15,7 +15,7 @@ public class WriteLog
 	
 	static FileOutputStream fis = null;
 
-	static String filename = "JobioAnalystV3.0.log";
+	static String filename = "JobioAnalystV3.2.log";
 
 	static boolean isFirst = true;
 

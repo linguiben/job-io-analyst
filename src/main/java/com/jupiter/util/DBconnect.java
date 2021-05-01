@@ -20,6 +20,7 @@ import com.jupiter.etl.jobinfo.entities.JobLocation;
 import com.jupiter.etl.jobinfo.entities.JobRelation;
 
 public class DBconnect {
+	//±¸×¢111
 	// @SuppressWarnings("unchecked")
 //	private int rptdtdate = 0;
 //
