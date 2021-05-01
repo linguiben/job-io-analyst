@@ -1,0 +1,186 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+						http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>jupiter</groupId>
+  <artifactId>jobio</artifactId>
+  <version>3.1-SNAPSHOT</version>
+  <name>Jobio Designer</name>
+  <packaging>jar</packaging>
+	<properties>   
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+    </properties> 
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.5.2</version>
+		</dependency>
+	<!-- https://mvnrepository.com/artifact/com.ibm.db2.jcc/db2jcc -->
+	<dependency>
+	    <groupId>com.ibm.db2.jcc</groupId>
+	    <artifactId>db2jcc</artifactId>
+	    <version>db2jcc4</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/jgraph/jgraph -->
+	<dependency>
+		<groupId>jgraph</groupId>
+		<artifactId>jgraph</artifactId>
+		<version>5.13.0.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.swinglabs/swing-layout -->
+	<dependency>
+		<groupId>org.swinglabs</groupId>
+		<artifactId>swing-layout</artifactId>
+		<version>1.0.3</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/log4j/log4j -->
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.16</version>
+	</dependency>
+			
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>4.3.30.RELEASE</version>
+	</dependency>
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-jdbc</artifactId>
+	    <version>4.3.30.RELEASE</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.4.6</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+	<dependency>
+	    <groupId>org.mybatis</groupId>
+	    <artifactId>mybatis-spring</artifactId>
+	    <version>1.3.3</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
+	<dependency>
+	    <groupId>org.mybatis.generator</groupId>
+	    <artifactId>mybatis-generator-core</artifactId>
+	    <version>1.3.2</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6 -->
+	<dependency>
+	    <groupId>com.oracle.database.jdbc</groupId>
+	    <artifactId>ojdbc6</artifactId>
+	    <version>11.2.0.4</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/xalan/xalan 
+		<dependency>
+		    <groupId>xalan</groupId>
+		    <artifactId>xalan</artifactId>
+		    <version>2.1.0</version>
+		</dependency>-->
+	<!-- XmlParse -->
+	<dependency>
+		<groupId>xalan</groupId>
+		<artifactId>xalan</artifactId>
+		<version>2.1.0</version>
+		<scope>system</scope>
+		<systemPath>D:\Data\JavaWorkspaces\com.jupiter.jobio-3.1-SNAPSHOT\src\lib\XmlParse.jar</systemPath>
+	</dependency> 
+	
+	</dependencies>
+	<!-- 开发者信息 -->
+	<developers>
+		<developer>
+			<name>Jupiter.Lin</name>
+			<email>linguiben@163.com</email>
+		</developer>
+	</developers>
+
+	<build>
+	<!-- 打包后的项目名称 -->
+	<finalName>JobIo Analyst V3.2</finalName>
+	<sourceDirectory>src/main/java</sourceDirectory>
+	<resources>
+		<resource>
+			<directory>src/main/resources</directory>
+			<filtering>true</filtering>
+		</resource>
+	</resources>
+	
+	
+	
+		<plugins>
+			<!-- 打包插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.2.4</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com.jupiter.etl.jobinfo.Login</mainClass>
+								</transformer>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.handlers</resource>
+								</transformer>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.schemas</resource>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 <plugin> <groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-jar-plugin</artifactId> <configuration> <archive> <manifest> 
+				<addClasspath>true</addClasspath> <classpathPrefix>lib/</classpathPrefix> 
+				<mainClass>com.jupiter.TestEtlJobIno</mainClass> </manifest> </archive> </configuration> 
+				</plugin> -->
+			<!-- 拷贝依赖的jar包到lib目录 <plugin> <groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-dependency-plugin</artifactId> <executions> <execution> 
+				<id>copy</id> <phase>package</phase> <goals> <goal>copy-dependencies</goal> 
+				</goals> <configuration> <outputDirectory> ${project.build.directory}/lib 
+				</outputDirectory> </configuration> </execution> </executions> </plugin> -->
+			<!-- 编译插件 -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<!-- 反向工程插件 -->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<configuration>
+					<configurationFile>resources/generatorConfig.xml</configurationFile>
+					<overwrite>true</overwrite>
+					<verbose>true</verbose>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

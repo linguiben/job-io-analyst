@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+	<default-config>
+		<property name="jdbcUrl">jdbc:db2://centos6:50000/DW:currentSchema=DB2INST1;currentIsolation=CS;</property>
+		<property name="driverClass">com.ibm.db2.jcc.DB2Driver</property>
+		<property name="user">db2inst1</property>
+		<property name="password">db2inst1</property>
+		<property name="checkoutTimeout">3000</property>
+		<property name="idleConnectionTestPeriod">30</property>
+		<property name="initialPoolSize">3</property>
+		<property name="maxIdleTime">10</property>
+		<property name="maxPoolSize">3</property>
+		<property name="minPoolSize">1</property>
+		<property name="maxStatements">200</property>
+	</default-config>
+</c3p0-config>

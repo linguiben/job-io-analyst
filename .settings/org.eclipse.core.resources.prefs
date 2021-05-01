@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/java/com/jupiter=GBK
+encoding//src/main/java/com/jupiter/mybatis/mapper/UserMapper.java=UTF-8
+encoding//src/main/java/com/jupiter/sqlparse=GBK
+encoding//src/main/resources=UTF-8
+encoding//src/test/java=UTF-8
+encoding//src/test/java/com/jupiter/test/TestController.java=UTF-8
+encoding//src/test/java/com/jupiter/test/TestDBUnit.java=UTF-8
+encoding//src/test/java/com/jupiter/test/TestEtlJobIno.java=UTF-8
+encoding//src/test/resources=UTF-8
