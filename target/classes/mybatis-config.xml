@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="com.jupiter.mybatis.dao.C3P0DataSourceFactory">
+			</dataSource>
+			<!-- <dataSource type="POOLED"> <property name="driver" value="com.ibm.db2.jcc.DB2Driver" 
+				/> <property name="url" value="jdbc:db2://centos6:50000/DW:currentSchema=DB2INST1;currentIsolation=CS;" 
+				/> <property name="username" value="db2inst1" /> <property name="password" 
+				value="db2inst1" /> </dataSource> -->
+		</environment>
+	</environments>
+	<!-- 
+	<mappers>
+		<mapper resource="com/jupiter/mybatis/mapper/DBUnitMapper.xml" />
+		<mapper resource="com/jupiter/mybatis/mapper/UserMapper.xml" />
+	</mappers>
+	 -->
+</configuration>

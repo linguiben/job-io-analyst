@@ -29,7 +29,7 @@ import com.jupiter.etl.schedule.DefaultJob;
 import com.jupiter.mybatis.mapper.DBUnitMapper;
 import com.jupiter.mybatis.mapper.UserMapper;
 import com.jupiter.mybatis.po.User;
-import com.jupiter.test.C3P0DataSourceFactory;
+//import com.jupiter.test.C3P0DataSourceFactory;
 import com.jupiter.util.DBconnect;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -37,7 +37,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class DBUnit {
 
 	private static ComboPooledDataSource ds = new ComboPooledDataSource();
-	public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");//ÉèÖÃÈÕÆÚ¸ñÊ½
+	public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ê½
 	static Logger logger = Logger.getLogger(DBUnit.class);
 	
 	
@@ -56,12 +56,12 @@ public class DBUnit {
 		return jobnames;
 	}
 	
-	//-2.ÅÐ¶ÏÊäÈëµÄjob/fileÊÇ·ñ´æÔÚ
+	//-2.ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½job/fileï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 //	public static ArrayList<String> checkJobnameEixts(String txt){
-//		ArrayList<String> jobnameList = new ArrayList<String>(); //¼ÇÂ¼´æÔÚµÄjobname
+//		ArrayList<String> jobnameList = new ArrayList<String>(); //ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Úµï¿½jobname
 //		try {
 //			Connection conn = ds.getConnection();
-//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 //			try {
 //				String sql = "select distinct lower(trim(jobname))jobname from dbo.etl_jobino where lower(trim(jobname)) in("+txt+")";
 //				ResultSet rs = stmt.executeQuery(sql);
@@ -69,21 +69,21 @@ public class DBUnit {
 //					jobnameList.add(rs.getString("jobname"));
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ÐÐSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ÐÐSQL´íÎó", 0);
+//				WriteLog.writeFile("Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½", 0);
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile("Î´Öª´íÎó1,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "´íÎó", 0);
+//			WriteLog.writeFile("Î´Öªï¿½ï¿½ï¿½ï¿½1,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "ï¿½ï¿½ï¿½ï¿½", 0);
 //		}
 //		return jobnameList;
 //	}
 	public static ArrayList<String> checkFilenameEixts(String txt){
-		ArrayList<String> filenameList = new ArrayList<String>(); //¼ÇÂ¼´æÔÚµÄtablename
+		ArrayList<String> filenameList = new ArrayList<String>(); //ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Úµï¿½tablename
 		try {
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 			try {
 				String sql = "select distinct upper(trim(inofile))inofile from dbo.etl_jobino where upper(trim(inofile)) in("+txt+")";
 				ResultSet rs = stmt.executeQuery(sql);
@@ -91,23 +91,23 @@ public class DBUnit {
 					filenameList.add(rs.getString("inofile"));
 				}
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ÐÐSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ÐÐSQL´íÎó", 0);
+				WriteLog.writeFile("Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½", 0);
 			}
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó2,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "´íÎó", 0);
+			WriteLog.writeFile("Î´Öªï¿½ï¿½ï¿½ï¿½2,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "ï¿½ï¿½ï¿½ï¿½", 0);
 		}
 		return filenameList;
 	}
 	
-	//-2.1 ÅÐ¶ÏµÄjob/fileÊÇ·ñ´æÔÚ
+	//-2.1 ï¿½Ð¶Ïµï¿½job/fileï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 	public static ArrayList<String> checkNameEixts(String stype,String txt){
-		ArrayList<String> l = new ArrayList<String>(); //¼ÇÂ¼´æÔÚµÄtablename\filename
+		ArrayList<String> l = new ArrayList<String>(); //ï¿½ï¿½Â¼ï¿½ï¿½ï¿½Úµï¿½tablename\filename
 		try {
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 			try {
 				String sql = "select case when name is not null then jobname1 else '' end as jobname1 from table(dbo.strExists('"+stype+"','"+txt+"'))as t" +
 						" where name is not null";
@@ -117,23 +117,23 @@ public class DBUnit {
 					l.add(rs.getString("jobname1"));
 				}
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ÐÐSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ÐÐSQL´íÎó", 0);
+				WriteLog.writeFile("Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½", 0);
 			}
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó3,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "´íÎó", 0);
+			WriteLog.writeFile("Î´Öªï¿½ï¿½ï¿½ï¿½3,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "ï¿½ï¿½ï¿½ï¿½", 0);
 		}
 		return l;
 	}
 	
-	//-1.»ñÈ¡µ÷¶ÈµÄÈÎÎñÊý/³É¹¦Êý/Ê§°ÜÊý/Î´Íê³ÉÊý
+	//-1.ï¿½ï¿½È¡ï¿½ï¿½ï¿½Èµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½É¹ï¿½ï¿½ï¿½/Ê§ï¿½ï¿½ï¿½ï¿½/Î´ï¿½ï¿½ï¿½ï¿½ï¿½
 			public static int[] getScheduleStatus(String ScheduleType ,String batchno){
 				int[] scheduleStatus = new int[5];
 				try {
 					Connection conn = ds.getConnection();
-					Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+					Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 					try {
 						String sql = "select count(1)amount " +
 									",sum(case when jobStatus in(1,2) then 1 else 0 end)successAmount " +
@@ -145,7 +145,7 @@ public class DBUnit {
 									"where a.scheduleType = '"+ScheduleType+"' " +
 									")t where rn = 1 "; 
 						ResultSet rs = stmt.executeQuery(sql);
-						// ½«½á¹û·ÅÈëjobInfoList
+						// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jobInfoList
 						while (rs.next()) {
 							scheduleStatus[0] = rs.getInt(1);
 							scheduleStatus[1] = rs.getInt(2);
@@ -153,20 +153,20 @@ public class DBUnit {
 							scheduleStatus[3] = rs.getInt(4);
 						}
 					} catch (Exception e) {
-						WriteLog.writeFile("Ö´ÐÐSQL´íÎó:" + e.getMessage());
-						JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ÐÐSQL´íÎó", 0);
+						WriteLog.writeFile("Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+						JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½", 0);
 					}
 					conn.close();
 				} catch (Exception e) {
-					WriteLog.writeFile("Î´Öª´íÎó4,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-					JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "´íÎó", 0);
+					WriteLog.writeFile("Î´Öªï¿½ï¿½ï¿½ï¿½4,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+					JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "ï¿½ï¿½ï¿½ï¿½", 0);
 				}
 				
 				
 				return scheduleStatus;
 			}
 	
-	//0.³õÊ¼»¯µ÷¶È£¬½«start¶ªÈëµÈ´ý³Ø
+	//0.ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½startï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½
 		public static boolean initSchedule(String scheduleType,String batchno,String jobname){
 			try {
 				Connection conn = ds.getConnection();
@@ -175,23 +175,23 @@ public class DBUnit {
 				String sql = "insert into dbo.jobWaitingPool " 
 						+ "(scheduleType,batchno,headJobname,headJobtype,head_on_fail_action,headJobstatus,tailJobname,tailJobtype,tail_on_fail_action)values"
 						+ "('"+scheduleType+"','"+batchno+"','','','',1,'"+jobname+"','blankjob','STOP')";
-				System.out.println("³õÊ¼»¯:"+sql);
-				WriteLog.writeFile("0.³õÊ¼»¯µ÷¶È£¬½«start¶ªÈëµÈ´ý³Ø\n" + sql);
+				System.out.println("ï¿½ï¿½Ê¼ï¿½ï¿½:"+sql);
+				WriteLog.writeFile("0.ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½startï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½\n" + sql);
 				stmt.executeUpdate(sql);
-				/*--³õÊ¼»¯µ÷¶È£¬½«start¶ªÈëµÈ´ý³Ø
+				/*--ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ï¿½startï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½
 				 * insert into dbo.jobWaitingPool
 				(batchno,headJobname,headJobtype,tailJobname,tailJobtype,headJobstatus,on_fail_action)values
 				('test001','','','start','BLANK',100,'STOP')*/
 				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				WriteLog.writeFile("initSchedule() Î´Öª´íÎó5,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
+				WriteLog.writeFile("initSchedule() Î´Öªï¿½ï¿½ï¿½ï¿½5,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
 				return false;
 			}
 			return true;
 		}
 	
-	//1.´ÓµÈ´ý³Ø»ñÈ¡ÏÂ¼Ò,ÇÒ¸ÃÏÂ¼ÒÎ´½øÈëµ÷¶È
+	//1.ï¿½ÓµÈ´ï¿½ï¿½Ø»ï¿½È¡ï¿½Â¼ï¿½,ï¿½Ò¸ï¿½ï¿½Â¼ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static ArrayList<DefaultJob> getNextJobs(String batchno) {
 		ArrayList<DefaultJob> jobs = new ArrayList<DefaultJob>();
 		try {
@@ -209,9 +209,9 @@ public class DBUnit {
 					                     "and a.tailJobtype = b.tailJobtype and a.tailJobname = b.tailJobname and b.headjobstatus not in(1,2,4)) " +
 					         "and not exists(select 1 from dbo.jobrunlog c where c.batchno = '"+batchno+"' " +
 					                     				"and a.tailJobtype = c.Jobtype and a.tailJobname = c.Jobname))"  ;
-			WriteLog.writeFile("1.´ÓµÈ´ý³Ø»ñÈ¡ÏÂ¼Ò,ÇÒ¸ÃÏÂ¼ÒÎ´½øÈëµ÷¶È\n" );  //+ sql
-			//System.out.println("µ÷¶ÈÏß³Ì´ÓµÈ´ý³Ø»ñÈ¡ÏÂ¼Ò:" + sql);
-			/*--µ±ÉÏ¼Ò×´Ì¬È«²¿Îª1/2/4(Ê§°ÜÌø¹ý),ÇÒ¸ÃÏÂ¼ÒÎ´½øÈëµ÷¶È
+			WriteLog.writeFile("1.ï¿½ÓµÈ´ï¿½ï¿½Ø»ï¿½È¡ï¿½Â¼ï¿½,ï¿½Ò¸ï¿½ï¿½Â¼ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n" );  //+ sql
+			//System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì´ÓµÈ´ï¿½ï¿½Ø»ï¿½È¡ï¿½Â¼ï¿½:" + sql);
+			/*--ï¿½ï¿½ï¿½Ï¼ï¿½×´Ì¬È«ï¿½ï¿½Îª1/2/4(Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½),ï¿½Ò¸ï¿½ï¿½Â¼ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			select batchno,tailJobname,tailJobtype,tail_on_fail_action,min(datetime)datetime,count(1)headJobAmount,sum(headJobstatus)headJobstatus 
 			from dbo.jobWaitingPool a 
 			where batchno = '20170730153316'and headjobstatus in(1,2,4)
@@ -224,34 +224,34 @@ public class DBUnit {
 			ResultSet rs = stmt.executeQuery(sql);
 			//ResultSet rs = stmt.(sql);
 			while (rs.next()) {
-				//System.out.println("»ñÈ¡µ½ÏÂ¼Ò batchno:"+batchno + " tailJobname:" + rs.getString("tailJobname") +"     "+rs.getString("insertTime"));
+				//System.out.println("ï¿½ï¿½È¡ï¿½ï¿½ï¿½Â¼ï¿½ batchno:"+batchno + " tailJobname:" + rs.getString("tailJobname") +"     "+rs.getString("insertTime"));
 				DefaultJob job = new DefaultJob();
 				job.setBatchno(rs.getString("batchno"));
 				job.setJobname(rs.getString("jobname"));
 				job.setJobtype(rs.getString("jobtype"));
-				//job.headJobAmount = rs.getInt("headJobAmount");  //Ã»ÓÃ
-				//job.headJobstatus = rs.getInt("headJobstatus");  //Ã»ÓÃ
-				//job.setDatetime(rs.getString("insertTime"));     //Ã»ÓÃ
+				//job.headJobAmount = rs.getInt("headJobAmount");  //Ã»ï¿½ï¿½
+				//job.headJobstatus = rs.getInt("headJobstatus");  //Ã»ï¿½ï¿½
+				//job.setDatetime(rs.getString("insertTime"));     //Ã»ï¿½ï¿½
 				job.setOn_fail_action(rs.getString("on_fail_action"));  //on_fail_action
 				jobs.add(job);
 			}
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			WriteLog.writeFile("getNextJobs() Î´Öª´íÎó6,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
+			WriteLog.writeFile("getNextJobs() Î´Öªï¿½ï¿½ï¿½ï¿½6,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
 		}
 		return jobs;
 	}
 	
-	//2.¿ªÊ¼ÔËÐÐ
+	//2.ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 	public static boolean jobStart(String scheduleType,String batchno,String jobtype ,String jobname,int jobStatus){
 		try {
 			Connection conn = ds.getConnection();
-			conn.setAutoCommit(true);//jdbcÄ¬ÈÏ×Ô¶¯Ìá½»
+			conn.setAutoCommit(true);//jdbcÄ¬ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½á½»
 			// System.out.println(conn);
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			String sqlStr = "update dbo.jobWaitingPool set HEADJOBSTATUS = 0 where batchno = '"+batchno+"' and headJobname = '"+jobname+"'";
-			WriteLog.writeFile("2.¿ªÊ¼ÔËÐÐ\n" + sqlStr);
+			WriteLog.writeFile("2.ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½\n" + sqlStr);
 			//System.out.println(batchno + "  " + jobname+" is ready: "+sqlStr);
 			//stmt.executeUpdate(sqlStr);
 			stmt.addBatch(sqlStr);
@@ -265,7 +265,7 @@ public class DBUnit {
 					"and not exists(select 1 from dbo.jobWaitingPool b where b.batchno = '"+batchno+"' and a.tailJobname = b.tailJobname)" +  
 					"and a.scheduleType = '"+scheduleType+"'";
 			//System.out.println(batchno + "  " + jobname+" is ready: "+sqlStr);
-			WriteLog.writeFile("2.¿ªÊ¼ÔËÐÐ\n" + sqlStr);
+			WriteLog.writeFile("2.ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½\n" + sqlStr);
 			stmt.addBatch(sqlStr);
 			/*sqlStr = "insert into dbo.jobrunlog" +
 					"(scheduleType,batchno,jobtype,jobname,starttime,jobstatus) values " +
@@ -273,7 +273,7 @@ public class DBUnit {
 			sqlStr = "update(select * from dbo.jobRunlog where scheduleType = '"+scheduleType+"' and batchno = '"+batchno+"' and jobname = '"+jobname+"' " +
 					         "order by id desc fetch first 1 rows only " +
 						    ")t set startTime = current timestamp,jobstatus = 0";
-			WriteLog.writeFile("2.¿ªÊ¼ÔËÐÐ\n" + sqlStr);
+			WriteLog.writeFile("2.ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½\n" + sqlStr);
 			//System.out.println(batchno + "  " + jobname+" is ready: "+sqlStr);
 			/*
 			 update dbo.jobWaitingPool set HEADJOBSTATUS = 0 where batchno = batchno and headJobname = jobname;
@@ -290,25 +290,25 @@ public class DBUnit {
 		}
 		return true;
 	}
-	//3.ÔËÐÐÍê³É£¬·µ»Øjob×´Ì¬£¬ Ð´Èë×´Ì¬ 1-³É¹¦ 2-¾¯¸æ 3-Ê§°Ü£¬Í¨ÖªÏÂ¼Ò1-Íê³É
+	//3.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½ï¿½ï¿½ï¿½ï¿½job×´Ì¬ï¿½ï¿½ Ð´ï¿½ï¿½×´Ì¬ 1-ï¿½É¹ï¿½ 2-ï¿½ï¿½ï¿½ï¿½ 3-Ê§ï¿½Ü£ï¿½Í¨Öªï¿½Â¼ï¿½1-ï¿½ï¿½ï¿½
 	public static boolean jobEnd(String scheduleType,String batchno,String jobtype ,String jobname,int jobStatus){
 		try {
 			Connection conn = ds.getConnection();
-			conn.setAutoCommit(true);//jdbcÄ¬ÈÏ×Ô¶¯Ìá½»
+			conn.setAutoCommit(true);//jdbcÄ¬ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½á½»
 			// System.out.println(conn);
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			//String sqlStr = "insert into dbo.jobrunlog (batchno,jobtype,jobname,endtime,jobstatus,jobstatusstr)values ('"+batchno+"','"+jobtype+"','"+jobname+"',current timestamp,"+jobStatus+",'end')";
 			String sqlStr = "update dbo.jobrunlog set endtime = current timestamp,jobstatus = "+jobStatus+" where batchno = '"+batchno+"' and jobtype = '"+jobtype+"' and jobname = '"+jobname+"'";
-			WriteLog.writeFile("ÔËÐÐÍê³É£¬\n" + sqlStr);
+			WriteLog.writeFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½\n" + sqlStr);
 			/*
 			update dbo.jobWaitingPool set headJobstatus = 1 
 			where batchno = 'batchno' and headJobname = 'jobname'
 			 */
-			//System.out.println(jobname+" ¸üÐÂÔËÐÐ×´Ì¬£º"+sqlStr);
+			//System.out.println(jobname+" ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½"+sqlStr);
 			//stmt.executeUpdate(sqlStr);
 			stmt.addBatch(sqlStr);
 			sqlStr = "update dbo.jobWaitingPool set headJobstatus = "+jobStatus+" " +"where batchno = '"+batchno+"' and headJobname = '"+jobname+"'";
-			WriteLog.writeFile("ÔËÐÐÍê³É£¬\n" + sqlStr);
+			WriteLog.writeFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½\n" + sqlStr);
 			//System.out.println(sqlStr);
 			//stmt.executeUpdate(sqlStr);
 			stmt.addBatch(sqlStr);
@@ -320,12 +320,12 @@ public class DBUnit {
 		}
 		return true;
 	}
-	//4.·¢Õ¹ÏÂ¼Ò£¬°ÑÏÂ¼ÒÈÓ½øµÈ´ý³Ø£¬²¢¸æËßËüÐèµÈ´ýµÄÉÏ¼ÒÃûµ¥
+	//4.ï¿½ï¿½Õ¹ï¿½Â¼Ò£ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ó½ï¿½ï¿½È´ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static boolean jobPyramid(String scheduleType,String batchno,String jobtype ,String jobname,int jobStatus){
-		//ÏÂ¼Ò¿ÉÄÜÓÐ¶àÎ»ÉÏ¼Ò£¬µ«Ö»»á±»µÚ1Î»ÉÏ¼ÒÀ­µ½µÈ´ý³ØÀï,´ËÊ±¸ÃÏÂ¼Ò×´Ì¬Îª100-ready
+		//ï¿½Â¼Ò¿ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½Î»ï¿½Ï¼Ò£ï¿½ï¿½ï¿½Ö»ï¿½á±»ï¿½ï¿½1Î»ï¿½Ï¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Â¼ï¿½×´Ì¬Îª100-ready
 		try {
 			Connection conn = ds.getConnection();
-			conn.setAutoCommit(true);//jdbcÄ¬ÈÏ×Ô¶¯Ìá½»
+			conn.setAutoCommit(true);//jdbcÄ¬ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½á½»
 			// System.out.println(conn);
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			String sqlStr = "insert into dbo.jobWaitingPool(scheduleType,batchno,headJobname,headjobtype,head_on_fail_action,tailJobname,tailJobtype,tail_on_fail_action,headJobstatus) " +
@@ -337,9 +337,9 @@ public class DBUnit {
 					"where tailJobname in(select tailJobname from dbo.jobschedule b where headJobname = '"+jobname+"'" + " and a.scheduleType = b.scheduleType and b.scheduleType = '"+scheduleType+"') " + 
 					"and not exists(select 1 from dbo.jobWaitingPool b where b.batchno = '"+batchno+"' and a.tailJobname = b.tailJobname)" +  
 					"and a.scheduleType = '"+scheduleType+"'";
-			WriteLog.writeFile("4.·¢Õ¹ÏÂ¼Ò£¬°ÑÏÂ¼ÒÈÓ½øµÈ´ý³Ø£¬²¢¸æËßËüÐèµÈ´ýµÄÉÏ¼ÒÃûµ¥\n" + sqlStr); 		
-			/*--°ÑÏÂ¼ÒÈÓ½øµÈ´ý³Ø£¬²¢¸æËßËüÐèµÈ´ýµÄÉÏ¼ÒÃûµ¥
-					--·¢Õ¹ÐÂÏÂ¼ÒÈëµÈ´ý³Ø
+			WriteLog.writeFile("4.ï¿½ï¿½Õ¹ï¿½Â¼Ò£ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ó½ï¿½ï¿½È´ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½ï¿½ï¿½\n" + sqlStr); 		
+			/*--ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ó½ï¿½ï¿½È´ï¿½ï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½ï¿½ï¿½
+					--ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½
 					insert into dbo.jobWaitingPool(scheduleType,batchno,headJobname,headjobtype,head_on_fail_action,tailJobname,tailJobtype,tail_on_fail_action,headJobstatus) 
 					select 's1','20170805151952',a.headJobname,b.jobtype,b.on_fail_action,a.tailJobname,c.Jobtype,c.on_fail_action
 							,case when headJobname = 'start' then 1 else 100 end headJobstatus 
@@ -350,7 +350,7 @@ public class DBUnit {
 					and not exists(select 1 from dbo.jobWaitingPool b where b.batchno = '20170805151952' and a.tailJobname = b.tailJobname)
 					and a.scheduleType = 's1'
 			  		*/
-			//System.out.println(jobname+" ·¢Õ¹ÐÂÏÂ¼Ò:");//+sqlStr);
+			//System.out.println(jobname+" ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½Â¼ï¿½:");//+sqlStr);
 			stmt.executeUpdate(sqlStr);
 			conn.close();
 		} catch (SQLException e) {
@@ -360,7 +360,7 @@ public class DBUnit {
 		return true;
 	}
 	
-	//10.»ñÈ¡jobÏêÏ¸ÊäÈëÊä³ö(Ë«»÷²é¿´)
+	//10.ï¿½ï¿½È¡jobï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(Ë«ï¿½ï¿½ï¿½é¿´)
 	public static DefaultJob getJobDetail(String jobname,String jobtype){
 		DefaultJob jobDetail = new DefaultJob();
 		try {
@@ -368,12 +368,12 @@ public class DBUnit {
 			conn.setAutoCommit(true);
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			String sql = null;
-			if (jobtype.equals("TAB")||jobtype.equals("FILE")){//dsjobÀàÐÍ
+			if (jobtype.equals("TAB")||jobtype.equals("FILE")){//dsjobï¿½ï¿½ï¿½ï¿½
 																												
 							 
 				jobname = jobname.substring(jobname.lastIndexOf(".") + 1);
 				sql = "select * from dbo.etl_jobino where inofile = '" + jobname + "'";
-			}else {//ÈôÊäÈëµÄÊÇ±í
+			}else {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç±ï¿½
 				sql = "select * from dbo.etl_jobino where jobname = '" + jobname + "'";
 			}
 
@@ -412,30 +412,30 @@ public class DBUnit {
 					}
 				}
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ÐÐSQL´íÎógetJobDetail:\n"+sql+"\n" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ÐÐSQL´íÎó", 0);
+				WriteLog.writeFile("Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½getJobDetail:\n"+sql+"\n" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½", 0);
 			}
 			conn.close();
 		} catch (SQLException e) {
-			WriteLog.writeFile("Á¬½ÓÊý¾Ý¿âÒì³£:\n"+ e.getMessage());
+			WriteLog.writeFile("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ì³£:\n"+ e.getMessage());
 			e.printStackTrace();
 		}
 		return jobDetail;
 	}
-	// »ñÈ¡scheduJoblocation
+	// ï¿½ï¿½È¡scheduJoblocation
 	public static ArrayList<Job> initScheduleJobLocationList(String scheduleType) {
 		ArrayList<Job> jobs = new ArrayList<Job>();
 		try {
 			Connection conn = ds.getConnection();
 			// stmt =
 			// conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 			try {
 				//ResultSet rs = stmt.executeQuery("call dbo.initSchedule()");
 				String sql = "select * from dbo.jobProperty where scheduleType = '"+scheduleType+"'";
 				logger.info(sql);
 				ResultSet rs = stmt.executeQuery(sql);
-				// ½«½á¹û·ÅÈëjobInfoList
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jobInfoList
 				while (rs.next()) {
 					//DefaultJob job = new DefaultJob();
 					Job job = new Job(rs.getString("jobname"),rs.getInt("ISVALID"),rs.getString("JOBTYPE"));
@@ -451,22 +451,22 @@ public class DBUnit {
 					job.groupName = rs.getString("groupName");
 					job.memo = rs.getString("memo");
 					job.params = rs.getString("params");
-					job.jobstatus = 1000;//rs.getInt("jobstatus");³õÊ¼×´Ì¬Îª1000-waiting
+					job.jobstatus = 1000;//rs.getInt("jobstatus");ï¿½ï¿½Ê¼×´Ì¬Îª1000-waiting
 					jobs.add(job);
 				}
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ÐÐSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ÐÐSQL´íÎó", 0);
+				WriteLog.writeFile("Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½", 0);
 			}
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó7,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "´íÎó", 0);
+			WriteLog.writeFile("Î´Öªï¿½ï¿½ï¿½ï¿½7,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "ï¿½ï¿½ï¿½ï¿½", 0);
 		}
 		return jobs;
 	}
 	
-	//»ñÈ¡scheduleJobRelation
+	//ï¿½ï¿½È¡scheduleJobRelation
 	public static List<JobEdge> initScheduleJobRelationList(String scheduleType) {
 		List<JobEdge> jobEdges = new ArrayList<JobEdge>(); 
 		try {
@@ -477,7 +477,7 @@ public class DBUnit {
 			String sql = "select * from dbo.jobSchedule where scheduletype = '"+scheduleType+"'";
 			logger.info(sql);
 			ResultSet	rs = stmt.executeQuery(sql);
-		// ½«½á¹û·ÅÈëjobInfoList
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jobInfoList
 		while (rs.next()) {
 			JobEdge jobEdge = new JobEdge();
 			jobEdge.headJobName = rs.getString("headJobName");
@@ -490,30 +490,30 @@ public class DBUnit {
 			jobEdges.add(jobEdge);
 		}
 		}catch (Exception e){
-			WriteLog.writeFile("¶ÁÈ¡ÅäÖÃÎÄ¼þÊ±³ö´í:" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\n","Î´Öª´íÎó1,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±.",0);
+			WriteLog.writeFile("ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ê±ï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\n","Î´Öªï¿½ï¿½ï¿½ï¿½1,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±.",0);
 		}
 		conn.close();
 	} catch (Exception e) {
-		WriteLog.writeFile("Î´Öª´íÎó8,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n"+e.getMessage());
-		JOptionPane.showMessageDialog(null, e.getMessage() + "\n","Î´Öª´íÎó2,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±.",0);
+		WriteLog.writeFile("Î´Öªï¿½ï¿½ï¿½ï¿½8,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n"+e.getMessage());
+		JOptionPane.showMessageDialog(null, e.getMessage() + "\n","Î´Öªï¿½ï¿½ï¿½ï¿½2,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±.",0);
 	}
 	return jobEdges;
 	}
 
-	//Ë¢ÐÂµ÷¶È×´Ì¬
+	//Ë¢ï¿½Âµï¿½ï¿½ï¿½×´Ì¬
 	public static List<JobLocation> refreshScheduleJobLocationList(String batchno) {
 		List<JobLocation> jobLocationList = new ArrayList<JobLocation>();
 		try {
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 			try {
 				/*String sql = "merge into dbo.job_location a using " +
 							 "(select jobname,max(jobstatus)jobstatus from dbo.jobrunlog b where b.batchno = '"+batchno+"' group by jobname )b "+
 							 "on a.jobname = b.jobname " +
 							 "when matched then update set a.jobstatus = b.jobstatus " +
 							 "else ignore";*/
-				//´Ójobrunlog»ñÈ¡×îÐÂµÄjob×´Ì¬
+				//ï¿½ï¿½jobrunlogï¿½ï¿½È¡ï¿½ï¿½ï¿½Âµï¿½job×´Ì¬
 				String sql = "select jobname,jobstatus from (select jobname,jobstatus " +
 							 			",row_number()over(partition by jobname order by insertTime desc)rn " + 
 							 			"from dbo.jobrunlog "+
@@ -523,11 +523,11 @@ public class DBUnit {
                               "where not exists(select 1 from dbo.jobRunlog b " +  
                             		  "where a.scheduleType = b.scheduleType and a.batchno = b.batchno and b.batchno = '"+batchno+"') " +
                                       "and a.batchno = '"+batchno+"' " ;
-				//WriteLog.writeFile("Ë¢ÐÂµ÷¶È×´Ì¬\n" + sql); 	
+				//WriteLog.writeFile("Ë¢ï¿½Âµï¿½ï¿½ï¿½×´Ì¬\n" + sql); 	
 				//System.out.println("refreshScheduleJob:"+sql);
 				//stmt.executeUpdate(sql);
 				ResultSet rs = stmt.executeQuery(sql);
-				// ½«½á¹û·ÅÈëjobInfoList
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jobInfoList
 				while (rs.next()) {
 					JobLocation jobLocation = new JobLocation();
 					jobLocation.jobname = rs.getString("jobname");
@@ -541,23 +541,23 @@ public class DBUnit {
 					jobLocationList.add(jobLocation);
 				}
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ÐÐSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ÐÐSQL´íÎó", 0);
+				WriteLog.writeFile("Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½", 0);
 			}
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó9,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "´íÎó", 0);
+			WriteLog.writeFile("Î´Öªï¿½ï¿½ï¿½ï¿½9,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "ï¿½ï¿½ï¿½ï¿½", 0);
 		}
 		return jobLocationList;
 	}
 			
-	// ±£´æ×÷Òµ¼°ÆäÒÀÀµ¹ØÏµµ½Êý¾Ý¿â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 	public static boolean saveAllJob(String scheduleType, ArrayList<Job> jobs, ArrayList<JobEdge> jobEdges) {
-		// 1.É¾³ý½«Òª²åÈëµÄÊý¾Ý
+		// 1.É¾ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String sqlPre1 = "delete from dbo.jobProperty where scheduleType = '" + scheduleType + "'";
 		String sqlPre2 = "delete from dbo.jobSchedule where scheduleType = '" + scheduleType + "'";
-		// 2.Éú³ÉjobPropertyµÄSQLÓï¾ä
+		// 2.ï¿½ï¿½ï¿½ï¿½jobPropertyï¿½ï¿½SQLï¿½ï¿½ï¿½
 		Job jb = jobs.get(0);
 		String sql1 = "insert into dbo.jobProperty"
 				+ "(scheduleType,jobtype,jobname,x,y,isvalid,isSchedule,on_fail_action,COST,groupID,groupName,memo,params)values";
@@ -566,7 +566,7 @@ public class DBUnit {
 			sql1 += ((i==0)?"":",") + "('" + scheduleType + "','" + jb.jobtype + "','" + jb.jobname + "'," + jb.x + "," + jb.y + "," + jb.isValid + "," + jb.isSchedule + ",'"
 					+ jb.on_fail_action + "','" + jb.cost + "'," + jb.groupID + ",'" + jb.groupName + "','" + jb.memo + "','" + jb.params + "')\n";
 		}
-		// 3.Éú³ÉjobScheduleµÄSQLÓï¾ä
+		// 3.ï¿½ï¿½ï¿½ï¿½jobScheduleï¿½ï¿½SQLï¿½ï¿½ï¿½
 		JobEdge jobEdge = jobEdges.get(0);
 		String sql2 = "insert into dbo.jobSchedule"
 				+ "(scheduleType,headJobname,tailJobname)values ";
@@ -574,20 +574,20 @@ public class DBUnit {
 			jobEdge = jobEdges.get(i);
 			sql2 += ((i==0)?"":",") + "('" + scheduleType + "','" + jobEdge.headJobName + "','"+ jobEdge.tailJobName +"')\n";
 		}
-		WriteLog.writeFile("1.É¾³ý½«Òª²åÈëµÄÊý¾Ý\n"+sqlPre1);
-		WriteLog.writeFile("1.É¾³ý½«Òª²åÈëµÄÊý¾Ý\n"+sqlPre2);
-		WriteLog.writeFile("2.Éú³ÉjobPropertyµÄSQLÓï¾ä\n"+sql1);
-		WriteLog.writeFile("3.Éú³ÉjobScheduleµÄSQLÓï¾ä\n"+sql2);
+		WriteLog.writeFile("1.É¾ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n"+sqlPre1);
+		WriteLog.writeFile("1.É¾ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n"+sqlPre2);
+		WriteLog.writeFile("2.ï¿½ï¿½ï¿½ï¿½jobPropertyï¿½ï¿½SQLï¿½ï¿½ï¿½\n"+sql1);
+		WriteLog.writeFile("3.ï¿½ï¿½ï¿½ï¿½jobScheduleï¿½ï¿½SQLï¿½ï¿½ï¿½\n"+sql2);
 		/*System.out.println(sqlPre1);
 		System.out.println(sqlPre2);
 		System.out.println(sql1);
 		System.out.println(sql2);*/
-		// 4.Ö´ÐÐSQLÓï¾ä
+		// 4.Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½
 		Connection conn = null;
 		Statement stmt = null;
 		try {
 			conn = ds.getConnection();
-			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 			try {
 				conn.setAutoCommit(false);
 				stmt.executeUpdate(sqlPre1);
@@ -601,13 +601,13 @@ public class DBUnit {
 				stmt.addBatch(sql2);
 				stmt.executeBatch();*/
 			} catch (Exception e) {
-				WriteLog.writeFile("saveAllJob() Ö´ÐÐSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "±£´æÊ§°Ü", 0);
+				WriteLog.writeFile("saveAllJob() Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½", 0);
 				return false;
 			}
 		} catch (Exception e) {
-			WriteLog.writeFile("saveAllJob() Î´Öª´íÎó10,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Î´Öª´íÎó", 0);
+			WriteLog.writeFile("saveAllJob() Î´Öªï¿½ï¿½ï¿½ï¿½10,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Î´Öªï¿½ï¿½ï¿½ï¿½", 0);
 			return false;
 		} finally{
 			try {
@@ -617,7 +617,7 @@ public class DBUnit {
 				e.printStackTrace();
 			}
 		}
-		JOptionPane.showMessageDialog(null, "     ¹§Ï²\n","±£´æ³É¹¦.",1);
+		JOptionPane.showMessageDialog(null, "     ï¿½ï¿½Ï²\n","ï¿½ï¿½ï¿½ï¿½É¹ï¿½.",1);
 		return true;
 	}
 
@@ -626,85 +626,85 @@ public class DBUnit {
 	public static boolean sample(ArrayList<DefaultJob> jobs, ArrayList<JobEdge> edgs) {
 		try {
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 			try {
 				String sql = "s";
 				ResultSet rs = stmt.executeQuery(sql);
-				// ½«½á¹û·ÅÈëjobInfoList
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jobInfoList
 				while (rs.next()) {
 					JobLocation jobLocation = new JobLocation();
 				}
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ÐÐSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ÐÐSQL´íÎó", 0);
+				WriteLog.writeFile("Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½", 0);
 			}
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó11,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "´íÎó", 0);
+			WriteLog.writeFile("Î´Öªï¿½ï¿½ï¿½ï¿½11,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "ï¿½ï¿½ï¿½ï¿½", 0);
 		}
 		return true;
 	}
 
-	//»ñÈ¡µ÷¶ÈÀàÐÍÁÐ±í
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	public static ArrayList<String> getScheduleType() {
 		ArrayList<String> batchnos = new ArrayList<String>();
 		try {
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 			try {
 				String sql = "select distinct scheduleType from dbo.jobProperty";
 				System.out.println(sql);
 				ResultSet rs = stmt.executeQuery(sql);
-				// ½«½á¹û·ÅÈëjobInfoList
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jobInfoList
 				while (rs.next()) {
 					batchnos.add(rs.getString("scheduleType"));
 				}
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ÐÐSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ÐÐSQL´íÎó", 0);
+				WriteLog.writeFile("Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½", 0);
 			}
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó12,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "´íÎó", 0);
+			WriteLog.writeFile("Î´Öªï¿½ï¿½ï¿½ï¿½12,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "ï¿½ï¿½ï¿½ï¿½", 0);
 		}
 		return batchnos;
 	}
 
-	//»ñÈ¡Åú´ÎÁÐ±í
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	public static ArrayList<String> getBatchno(String scheduleType){
 		ArrayList<String> batchnos = new ArrayList<String>();
 		try {
 		Connection conn = ds.getConnection();
-		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 		try {
-			//jobRunlogÐèÒªÔö¼ÓscheduleType×Ö¶Î
+			//jobRunlogï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½scheduleTypeï¿½Ö¶ï¿½
 			String sql = "select distinct batchno from dbo.jobRunLog where scheduleType = '"+scheduleType+"' order by batchno desc fetch first 16 rows only";// where scheduleType = '" + scheduleType +"'";
 			System.out.println(sql);
 			ResultSet rs = stmt.executeQuery(sql);
-			// ½«½á¹û·ÅÈëjobInfoList
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jobInfoList
 			while (rs.next()) {
 				batchnos.add(rs.getString("batchno"));
 			}
 		} catch (Exception e) {
-			WriteLog.writeFile("Ö´ÐÐSQL´íÎó:" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ÐÐSQL´íÎó", 0);
+			WriteLog.writeFile("Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½", 0);
 		}
 		conn.close();
 	} catch (Exception e) {
-		WriteLog.writeFile("Î´Öª´íÎó13,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-		JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "´íÎó", 0);
+		WriteLog.writeFile("Î´Öªï¿½ï¿½ï¿½ï¿½13,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+		JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "ï¿½ï¿½ï¿½ï¿½", 0);
 	}
 	return batchnos;
 }
 	
-	// »ñÈ¡job_locations v3.0
+	// ï¿½ï¿½È¡job_locations v3.0
 	public static List<JobLocation> getJobLocationList3_0(User user,int jbtype_in, int sourceOrTarget, String jobname) {
 		List<JobLocation> jobLocationList = new ArrayList<JobLocation>();
 		try {
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 			try {
 				//String sql = "CALL DBO.job_location_v2_1(" + jbtype_in + "," + sourceOrTarget + ",'" + jobname + "')";
 				String sql = "CALL DBO.job_location_v3_1(" + jbtype_in + "," + sourceOrTarget + ",'" + jobname + "','"+user.getUserID()+"','"+sdf.format(user.getOptionTime())+"')";
@@ -713,7 +713,7 @@ public class DBUnit {
 				sql = "select jobname,x,y,isvalid,jobtype,cost from dbo.job_location where userid = '"+user.getUserID()+"' and datime = '"+sdf.format(user.getOptionTime())+"' order by x,y";
 				WriteLog.writeFile("excute:" + sql);
 				ResultSet rs = stmt.executeQuery(sql);
-				// ½«½á¹û·ÅÈëjobInfoList
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jobInfoList
 				while (rs.next()) { // RID PNUMBER PREVIOUS BNUMBER BEHIND
 					// PATHLENGTH RNUMBER2 X Y
 					JobLocation jobLocation = new JobLocation();
@@ -727,26 +727,26 @@ public class DBUnit {
 					jobLocationList.add(jobLocation);
 				}
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ÐÐSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ÐÐSQL´íÎó", 0);
+				WriteLog.writeFile("Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "Ö´ï¿½ï¿½SQLï¿½ï¿½ï¿½ï¿½", 0);
 			}
 			stmt.close();
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó14,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "´íÎó", 0);
+			WriteLog.writeFile("Î´Öªï¿½ï¿½ï¿½ï¿½14,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + "", "ï¿½ï¿½ï¿½ï¿½", 0);
 		}
 		return jobLocationList;
 	}
 
-	//»ñÈ¡job_relation
+	//ï¿½ï¿½È¡job_relation
 	public static List<JobRelation> getJobRelationList(User user) {
 			List<JobRelation> jobRelationList = new ArrayList<JobRelation>();
 			String userID = user.getUsername();
 			Date optionTime = user.getOptionTime();
 			try {
 				Connection conn = ds.getConnection();
-				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ï¿½ï¿½ï¿½36001ï¿½ï¿½ï¿½ï¿½
 				try {
 					String sql = "";
 					sql = "select a.*,b.x,b.y,row_number()over(partition by BEHIND order by PATHLENGTH)rn " +
@@ -757,7 +757,7 @@ public class DBUnit {
 					WriteLog.writeFile("excute:"+sql);
 					ResultSet rs = stmt.executeQuery(sql);
 					// select * from dbo.job_relation
-					// ½«½á¹û·ÅÈëjobInfoList
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jobInfoList
 					while (rs.next()) { // RID PNUMBER PREVIOUS BNUMBER BEHIND
 										// PATHLENGTH RNUMBER2 X Y
 						JobRelation jobinfo = new JobRelation();
@@ -774,20 +774,20 @@ public class DBUnit {
 						jobRelationList.add(jobinfo);
 					}
 				} catch (Exception e) {
-					WriteLog.writeFile("DBUnit : Î´Öª´íÎó1,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-					JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "Î´Öª´íÎó1,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±.", 0);
+					WriteLog.writeFile("DBUnit : Î´Öªï¿½ï¿½ï¿½ï¿½1,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+					JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "Î´Öªï¿½ï¿½ï¿½ï¿½1,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±.", 0);
 				}
 				stmt.close();
 				conn.close();
 			} catch (Exception e) {
-				WriteLog.writeFile("DBUnit : Î´Öª´íÎó2,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "Î´Öª´íÎó2,Çë¼ì²éÊý¾Ý¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±.", 0);
+				WriteLog.writeFile("DBUnit : Î´Öªï¿½ï¿½ï¿½ï¿½2,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±...\n" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "Î´Öªï¿½ï¿½ï¿½ï¿½2,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±.", 0);
 			}
 
 			return jobRelationList;
 		}
 
-	//µÇÂ¼
+	//ï¿½ï¿½Â¼
 	public static int login(InitProperty ip) {
 		int loginStatus = 0;
 		String sql = "";
@@ -797,7 +797,7 @@ public class DBUnit {
 			conn = ds.getConnection();
 			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); 
 		} catch (Exception e) {
-			//ÎÞ·¨Á¬½ÓÊý¾Ý¿â
+			//ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 			return -1;
 		}
 		try {
@@ -811,7 +811,7 @@ public class DBUnit {
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
-			//µÇÂ¼ÓÃ»§ÃÜÂë´íÎó
+			//ï¿½ï¿½Â¼ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			e.printStackTrace();
 		}
 		return loginStatus;
@@ -822,7 +822,7 @@ public class DBUnit {
 		return 0;
 	}
 
-	//»ñÈ¡×îÐÂ°æ±¾
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Â°æ±¾
 	/*public static double getLastVersion(){
 		double version = 0;
 			Connection conn;
@@ -845,7 +845,7 @@ public class DBUnit {
 		return lastVersion;
 	}
 	
-	//µ±Ç°°æ±¾ÊÇ·ñ¿ÉÓÃ
+	//ï¿½ï¿½Ç°ï¿½æ±¾ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 	/*public static boolean isVersionUseable(double version){
 		boolean useable = false;
 		try {
@@ -880,7 +880,7 @@ public class DBUnit {
 		System.out.println(dbUnit.isVersionUseable(3.1));
 	}
 	
-	//»ñÈ¡µ¥¸öjobµÄº¢×Ó
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½jobï¿½Äºï¿½ï¿½ï¿½
 	public static ArrayList<Job> getChildren(Job job,DesignerGraph graph) {
 		ArrayList<Job> children = new ArrayList<Job>();
 		ArrayList<Job> jobsExists = graph.getAllJobs();
@@ -911,7 +911,7 @@ public class DBUnit {
 				for(int e=0;e<jobsExists.size();e++){
 					Job jobExists = jobsExists.get(e);
 					if(jobname.equalsIgnoreCase(jobExists.getJobname())){
-						//Èç¹ûÏàÍ¬µÄJobÒÑ¾­´æÔÚ£¬½áÊøÑ­»·
+						//ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Jobï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½
 						children.add(jobExists);
 						continue f;
 					}
@@ -947,7 +947,7 @@ public class DBUnit {
 		return children;
 	}
 	
-	//»ñÈ¡µ¥¸öjobµÄroots
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½jobï¿½ï¿½roots
 		public static ArrayList<Job> getRoots(Job job,DesignerGraph graph) {
 			ArrayList<Job> roots = new ArrayList<Job>();
 			ArrayList<Job> jobsExists = graph.getAllJobs();
@@ -978,7 +978,7 @@ public class DBUnit {
 					for(int e=0;e<jobsExists.size();e++){
 						Job jobExists = jobsExists.get(e);
 						if(jobname.equalsIgnoreCase(jobExists.getJobname())){
-							//Èç¹ûÏàÍ¬µÄJobÒÑ¾­´æÔÚ£¬½áÊøÑ­»·
+							//ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Jobï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½
 							roots.add(jobExists);
 							continue f;
 						}
