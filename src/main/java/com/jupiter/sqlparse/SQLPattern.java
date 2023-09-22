@@ -23,14 +23,14 @@ public class SQLPattern {
 	
 	public boolean isDB2TruncateSQL(String sql){
 		
-	    // ±àÒëÕıÔò±í´ïÊ½,ºöÂÔ´óĞ¡Ğ´
+	    // ç¼–è¯‘æ­£åˆ™è¡¨è¾¾å¼,å¿½ç•¥å¤§å°å†™
 	    Pattern pattern = Pattern.compile(TrancateTable, Pattern.CASE_INSENSITIVE);  //
 	    Matcher matcher = pattern.matcher(sql.trim());
 	    return matcher.matches();
 	}
 	
     public static boolean isSQLStatement(String sql){
-            // ±àÒëÕıÔò±í´ïÊ½,ºöÂÔ´óĞ¡Ğ´
+            // ç¼–è¯‘æ­£åˆ™è¡¨è¾¾å¼,å¿½ç•¥å¤§å°å†™
             Pattern pattern = Pattern.compile(SQLStatement, Pattern.CASE_INSENSITIVE);  //
             Matcher matcher = pattern.matcher(sql.trim());
             return matcher.matches();

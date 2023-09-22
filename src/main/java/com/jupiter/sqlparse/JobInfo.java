@@ -7,13 +7,13 @@ package com.jupiter.sqlparse;
 * @Description:
 * @author: Jupiter.Lin
 * @version: V1.0 
-* @date: 2020Äê9ÔÂ24ÈÕ ÉÏÎç10:27:00 
+* @date: 2020å¹´9æœˆ24æ—¥ ä¸Šåˆ10:27:00 
 */
 public class JobInfo {
-    public String stype = ""; //µ÷¶ÈÀàĞÍ
-    public String jobtype = ""; //ÀàĞÍ
-    public String joblocate = ""; //³ÌĞòËùÔÚÄ¿Â¼
-    public String jobname = ""; //Ãû³Æ
+    public String stype = ""; //è°ƒåº¦ç±»å‹
+    public String jobtype = ""; //ç±»å‹
+    public String joblocate = ""; //ç¨‹åºæ‰€åœ¨ç›®å½•
+    public String jobname = ""; //åç§°
     public String aliasName = null;
     
     

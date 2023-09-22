@@ -26,19 +26,19 @@ import oracle.sql.CLOB;
 * @Description:
 * @author: Jupiter.Lin
 * @version: V1.0 
-* @date: 2020Äê9ÔÂ23ÈÕ ÏÂÎç5:34:05 
+* @date: 2020å¹´9æœˆ23æ—¥ ä¸‹åˆ5:34:05 
 */
 public class ParseProcFile {
   
     Logger logger = Logger.getLogger("src.com.SQLParse.ParseProcFile");
     private static String logFile = "jobino.log";
-    //private static String path = "D:\\Jupiter\\workPlace\\001.×ÊÁÏ\\012.dsjob_analysis\\10.proc";
+    //private static String path = "D:\\Jupiter\\workPlace\\001.èµ„æ–™\\012.dsjob_analysis\\10.proc";
     
-    /**»ñÈ¡Â·¾¶ÏÂËùÓĞsqlÎÄ¼ş
+    /**è·å–è·¯å¾„ä¸‹æ‰€æœ‰sqlæ–‡ä»¶
      * stype.dbname.schema.procname.txt
-    * @stype ÏµÍ³Ãû³Æ
-    * @dbname Êı¾İ¿âÃû³Æ
-    * @schema ±íschema
+    * @stype ç³»ç»Ÿåç§°
+    * @dbname æ•°æ®åº“åç§°
+    * @schema è¡¨schema
     * @procname 
     * @author CHN0007482
     * @since 2020-10-10
@@ -57,7 +57,7 @@ public class ParseProcFile {
         return files;
     }
     
-        /**½âÎösqlÎÄ¼ş £¬Ğ´Èë etl_jobino_tmp
+        /**è§£æsqlæ–‡ä»¶ ï¼Œå†™å…¥ etl_jobino_tmp
         * parse-Desc:
         * @param files     
         * void 
@@ -69,14 +69,14 @@ public class ParseProcFile {
         for (int i = 0; i < files.size(); i++) {
             File file = files.get(i);
             String fileName = file.getName();
-            logger.info("¿ªÊ¼·ÖÎö: " + fileName);
+            logger.info("å¼€å§‹åˆ†æ: " + fileName);
             List<String> strs = Arrays.asList(fileName.split("\\."));
             ListIterator<String> it = strs.listIterator();
-            while (it.hasNext())//µ¹Ğò
+            while (it.hasNext())//å€’åº
                 it.next();
             String fix = it.hasPrevious() ? it.previous() : "";
             if (!fix.equalsIgnoreCase("SQL")) {
-                return;// ·ÇsqlÎÄ¼ş,ÍË³ö
+                return;// ésqlæ–‡ä»¶,é€€å‡º
             }
             String jobname = it.hasPrevious() ? it.previous() : "";
             String jobtype = it.hasPrevious() ? it.previous() : "";
@@ -109,7 +109,7 @@ public class ParseProcFile {
     
      
      /**
-      * OracleµÄClob×ª³ÉString
+      * Oracleçš„Clobè½¬æˆString
       * @param clob
       * @return
       */
@@ -122,7 +122,7 @@ public class ParseProcFile {
          return null;
      }
      
-     /**´ÓÊı¾İ¿âÖĞµ¼³öSQLÎÄ¼ş
+     /**ä»æ•°æ®åº“ä¸­å¯¼å‡ºSQLæ–‡ä»¶
      * exportSQLFile-Desc:
      * @param dbname
      * @param path     
@@ -157,9 +157,9 @@ public class ParseProcFile {
      */
      public static void main(String[] args) {
          ParseProcFile p = new ParseProcFile();
-//         //p.exportSQLFile("adpp", path); //µ¼³öSQLÎÄ¼ş,ĞèÒªÏÈÊÖ¶¯Çå¿Õ
-//         List<File> files = p.getFiles(path);  //»ñÈ¡sqlÎÄ¼ş
-//         p.parse(files);//·ÖÎösqlÎÄ¼ş
+//         //p.exportSQLFile("adpp", path); //å¯¼å‡ºSQLæ–‡ä»¶,éœ€è¦å…ˆæ‰‹åŠ¨æ¸…ç©º
+//         List<File> files = p.getFiles(path);  //è·å–sqlæ–‡ä»¶
+//         p.parse(files);//åˆ†æsqlæ–‡ä»¶
          p.logger.info("aaa");
      }
 }

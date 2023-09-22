@@ -17,14 +17,14 @@ import com.jupiter.WriteLog;
 public class ParseSQL {
 
 	//private static ComboPooledDataSource ds = new ComboPooledDataSource();
-	private List<String> anotherKeyWords = Arrays.asList("WHERE","GROUP","ORDER","UNION","INTERSECT","EXCEPT","MINUS");//ÁíÍâÒ»¾äSQL
+	private List<String> anotherKeyWords = Arrays.asList("WHERE","GROUP","ORDER","UNION","INTERSECT","EXCEPT","MINUS");//å¦å¤–ä¸€å¥SQL
 	private List<String> SQLKeyWords = Arrays.asList("SELECT","AS","WITH","WHERE","ON","GROUP","ORDER","UNION","INTERSECT","EXCEPT","MINUS","LEFT","RIGHT","FULL","CROSS","JOIN",",","(",")");
 	private List<String> subSQLAlias = Arrays.asList("__brackets__","__subquery__","/dev/null","dev/null");
 	private String substr = "__(brackets|subquery)\\d+__";
 	private HashSet<JobInputOutput> jobinoSet = new HashSet<JobInputOutput>();
 	
 	/**
-	 * ½âÎöSQLS(ÒÔ;·Ö¸ô)
+	 * è§£æSQLS(ä»¥;åˆ†éš”)
 	 */
 	public void parseSQLs(String sqls, String serverName,JobInfo job) {
 	    jobinoSet.clear();
@@ -43,7 +43,7 @@ public class ParseSQL {
 	}
 	
 	/**
-	 * @param args ½âÎöµ¥¾äSQL
+	 * @param args è§£æå•å¥SQL
 	 * @param serverName 
 	 * @param jobname 
 	 * @param stype 
@@ -81,8 +81,8 @@ public class ParseSQL {
             ;
         else if (SQLType.equalsIgnoreCase("BEGIN"))
             parseSQL(sql.substring(sql.indexOf(" ")), serverName,job);
-		else //JOptionPane.showMessageDialog(null, SQLType +" : "+sql+"\n","²»Ö§³Ö:",0);
-			WriteLog.writeFile(ParseJobio.getLogFile(),"²»Ö§³Ö: "+sql);
+		else //JOptionPane.showMessageDialog(null, SQLType +" : "+sql+"\n","ä¸æ”¯æŒ:",0);
+			WriteLog.writeFile(ParseJobio.getLogFile(),"ä¸æ”¯æŒ: "+sql);
 	}
 	
 	public void parseSQL(String sql){
@@ -140,7 +140,7 @@ public class ParseSQL {
 	}
 
 	/**
-	 * ½âÎöSELECT,º¬×Ó²éÑ¯
+	 * è§£æSELECT,å«å­æŸ¥è¯¢
 	 * @param serverName 
 	 * @param jobname 
 	 * @param stype 
@@ -178,7 +178,7 @@ public class ParseSQL {
 	
 
 	/**
-	 * @param Ôö¼ÓsubSQLName aliasName
+	 * @param å¢åŠ subSQLName aliasName
 	 */
 	public void parseSelect(ArrayList<String> l,List<String> wi, String stype, String jobname, String serverName) {
 	    parseSingleSelect(l,wi,serverName,new JobInfo(stype,"","",jobname));
@@ -189,16 +189,16 @@ public class ParseSQL {
          * String stype = job.stype; String jobtype = job.jobtype; String joblocate =
          * job.joblocate; String jobname = job.jobname;
          */
-        boolean from = false; // ÊÇ·ñÕÒµ½from
+        boolean from = false; // æ˜¯å¦æ‰¾åˆ°from
         Iterator<String> iter = strs.iterator();
         String str = "";
         String ino = "in", schema = "", inofile = "";
         while (iter.hasNext()) {
-            // Óöµ½ÖØÖÃ±ê¼Ç
+            // é‡åˆ°é‡ç½®æ ‡è®°
             if (anotherKeyWords.contains(str.toUpperCase())) {
                 from = false;
             }
-            // 1.·ÖÎöfromºóÃæµÄÖµ
+            // 1.åˆ†æfromåé¢çš„å€¼
             if (!from) {
                 str = iter.next();
                 if (str.equalsIgnoreCase("FROM")) {
@@ -230,7 +230,7 @@ public class ParseSQL {
                     // System.out.println("tabnamef: " + tb);
                 }
             } else {
-                // 2.·ÖÎöjoin
+                // 2.åˆ†æjoin
                 if (str.equalsIgnoreCase("JOIN")) {
                     str = iter.hasNext() ? iter.next() : "";
                     String t = iter.hasNext() ? iter.next() : "";
@@ -266,7 +266,7 @@ public class ParseSQL {
                         }
                     }
                 } else if (str.equalsIgnoreCase(",")) {
-                    // 3.·ÖÎöµÑ¿¨¶ù»ı
+                    // 3.åˆ†æç¬›å¡å„¿ç§¯
                     str = iter.hasNext() ? iter.next() : "";
                     String t = iter.hasNext() ? iter.next() : "";
                     schema = "";
@@ -304,37 +304,37 @@ public class ParseSQL {
 	}
 
 	/**
-     * @param args ½âÎöµ¥¸öSELECT (²»º¬×Ó²éÑ¯)
+     * @param args è§£æå•ä¸ªSELECT (ä¸å«å­æŸ¥è¯¢)
      * @param serverName 
      * @param jobname 
      * @param stype 
      */
 	public void parseSingleSelect(ArrayList<String> strs, List<String> aliasNames, String serverName, JobInfo job) {
-        boolean select = false; // ÊÇ·ñÕÒµ½select
-        boolean from = false; // ÊÇ·ñÕÒµ½from
+        boolean select = false; // æ˜¯å¦æ‰¾åˆ°select
+        boolean from = false; // æ˜¯å¦æ‰¾åˆ°from
         Iterator<String> iter = strs.iterator();
         @SuppressWarnings("unused")
         String str = "",ino = "in", schema = "", inofile = "";
         while (iter.hasNext()) {
             str = iter.hasNext() ? iter.next() : "";
             if (anotherKeyWords.contains(str.toUpperCase())) {
-                select = false;// Óöµ½ÖØÖÃ±ê¼Ç
+                select = false;// é‡åˆ°é‡ç½®æ ‡è®°
                 from = false;
             } else if (str.equalsIgnoreCase("SELECT")) {
-                select = true;// ·¢ÏÖselect
+                select = true;// å‘ç°select
             } else if (select && str.equalsIgnoreCase("FROM")) {
-                from = true;// ·¢ÏÖfrom
+                from = true;// å‘ç°from
                 inofile = iter.hasNext() ? iter.next() : "";
                 if (!inofile.matches(substr) & !aliasNames.contains(inofile))
                     jobinoSet.add(new JobInputOutput(job, ino,serverName, inofile));
             } else if (select & from &&(str.equalsIgnoreCase("JOIN") || str.equals(","))) {
-                    // ·ÖÎöjoin ºÍ ","
+                    // åˆ†æjoin å’Œ ","
                     inofile = iter.hasNext() ? iter.next() : "";
                     if (!inofile.matches(substr) & !aliasNames.contains(inofile))
                         jobinoSet.add(new JobInputOutput(job, ino,serverName, inofile));
             }
-            /* Ö»¿¼ÂÇfromµÄ·½Ê½£º
-            // 1.Î´ÕÒµ½From£¬ÏÈÕÒFrom
+            /* åªè€ƒè™‘fromçš„æ–¹å¼ï¼š
+            // 1.æœªæ‰¾åˆ°Fromï¼Œå…ˆæ‰¾From
             if (!from) {
                 if (str.equalsIgnoreCase("FROM")) {
                     from = true;
@@ -342,7 +342,7 @@ public class ParseSQL {
                     if (!inofile.matches(substr))
                         jobinoSet.add(new JobInputOutput(job, ino, inofile));
                 }
-                // 2.ÒÑÕÒµ½From£¬·ÖÎöjoin ºÍ ","
+                // 2.å·²æ‰¾åˆ°Fromï¼Œåˆ†æjoin å’Œ ","
             } else if (str.equalsIgnoreCase("JOIN") || str.equals(",")) {
                 inofile = iter.hasNext() ? iter.next() : "";
                 if (!inofile.matches(substr))
@@ -684,7 +684,7 @@ public class ParseSQL {
 	}
 	
 	/**
-     * @param args ½âÎöReadFile
+     * @param args è§£æReadFile
      */
     private void parseReadFile(String sql,  String serverName,JobInfo job) {
         ArrayList<String> strs = SQLStrFormat.split(sql);
@@ -711,7 +711,7 @@ public class ParseSQL {
     }
     
     /**
-     * @param args ½âÎöWriteFile
+     * @param args è§£æWriteFile
      */
     private void parseWriteFile(String sql,  String serverName,JobInfo job) {
         ArrayList<String> strs = SQLStrFormat.split(sql);
@@ -743,7 +743,7 @@ public class ParseSQL {
 	}
 
 	/**
-	 * @param args ½âÎöDelete SQL
+	 * @param args è§£æDelete SQL
 	 */
 	public void parseDelete(String sql, String stype, String jobname, String serverName) {
 	    parseDelete(sql,serverName,new JobInfo(stype,"","",jobname));
@@ -752,7 +752,7 @@ public class ParseSQL {
 		//sql = "DELETE FROM Z FROM DBO.ETL_POLICY_DIMN Z INNER JOIN DBO.ETL_POLICY_EFFECTIVE_DIMN_MIDD B ON Z.COMPANYCODE = B.COMPANYCODE";
 		//delete from A from (select * from test3)C,dbo.test1 B,dbo.test2 A where a.id = b.id and c.id = a.id;
 		//delete <from> A from(select * from test1)A;
-		//boolean delete = false; // ÊÇ·ñÕÒµ½delete
+		//boolean delete = false; // æ˜¯å¦æ‰¾åˆ°delete
 		String str = "", ino = "out", schema = "", inofile = "";
 		Map<String, String> sqls = SQLStrFormat.getSubSQLStr(sql, 1);
 		ArrayList<String> ss = new ArrayList<String>();
@@ -790,14 +790,14 @@ public class ParseSQL {
 					String t1 = it.hasNext() ? it.next() : "";
 					if(t1.equalsIgnoreCase("FROM")){
 						//delete from A FROM dbo.test1 B,dbo.test2 A where a.id = b.id;
-						deleteAliasTableName = str; //(1)¼ÇÏÂÉ¾³ıÄ¿±ê±íµÄ±ğÃû
+						deleteAliasTableName = str; //(1)è®°ä¸‹åˆ é™¤ç›®æ ‡è¡¨çš„åˆ«å
 						strs.add(0, "*");
 						strs.add(0, "select");
 						ParseSQL p1 = new ParseSQL();						
 						p1.parseSingleSelect(strs,ss, serverName,job);
 						for(JobInputOutput j : p1.getJobinoSet()){
 							if(deleteAliasTableName.equals(j.aliasName))
-								//(2)±ê¼ÇdeleteµÄÄ¿±ê±í
+								//(2)æ ‡è®°deleteçš„ç›®æ ‡è¡¨
 								j.ino = "out";
 						}
 						this.jobinoSet.addAll(p1.getJobinoSet());
@@ -817,7 +817,7 @@ public class ParseSQL {
 					}
 					String t = (schema + inofile);
 					if (t.matches(substr)) {
-						// Óöµ½delete from(select * from tab)£¬¼ÌĞøËÑË÷×Ó²éÑ¯
+						// é‡åˆ°delete from(select * from tab)ï¼Œç»§ç»­æœç´¢å­æŸ¥è¯¢
 						k = schema + inofile;
 						// System.out.println("k: " + k);
 						break;
@@ -831,7 +831,7 @@ public class ParseSQL {
 				}
 			}
 		}
-		//×Ó²éÑ¯
+		//å­æŸ¥è¯¢
 		for (String key : ks) {
 			// System.out.println(key + ": " + sqls.get(key));
 			parseSingleSelect(SQLStrFormat.split(sqls.get(key)),ss,serverName,job);

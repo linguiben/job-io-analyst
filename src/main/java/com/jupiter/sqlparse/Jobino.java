@@ -1,10 +1,10 @@
 package com.jupiter.sqlparse;
 
 public class Jobino {
-	public String stype = ""; //µ÷¶ÈÀàĞÍ
-	public String joblocate = ""; //³ÌĞòËùÔÚÄ¿Â¼
-	public String jobname = ""; //Ãû³Æ
-	public String jobtype = ""; //ÀàĞÍ
+	public String stype = ""; //è°ƒåº¦ç±»å‹
+	public String joblocate = ""; //ç¨‹åºæ‰€åœ¨ç›®å½•
+	public String jobname = ""; //åç§°
+	public String jobtype = ""; //ç±»å‹
 	public String serverName = ""; //SND
 	public String ino = ""; //INO
 	public String schema = ""; //schema

@@ -17,22 +17,22 @@ public class ParseSelectSQL {
 	private static ComboPooledDataSource ds = new ComboPooledDataSource();
 	private List<String> end = (List<String>) Arrays.asList("SELECT","WHERE","GROUP","ORDER","UNION","INTERSECT","EXCEPT","MINUS");
 	/**
-	 * @param args ½âÎö¸ñSQLÊ½»¯ºóµÄµ¥´Ê
+	 * @param args è§£ææ ¼SQLå¼åŒ–åçš„å•è¯
 	 */
 	public ArrayList<String> parse(ArrayList<String> l) {
 		ArrayList<String> tbl= new ArrayList<String>();
-		boolean from = false; // ÊÇ·ñÕÒµ½from
+		boolean from = false; // æ˜¯å¦æ‰¾åˆ°from
 		Iterator<String> iter = l.iterator();
 		String str = "";
 		while (iter.hasNext()) {
 			
-			// Óöµ½ÖØÖÃ±ê¼Ç
+			// é‡åˆ°é‡ç½®æ ‡è®°
 			if (end.contains(str.toUpperCase())) {
 				from = false;
 			}
 
 			if (!from) {
-				// 1.·ÖÎöfromºóÃæµÄÖµ
+				// 1.åˆ†æfromåé¢çš„å€¼
 				str = (String) iter.next();
 				if (str.equalsIgnoreCase("FROM")) {
 					from = true;
@@ -46,7 +46,7 @@ public class ParseSelectSQL {
 				}
 			} else {
 				if (str.equalsIgnoreCase("JOIN")) {
-					// 2.·ÖÎöjoin
+					// 2.åˆ†æjoin
 					str = (String) iter.next();
 					if (((String) iter.next()).equalsIgnoreCase(".")) {
 						str = str + "." + iter.next();
@@ -68,7 +68,7 @@ public class ParseSelectSQL {
 						}
 					}
 				} else if (str.equalsIgnoreCase(",")) {
-					// 3.·ÖÎöµÑ¿¨¶ù»ı
+					// 3.åˆ†æç¬›å¡å„¿ç§¯
 					str = (String) iter.next();
 					if (((String) iter.next()).equalsIgnoreCase(".")) {
 						str = str + "." + iter.next();
@@ -84,7 +84,7 @@ public class ParseSelectSQL {
 	}
 	
 	/**
-	 * @param args ½âÎöSlect SQL
+	 * @param args è§£æSlect SQL
 	 */
 	public ArrayList<String> parseSelect(String str){
 		ArrayList<String> tbs= new ArrayList<String>();

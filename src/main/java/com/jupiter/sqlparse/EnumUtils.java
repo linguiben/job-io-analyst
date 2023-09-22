@@ -3,18 +3,18 @@ package com.jupiter.sqlparse;
 import java.lang.reflect.Method;
 
 /**
- * @Description: Ã¶¾Ù¹¤¾ßÀà
+ * @Description: æšä¸¾å·¥å…·ç±»
  * @author: Jupiter.Lin
  * @version: V1.0
- * @date: 2021Äê1ÔÂ29ÈÕ ÏÂÎç3:48:20
+ * @date: 2021å¹´1æœˆ29æ—¥ ä¸‹åˆ3:48:20
  */
 public class EnumUtils {
 
     /**
-     * ÅĞ¶ÏÊıÖµÊÇ·ñÊôÓÚÃ¶¾ÙÀàµÄÖµ
+     * åˆ¤æ–­æ•°å€¼æ˜¯å¦å±äºæšä¸¾ç±»çš„å€¼
      * 
      * @param clzz
-     *            Ã¶¾ÙÀà Enum
+     *            æšä¸¾ç±» Enum
      * @param key
      * @return
      */

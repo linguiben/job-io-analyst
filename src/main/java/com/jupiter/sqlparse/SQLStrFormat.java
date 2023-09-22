@@ -59,7 +59,7 @@ public class SQLStrFormat {
         }*/
          
         
-        /*²âÊÔ»ñÈ¡×Ó²éÑ¯
+        /*æµ‹è¯•è·å–å­æŸ¥è¯¢
          * ArrayList<String> SQLStrs1 = SQLStrFormat.getSubSQLStr(rs.toString());
          * System.out.println(SQLStrs1.toString());
          */
@@ -74,7 +74,7 @@ public class SQLStrFormat {
             System.out.println(key+" : " + subQeryies.get(key));
         }
         
-        //»¹Ô­×Ó²éÑ¯
+        //è¿˜åŸå­æŸ¥è¯¢
         String mainSQL = subQeryies.get("__main__");
         subQeryies.remove("__main__");
         mainSQL = SQLStrFormat.format1(mainSQL,1);
@@ -82,7 +82,7 @@ public class SQLStrFormat {
             String subquery = subQeryies.get(key);
             mainSQL = mainSQL.replace(key,subquery);
         }
-        //»¹Ô­À¨ºÅ
+        //è¿˜åŸæ‹¬å·
         Map<String, String> brackets = sqlInfo.brackets;
         for(String key : brackets.keySet()) {
             String bracket = brackets.get(key);
@@ -95,16 +95,16 @@ public class SQLStrFormat {
 		
 	}
 
-	/**É¾³ı×¢ÊÍ**/
+	/**åˆ é™¤æ³¨é‡Š**/
 	public static String removeAnnotation(String sql){
-		// É¾³ıµ¥ĞĞ×¢ÊÍ
+		// åˆ é™¤å•è¡Œæ³¨é‡Š
 		//sql = Pattern.compile("--.*").matcher(sql).replaceAll("");
-		// É¾³ı×¢ÊÍ¿é
+		// åˆ é™¤æ³¨é‡Šå—
 		//sql = Pattern.compile("/\\*((?!/\\*|\\*/).)*\\*/",Pattern.DOTALL).matcher(sql).replaceAll("");
 		
 		char[] ch = sql.toCharArray();
 		String str = ""; 
-		int len = ch.length,sqm = 1,dqm = 1;//µ¥ÒıºÅ¡¢Ë«ÒıºÅÊıÁ¿
+		int len = ch.length,sqm = 1,dqm = 1;//å•å¼•å·ã€åŒå¼•å·æ•°é‡
 		anno : for(int i=0;i<len;i++){
 			char s = ch[i];
 			if(s=='\''){
@@ -144,30 +144,30 @@ public class SQLStrFormat {
 	}
 	
 	public static ArrayList<String> split(String str) {
-	    //È¥³ı"."Á½±ßµÄ ºÍ "]"×ó±ßµÄ¿Õ°×,[ ``²»ÓÃ¿¼ÂÇ
+	    //å»é™¤"."ä¸¤è¾¹çš„ å’Œ "]"å·¦è¾¹çš„ç©ºç™½,[ ``ä¸ç”¨è€ƒè™‘
 	    str = str.replaceAll("\\s*(?=\\]|\\.)", "").replaceAll("(?<=\\.)\\s*", "");
 	    
 	    int length = str.length();
 	    if(str.substring(0,1).equals("(")&&str.substring(length-1).equals(")"))
 	        str = str.substring(1, length-1);
 
-		/* ÕıÔò±í´ïÊ½£º·Ö¸ô·û */
+		/* æ­£åˆ™è¡¨è¾¾å¼ï¼šåˆ†éš”ç¬¦ */
 		String regEx = "\\s+|,|;|\\(|\\)|'([^']|''|\\s)*'"; // '([^']|''|\\s)*' '{1,2}
 		regEx += "|(?<=select)(\\*|`\\w+`|\\[\\w+\\]|\"\\w*\"|'\\w*')"
 		        + "|(\\*|`\\w+`|\\[\\w+\\]|\"\\w*\"|'\\w*')(?=from|,|left|right|cross|join)"
 		        + "|(?<=from|,|join)(`\\w+`|\\[\\w+\\])"; //select*from[]
-		//regEx += "|#\\w+\\.\\w+#|\\d+\\.\\d+|\\.";  //. £¬ÅÅ³ı#.# ºÍĞ¡Êıµã
+		//regEx += "|#\\w+\\.\\w+#|\\d+\\.\\d+|\\.";  //. ï¼Œæ’é™¤#.# å’Œå°æ•°ç‚¹
 		Pattern p = Pattern.compile(regEx);
 		Matcher m = p.matcher(str);
 
-		/* °´ÕÕ¾ä×Ó½áÊø·û·Ö¸î¾ä×Ó */
+		/* æŒ‰ç…§å¥å­ç»“æŸç¬¦åˆ†å‰²å¥å­ */
 		String[] words = p.split(str);
 
-		// ×ª³ÉArrayList
+		// è½¬æˆArrayList
 		// ArrayList<String> ws = new ArrayList<String>(Arrays.asList(words));
 		ArrayList<String> ws = new ArrayList<String>();
 
-		/* ¼ÓÈë·Ö¸ô·û */
+		/* åŠ å…¥åˆ†éš”ç¬¦ */
 		if (words.length > 0) {
 			int count = 0;
 			while (count < words.length) {
@@ -193,7 +193,7 @@ public class SQLStrFormat {
 			}
 		}
 
-		//ºÏ²¢×Ö·û´® 'x''x'
+		//åˆå¹¶å­—ç¬¦ä¸² 'x''x'
 		/*String s = null,t=null;
 		for(int i=0;i<ws.size();i++){
 			s = ws.get(i);
@@ -212,7 +212,7 @@ public class SQLStrFormat {
 				ws.set(j, s);
 			}
 		}*/
-		/* Êä³ö½á¹û */
+		/* è¾“å‡ºç»“æœ */
 		 //System.out.println(ws);
 		return ws;
 	}
@@ -222,7 +222,7 @@ public class SQLStrFormat {
 	}
 	
 	/**
-	 * @param f:0-µ¥ĞĞ·µ»Ø ·Ç0-¶àĞĞ·µ»Ø
+	 * @param f:0-å•è¡Œè¿”å› é0-å¤šè¡Œè¿”å›
 	 */
 	public static String format1(String sql,int f){
 	    List<String> lineKeys = new ArrayList<String>();
@@ -235,16 +235,16 @@ public class SQLStrFormat {
                 str += (ws.get(i) + " ");
             }
         } else {
-            // boolean anotherSQL = false;//ÊÇ·ñÓÖÒ»¾äSQL
+            // boolean anotherSQL = false;//æ˜¯å¦åˆä¸€å¥SQL
             for (int i = 0; i < ws.size(); i++) {
                 String card = ws.get(i);
-                //ÈôÎªSQL¶Ï¾ä£¬ºöÂÔ¶ººÅ
+                //è‹¥ä¸ºSQLæ–­å¥ï¼Œå¿½ç•¥é€—å·
                 if (EnumUtils.isInclude(AnotherSQLKeyWord.class, card.toUpperCase()))
                     lineKeys.removeAll(comma);
-                //ÈôÎªFROM£¬ÅĞ¶Ï¶ººÅ
+                //è‹¥ä¸ºFROMï¼Œåˆ¤æ–­é€—å·
                 else if (card.toUpperCase().equals("FROM"))
                     lineKeys.addAll(comma);
-                // ÈôÓöµ½inner left right corss,ºöÂÔjoin,·ñÔò²»ºöÂÔ
+                // è‹¥é‡åˆ°inner left right corss,å¿½ç•¥join,å¦åˆ™ä¸å¿½ç•¥
                 else if (joinMode.contains(card.toUpperCase()) && i < ws.size()-2) {
                     str += "\n" + card + " " + ws.get(++i) + " ";
                     card = ws.get(++i);
@@ -259,7 +259,7 @@ public class SQLStrFormat {
 	}
 	
 	/**
-	 * @param ÌáÈ¡SQLÀàĞÍ
+	 * @param æå–SQLç±»å‹
 	 */
 	public static String getSQLType(String sql) {
 		String t = "";
@@ -271,7 +271,7 @@ public class SQLStrFormat {
 	}
 	
     /**
-     * @param ½«³¤SQL²ğ·Ö³É¶à¸ö×ÓSQL
+     * @param å°†é•¿SQLæ‹†åˆ†æˆå¤šä¸ªå­SQL
      */
     public static Map<String, String> getSubSQLStr(String sql, int i) {
        
@@ -279,7 +279,7 @@ public class SQLStrFormat {
         return sqlInfo.subQueries;
         
         /*
-        //1.´¦Àí×Ó²éÑ¯Àï²»´ø (with as ..)
+        //1.å¤„ç†å­æŸ¥è¯¢é‡Œä¸å¸¦ (with as ..)
         sql = replaceAllBrackets(sql);
         Matcher m = p.matcher(sql);
         while (m.find()) {
@@ -292,7 +292,7 @@ public class SQLStrFormat {
             id++;
         }
         
-        //2. ´¦Àí ( with t as __subquery1__ select * from t )
+        //2. å¤„ç† ( with t as __subquery1__ select * from t )
         Matcher m1 = p1.matcher(sql);
         if(m1.find()) {
             SQLStrs.put("__subquery" + id + "__", m1.group());
@@ -302,7 +302,7 @@ public class SQLStrFormat {
             id++;
         }
         
-        //3.ÔÙ´¦ÀíÒ»´Î×Ó²éÑ¯
+        //3.å†å¤„ç†ä¸€æ¬¡å­æŸ¥è¯¢
         m = p.matcher(sql);
         while (m.find()) {
             // System.out.println(m.group());
@@ -314,37 +314,37 @@ public class SQLStrFormat {
             id++;
         }
         
-        //4.Ê£ÏÂµÄ²¿·ÖÎªÖ÷²éÑ¯
+        //4.å‰©ä¸‹çš„éƒ¨åˆ†ä¸ºä¸»æŸ¥è¯¢
         SQLStrs.put("__main__", sql);
         return SQLStrs;
         */
     }
 	
 	/**
-	 * @param ½«³¤SQL²ğ·Ö³É¶à¸ö×ÓSQL
+	 * @param å°†é•¿SQLæ‹†åˆ†æˆå¤šä¸ªå­SQL
 	 */
 	public static SQLInfo getSubSQLStr(String sql){
 	  //HashMap<String, String> SQLStrs = new HashMap<String, String>();
         int id = 1;
-        // 1.SQLSTR¸ñÊ½»¯
+        // 1.SQLSTRæ ¼å¼åŒ–
         sql = SQLStrFormat.format(sql);
         // System.out.println("source: "+sql);
-        // 2.ÌáÈ¡×Ó²éÑ¯
-        // ÕıÔò±í´ïÊ½   ((?!(\\(|\\))).)  --ÎŞÀ¨ºÅµÄ·Ç¿Õ¸ñ×Ö·û
+        // 2.æå–å­æŸ¥è¯¢
+        // æ­£åˆ™è¡¨è¾¾å¼   ((?!(\\(|\\))).)  --æ— æ‹¬å·çš„éç©ºæ ¼å­—ç¬¦
         String regex0 = "select((?!(\\(|\\))).)+ from((?!(\\(|\\))).)+";
         String regex1 = "\\w+( __brackets\\d+__)? as __subquery\\d+__";
         String regexSingle = "\\( " + regex0 + "\\)";
-        // ´¦Àí ( with t as __subquery1__ select * from t )
+        // å¤„ç† ( with t as __subquery1__ select * from t )
         String regexWith = "\\( with "+ regex1+"( , "+regex1+")?" +" "+ regex0 +"\\)";
         // String regex = "\\( select((?!( select | from )).)+ from((?!( select | from |\\))).)+\\)";
-        // String regex1 = "\\( select((?!( select | from )).)+ from((?!( select | from )).)+\\)"; //Æ¥Åäµ¥¸ö×Ó²éÑ¯
-        // ÌáÈ¡×Ó²éÑ¯
+        // String regex1 = "\\( select((?!( select | from )).)+ from((?!( select | from )).)+\\)"; //åŒ¹é…å•ä¸ªå­æŸ¥è¯¢
+        // æå–å­æŸ¥è¯¢
         Pattern p = Pattern.compile(regexSingle, Pattern.CASE_INSENSITIVE);
         Pattern p1 = Pattern.compile(regexWith, Pattern.CASE_INSENSITIVE);
         
         SQLInfo sqlInfo = new SQLInfo(sql);
         Map<String, String> subQueries = sqlInfo.subQueries;
-        //1.´¦Àí×Ó²éÑ¯Àï²»´ø (with as ..)
+        //1.å¤„ç†å­æŸ¥è¯¢é‡Œä¸å¸¦ (with as ..)
         sqlInfo = replaceAllBrackets(sqlInfo);
         Matcher m = p.matcher(sqlInfo.sqlStr);
         while (m.find()) {
@@ -357,7 +357,7 @@ public class SQLStrFormat {
             id++;
         }
         
-        //2. ´¦Àí(Ö»ÓĞoracleÖ§³Ö) ( with t as __subquery1__ select * from t )
+        //2. å¤„ç†(åªæœ‰oracleæ”¯æŒ) ( with t as __subquery1__ select * from t )
         Matcher m1 = p1.matcher(sqlInfo.sqlStr);
         if(m1.find()) {
             subQueries.put("__subquery" + id + "__", m1.group());
@@ -367,7 +367,7 @@ public class SQLStrFormat {
             id++;
         }
         
-        //3.ÔÙ´¦ÀíÒ»´Î×Ó²éÑ¯
+        //3.å†å¤„ç†ä¸€æ¬¡å­æŸ¥è¯¢
         m = p.matcher(sqlInfo.sqlStr);
         while (m.find()) {
             // System.out.println(m.group());
@@ -379,16 +379,16 @@ public class SQLStrFormat {
             id++;
         }
         
-        //4.Ê£ÏÂµÄ²¿·ÖÎªÖ÷²éÑ¯
+        //4.å‰©ä¸‹çš„éƒ¨åˆ†ä¸ºä¸»æŸ¥è¯¢
         subQueries.put("__main__", sqlInfo.sqlStr);
         return sqlInfo;
 	}
 	
 	/**
-	 * @param ½«ËùÓĞÀ¨ºÅÌæ»»
+	 * @param å°†æ‰€æœ‰æ‹¬å·æ›¿æ¢
 	 */
 	public static String replaceAllBrackets(String sql) {
-		String brackets = "\\(((?!( select | from |\\(|\\))).)+\\)"; // Æ¥ÅäÒ»¶ÔÀ¨ºÅ
+		String brackets = "\\(((?!( select | from |\\(|\\))).)+\\)"; // åŒ¹é…ä¸€å¯¹æ‹¬å·
 		Pattern pb = Pattern.compile(brackets,Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 		Matcher mb = pb.matcher(sql);
 		while (mb.find()) {
@@ -399,7 +399,7 @@ public class SQLStrFormat {
 	}
 	
 	public static SQLInfo replaceAllBrackets(SQLInfo sqlInfo) {
-        String expression = "\\(((?!( select | from |\\(|\\))).)+\\)"; // Æ¥ÅäÒ»¶ÔÀ¨ºÅ
+        String expression = "\\(((?!( select | from |\\(|\\))).)+\\)"; // åŒ¹é…ä¸€å¯¹æ‹¬å·
         String sqlStr = sqlInfo.sqlStr;
         Map<String, String> brackets = sqlInfo.brackets;
         int bracketsCount = brackets.size();

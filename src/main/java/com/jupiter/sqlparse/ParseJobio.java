@@ -21,14 +21,14 @@ public class ParseJobio {
 	private static String logFile = "jobino.log";
 	private static ComboPooledDataSource ds = new ComboPooledDataSource();
 
-	// 获取Stype,Jobname,RECORD,StageID,StageName,StageType,InputPins,OutputPins,Server,UserName,TimeOut,Input_BEFORESQL,Input_SQL,Input_AFTERSQL,Oupt_BEFORESQL,Output_SQL,Oupt_AFTERSQL
+	// 鑾峰彇Stype,Jobname,RECORD,StageID,StageName,StageType,InputPins,OutputPins,Server,UserName,TimeOut,Input_BEFORESQL,Input_SQL,Input_AFTERSQL,Oupt_BEFORESQL,Output_SQL,Oupt_AFTERSQL
 	public static HashSet<JobInputOutput> getJobIo(ParseSQL p,String stype, String jobname) {
 		HashSet<JobInputOutput> jobinoSet = new HashSet<JobInputOutput>();
 		try {
 			Connection conn = ds.getConnection();
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			String sql = "select * from table(db2inst1.get_JobioSQL('" + stype + "','" + jobname + "'))t " + "where STAGETYPE <> 'CInterProcess' ";
-					/*debug临时增加*/ //+ " and server = '#v_jb_dw_svr#' and stageName = 'ETL_NBP_MISS_BRANCH_PARAM'";
+					/*debug涓存椂澧炲姞*/ //+ " and server = '#v_jb_dw_svr#' and stageName = 'ETL_NBP_MISS_BRANCH_PARAM'";
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				/*String StageType = rs.getString("StageType");
@@ -54,7 +54,7 @@ public class ParseJobio {
 				jobinoSet.addAll(p.getJobinoSet());
 							
 				
-				// 用Jobino记录分析后的输入输出
+				// 鐢↗obino璁板綍鍒嗘瀽鍚庣殑杈撳叆杈撳嚭
 				/*Iterator<Jobino> it = jobinoSet.iterator();
 				while (it.hasNext()) {
 					Jobino i = it.next();
@@ -75,7 +75,7 @@ public class ParseJobio {
 		return jobinoSet;
 	}
 
-	// 将不支持的Stype.Jobname.StageID记录下来
+	// 灏嗕笉鏀寔鐨凷type.Jobname.StageID璁板綍涓嬫潵
 	public static void writeErrLog(String Stype, String Jobname, String StageID,String Remark, String Err) {
 		try {
 			Connection conn = ds.getConnection();
@@ -91,7 +91,7 @@ public class ParseJobio {
 		}
 	}
 
-	// 写入ETL_JOBINO
+	// 鍐欏叆ETL_JOBINO
 	public static void writeJobIo(Set<JobInputOutput> set) {
 	    if(set.size()==0) return;
 		Iterator<JobInputOutput> it = set.iterator();
@@ -144,7 +144,7 @@ public class ParseJobio {
 			    sql = "select Jobname from ktl_jobInfo where stype = '"+stype+"'" + (jobname.isEmpty() ? "" : "and jobname = '"+jobname+"'");
 			}
 			else {
-			    sql = "select Jobname from dsxml_Jobinfo where stype = '"+stype+"' and jobname not like 'CopyOf%' and jobname not like '副本%' "
+			    sql = "select Jobname from dsxml_Jobinfo where stype = '"+stype+"' and jobname not like 'CopyOf%' and jobname not like '鍓湰%' "
 			            + (jobname.isEmpty() ? "" : "and jobname = '"+jobname+"'");// order by rand() fetch first 200 rows only ";
 			}
 			ResultSet rs = stmt.executeQuery(sql);
@@ -156,7 +156,7 @@ public class ParseJobio {
 			e.printStackTrace();
 			WriteLog.writeFile(ParseJobio.getLogFile(),e.toString());
 		}
-		// 分析jobsql
+		// 鍒嗘瀽jobsql
 		int size = j.size();
 		for (int i = 0; i < size; i++) {
 			System.out.println(i+1+"/"+size+":" + j.get(i));

@@ -7,7 +7,7 @@ package com.jupiter.sqlparse;
 * @Description:
 * @author: Jupiter.Lin
 * @version: V1.0 
-* @date: 2021Äê1ÔÂ29ÈÕ ÏÂÎç3:38:52 
+* @date: 2021å¹´1æœˆ29æ—¥ ä¸‹åˆ3:38:52 
 */
 public enum AnotherSQLKeyWord {
     

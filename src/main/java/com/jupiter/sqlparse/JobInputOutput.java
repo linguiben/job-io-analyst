@@ -63,7 +63,7 @@ public class JobInputOutput extends JobInfo{
 		checkProperties();	
 	}
 
-	//dblink.zbxods.dbo.tabname £¬ Î´¿¼ÂÇ schema.tab@citicpru.xxx.xxx
+	//dblink.zbxods.dbo.tabname ï¼Œ æœªè€ƒè™‘ schema.tab@citicpru.xxx.xxx
 	public JobInputOutput (JobInfo job, String ino,String serverName, String inofile) {
 	    this.stype = job.stype;
         this.jobtype = job.jobtype;
@@ -95,7 +95,7 @@ public class JobInputOutput extends JobInfo{
 		if(this.serverName==null)this.serverName="";
 		if(this.schema==null)this.schema="";
 		if(this.inofile==null)this.inofile="";
-		//´¦ÀíÎÄ¼şÀàĞÍ
+		//å¤„ç†æ–‡ä»¶ç±»å‹
         if (this.schema.contains("/") || this.inofile.contains("/")) {
             if (this.schema.contains("#") || this.inofile.contains("#")) {
                 String t = (schema == "" ? "" : schema + ".") + inofile;
@@ -106,7 +106,7 @@ public class JobInputOutput extends JobInfo{
                 this.schema = t.substring(0, t.lastIndexOf("/") + 1);
                 this.inofile = t.substring(t.lastIndexOf("/") + 1);
             }
-        } //´¦Àídblink,ÀıÈç£ºsdata.crtable_mapp@dbl_finods.prd.xincheng.china jb_e02_grp_fin_m_fact_inc
+        } //å¤„ç†dblink,ä¾‹å¦‚ï¼šsdata.crtable_mapp@dbl_finods.prd.xincheng.china jb_e02_grp_fin_m_fact_inc
         else if (this.schema.contains("@") || this.inofile.contains("@")) {
             if (this.schema.contains("#") || this.inofile.contains("#")) {
                 String t = (schema == "" ? "" : schema + ".") + inofile;

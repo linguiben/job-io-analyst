@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class SQLInfo {
-		//public String type;     //SQL¿‡–Õ:SELECT INSERT DELETE UPDATE MERGE LOAD IMPORT TRUNCATE
+		//public String type;     //SQLÁ±ªÂûã:SELECT INSERT DELETE UPDATE MERGE LOAD IMPORT TRUNCATE
 		public String sqlStr;
 		//public int bracketsCount = 0;
 		Comparator1 comparator = new Comparator1();
@@ -40,7 +40,7 @@ public class SQLInfo {
         class Comparator1 implements java.util.Comparator<String>{
             @Override
             public int compare(String o1, String o2) {
-             // Ωµ–Ú≈≈–Ú
+             // ÈôçÂ∫èÊéíÂ∫è
                 if(o1.equals("__main__") || o2.equals("__main__"))
                     return o2.compareTo(o1);
                 else
