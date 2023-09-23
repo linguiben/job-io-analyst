@@ -31,14 +31,14 @@ import com.jupiter.mybatis.po.User;
 /**
  * @Description: 
  * @version: 
- * @author: Jupiter.Lin 2021-4-23 ÏÂÎç8:35:23
+ * @author: Jupiter.Lin 2021-4-23 ä¸‹åˆ8:35:23
  */
 public abstract class JobioBaseJFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public DesignerGraph graph;
 	public User user = new User();
 	public javax.swing.JScrollPane jScrollPane1;
-	List<String> strNotExists = new ArrayList<String>(); //¼ÇÂ¼ÊäÈë´íÎó(²»´æÔÚµÄjob/file)
+	List<String> strNotExists = new ArrayList<String>(); //è®°å½•è¾“å…¥é”™è¯¯(ä¸å­˜åœ¨çš„job/file)
 	
 	public void gotoFocus(JScrollPane jScrollPane1,DesignerGraph graph) {
 		jScrollPane1.getHorizontalScrollBar().setValue((int) (graph.getFocusX() * graph.getScale() - jScrollPane1.getSize().width / 3));
@@ -47,7 +47,7 @@ public abstract class JobioBaseJFrame extends JFrame {
 		//System.out.println("Width:"+jScrollPane1.getHorizontalScrollBar().getValue()+"\t"+"Height"+jScrollPane1.getVerticalScrollBar().getValue());
 	}
 
-	//²âÊÔ
+	//æµ‹è¯•
 	public void sampleAnalyze(DesignerGraph graph) {
 		ArrayList<DefaultGraphCell> cells = new ArrayList<DefaultGraphCell>();
 		Job jCell1 = new Job("start", 1, "");
@@ -65,24 +65,24 @@ public abstract class JobioBaseJFrame extends JFrame {
 		//graph.getGraphLayoutCache().insert(c2.toArray());
 	}
 	
-	//°ïÖú
+	//å¸®åŠ©
 		public void showHelper() {
 			/*Object[] group = graph.getSelectionCells();
 			graph.getGraphLayoutCache().collapse(group);
 			graph.getGraphLayoutCache().update();
 			graph.getGraphLayoutCache().reload();*/
 
-			JOptionPane.showMessageDialog(null, "×¢£ºjobnameÁô¿ÕÔòÎªÑªÔµ·ÖÎö£¬·ñÔòÎªÓ°Ïì·ÖÎö\n\n" //
-					+ "¿ì½İ¼ü:\n" //
-					+ "¸´ÖÆ£ºctrl+Êó±êÍÏÒ·\n" //
-					+ "Ëõ·Å£ºctrl+¹öÂÖ\n" //
-					+ "Ç¿Ñ¡£ºalt+×ó¼ü\n" //
-					+ "É¾³ı£ºdel                    ´øÁ¬½ÓÉ¾³ı:shift+del\n"//
-					+ "ÏûÉ«£ºË«»÷\n" //
-					+ "µ÷¶È×´Ì¬(jobstatus): 1000-ÅÅ¶Ó(gray) 100-ready(white) 0-¿ªÊ¼(running/blue) \n"
-					+ "                    1-³É¹¦(green) 2-¾¯¸æ(yellow) 3-Ê§°Ü(red) 4-Ê§°ÜÌø¹ı(orange)\n" + "µØ·½Ì«Ğ¡Ğ´²»ÏÂÁË...\n"//
-					+ "Èô²¼¾Ö½ÏÂÒ£¬¶à³¢ÊÔ¼¸´ÎÆäËû²¼¾Ö·½Ê½¡£\n" //
-					+ "\n×÷Õß£º¦á¨ãÄ¾Ä¾©dÍõ×Ó,2018-01,V2.2", "jbio......", -1);
+			JOptionPane.showMessageDialog(null, "æ³¨ï¼šjobnameç•™ç©ºåˆ™ä¸ºè¡€ç¼˜åˆ†æï¼Œå¦åˆ™ä¸ºå½±å“åˆ†æ\n\n" //
+					+ "å¿«æ·é”®:\n" //
+					+ "å¤åˆ¶ï¼šctrl+é¼ æ ‡æ‹–æ›³\n" //
+					+ "ç¼©æ”¾ï¼šctrl+æ»šè½®\n" //
+					+ "å¼ºé€‰ï¼šalt+å·¦é”®\n" //
+					+ "åˆ é™¤ï¼šdel                    å¸¦è¿æ¥åˆ é™¤:shift+del\n"//
+					+ "æ¶ˆè‰²ï¼šåŒå‡»\n" //
+					+ "è°ƒåº¦çŠ¶æ€(jobstatus): 1000-æ’é˜Ÿ(gray) 100-ready(white) 0-å¼€å§‹(running/blue) \n"
+					+ "                    1-æˆåŠŸ(green) 2-è­¦å‘Š(yellow) 3-å¤±è´¥(red) 4-å¤±è´¥è·³è¿‡(orange)\n" + "åœ°æ–¹å¤ªå°å†™ä¸ä¸‹äº†...\n"//
+					+ "è‹¥å¸ƒå±€è¾ƒä¹±ï¼Œå¤šå°è¯•å‡ æ¬¡å…¶ä»–å¸ƒå±€æ–¹å¼ã€‚\n" //
+					+ "\nä½œè€…ï¼šï¸¶ã„£æœ¨æœ¨ãƒ¾ç‹å­,2018-01,V2.2", "jbio......", -1);
 		}
 		
 		public List<String> getNotExistsJobs(String stype,String jobstrs){
@@ -94,21 +94,21 @@ public abstract class JobioBaseJFrame extends JFrame {
 			return strNotExists;
 		}
 		
-		//Æô¶¯µ÷¶È´°¿Ú
+		//å¯åŠ¨è°ƒåº¦çª—å£
 		public void showMonitor() {
 			Monitor monitor = new Monitor();
 			monitor.setLocationRelativeTo(getParent());
 			monitor.setVisible(true);
 		}
 		
-		//Ä¬ÈÏ²¼¾Ö
+		//é»˜è®¤å¸ƒå±€
 		public void defaultLayout() {
 			graph.defaultLayout();
 			/*jScrollPane1.resize(1500, 3000);
 			this.resize(1000, 500);*/
 		}
 		
-		//ÖØĞÂ²¼¾Ö
+		//é‡æ–°å¸ƒå±€
 		public void rLayout(int arg) {
 			JGraphFacade facade = new JGraphFacade(graph); // Pass the facade the JGraph instance
 			JGraphLayout layout = null;
@@ -120,12 +120,12 @@ public abstract class JobioBaseJFrame extends JFrame {
 			//new JGraphRadialTreeLayout();// new JGraphCompactTreeLayout();//new JGraphFastOrganicLayout(); 
 			case 1:
 				layout = new JGraphFastOrganicLayout();
-				break; //¿ìËÙ
+				break; //å¿«é€Ÿ
 			case 2:
 				jol = new JGraphOrganicLayout();
 				jol.setApproxNodeDimensions(true);
 				layout = jol;
-				break; //ÓĞ»ú
+				break; //æœ‰æœº
 			case 3:
 				treeLayout = new JGraphTreeLayout();
 				treeLayout.setAlignment(SwingConstants.BOTTOM);
@@ -133,18 +133,18 @@ public abstract class JobioBaseJFrame extends JFrame {
 				treeLayout.setNodeDistance(2);
 				//treeLayout.setRouteTreeEdges(true);
 				layout = treeLayout;
-				break; //Ê÷ĞÎ²¼¾Ö
+				break; //æ ‘å½¢å¸ƒå±€
 			case 4:
 				layout = new JGraphRadialTreeLayout();
-				break; //·ÅÉä²¼¾Ö
+				break; //æ”¾å°„å¸ƒå±€
 			case 5:
 				jctl = new JGraphCompactTreeLayout();
 				jctl.setPositionMultipleTrees(true);
 				layout = jctl;
-				break; //¼ò½àÊ÷ĞÎ
+				break; //ç®€æ´æ ‘å½¢
 			case 6:
 				layout = new JGraphHierarchicalLayout();
-				break; //ÇúÏß
+				break; //æ›²çº¿
 			}
 			layout.run(facade); // Run the layout on the facade. Note that layouts do not implement the Runnable interface, to avoid confusion
 			Map<?, ?> nested = facade.createNestedMap(true, true); // Obtain a map of the resulting attribute changes from the facade

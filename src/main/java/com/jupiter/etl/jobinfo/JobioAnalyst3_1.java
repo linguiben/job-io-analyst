@@ -41,28 +41,28 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 	public JobioAnalyst3_1(User user) {
 		this.user = user;
 		this.graph = new DesignerGraph(user, this);
-		// ÉèÖÃÍ¼ĞÎ½çÃæÍâ¹Û
+		// è®¾ç½®å›¾å½¢ç•Œé¢å¤–è§‚
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		initComponents();
-		jScrollPane1.getVerticalScrollBar().setUnitIncrement(20); //ÉèÖÃ¹öÂÖËÙ¶È
+		jScrollPane1.getVerticalScrollBar().setUnitIncrement(20); //è®¾ç½®æ»šè½®é€Ÿåº¦
 		jScrollPane1.getHorizontalScrollBar().setUnitIncrement(20);
 
-		graph.setEditable(false); //²»¿É±à¼­ job
+		graph.setEditable(false); //ä¸å¯ç¼–è¾‘ job
 
 		buttonGroup1.add(jRadioButton1);
 		buttonGroup1.add(jRadioButton2);
 		buttonGroup1.add(jRadioButton3);
 		buttonGroup1.add(jRadioButton4);
 
-		choice1.add("ÑªÔµ·ÖÎö");
-		choice1.add("Ó°Ïì·ÖÎö");
+		choice1.add("è¡€ç¼˜åˆ†æ");
+		choice1.add("å½±å“åˆ†æ");
 		choice1.add("Both");
 
-		//Ôö¼Ó²Ù×÷¼à¿Ø
+		//å¢åŠ æ“ä½œç›‘æ§
 		jRadioButton1.addActionListener(this);
 		jRadioButton2.addActionListener(this);
 		jRadioButton3.addActionListener(this);
@@ -86,7 +86,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 				}
 			}
 
-			// Êó±êÒÆ¿ªÊ±ÅĞ¶Ï³öÊäÈëµÄjob¡¢fileºÍ·Ç·¨ÊäÈë
+			// é¼ æ ‡ç§»å¼€æ—¶åˆ¤æ–­å‡ºè¾“å…¥çš„jobã€fileå’Œéæ³•è¾“å…¥
 			public void mouseExited(MouseEvent e) {
 			}
 		});
@@ -95,7 +95,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 			public void focusGained(FocusEvent e) {
 				if (txtJobname.getText().equals("jobname/filename")) {
 					txtJobname.setText("");
-					txtJobname.setFont(new Font("Î¢ÈíÑÅºÚ", 0, 12));
+					txtJobname.setFont(new Font("å¾®è½¯é›…é»‘", 0, 12));
 					txtJobname.setForeground(new java.awt.Color(0, 0, 0));
 				}
 			}
@@ -104,7 +104,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 			public void focusLost(FocusEvent e) {
 				if ("".equals(txtJobname.getText())) {
 					txtJobname.setText("jobname/filename");
-					txtJobname.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 2, 12));
+					txtJobname.setFont(new java.awt.Font("å¾®è½¯é›…é»‘", 2, 12));
 					txtJobname.setForeground(new java.awt.Color(204, 204, 255));
 				} /*else if (!txtJobname.getText().equals("jobname/filename")) {
 					String txt = txtJobname.getText().replace(" ", "");
@@ -124,7 +124,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				txtJobname.setText(txtJobname.getText().replace(" ", ""));// È¥¿Õ¸ñ
+				txtJobname.setText(txtJobname.getText().replace(" ", ""));// å»ç©ºæ ¼
 			}
 		});
 
@@ -134,28 +134,28 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 	public JobioAnalyst3_1() {
 		this.user = user;
 		this.graph = new DesignerGraph(user, this);
-		// ÉèÖÃÍ¼ĞÎ½çÃæÍâ¹Û
+		// è®¾ç½®å›¾å½¢ç•Œé¢å¤–è§‚
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		initComponents();
-		jScrollPane1.getVerticalScrollBar().setUnitIncrement(20); //ÉèÖÃ¹öÂÖËÙ¶È
+		jScrollPane1.getVerticalScrollBar().setUnitIncrement(20); //è®¾ç½®æ»šè½®é€Ÿåº¦
 		jScrollPane1.getHorizontalScrollBar().setUnitIncrement(20);
 
-		graph.setEditable(false); //²»¿É±à¼­ job
+		graph.setEditable(false); //ä¸å¯ç¼–è¾‘ job
 
 		buttonGroup1.add(jRadioButton1);
 		buttonGroup1.add(jRadioButton2);
 		buttonGroup1.add(jRadioButton3);
 		buttonGroup1.add(jRadioButton4);
 
-		choice1.add("ÑªÔµ·ÖÎö");
-		choice1.add("Ó°Ïì·ÖÎö");
+		choice1.add("è¡€ç¼˜åˆ†æ");
+		choice1.add("å½±å“åˆ†æ");
 		choice1.add("Both");
 
-		//Ôö¼Ó²Ù×÷¼à¿Ø
+		//å¢åŠ æ“ä½œç›‘æ§
 		jRadioButton1.addActionListener(this);
 		jRadioButton2.addActionListener(this);
 		jRadioButton3.addActionListener(this);
@@ -179,7 +179,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 				}
 			}
 
-			// Êó±êÒÆ¿ªÊ±ÅĞ¶Ï³öÊäÈëµÄjob¡¢fileºÍ·Ç·¨ÊäÈë
+			// é¼ æ ‡ç§»å¼€æ—¶åˆ¤æ–­å‡ºè¾“å…¥çš„jobã€fileå’Œéæ³•è¾“å…¥
 			public void mouseExited(MouseEvent e) {
 			}
 		});
@@ -188,7 +188,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 			public void focusGained(FocusEvent e) {
 				if (txtJobname.getText().equals("jobname/filename")) {
 					txtJobname.setText("");
-					txtJobname.setFont(new Font("Î¢ÈíÑÅºÚ", 0, 12));
+					txtJobname.setFont(new Font("å¾®è½¯é›…é»‘", 0, 12));
 					txtJobname.setForeground(new java.awt.Color(0, 0, 0));
 				}
 			}
@@ -197,7 +197,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 			public void focusLost(FocusEvent e) {
 				if ("".equals(txtJobname.getText())) {
 					txtJobname.setText("jobname/filename");
-					txtJobname.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 2, 12));
+					txtJobname.setFont(new java.awt.Font("å¾®è½¯é›…é»‘", 2, 12));
 					txtJobname.setForeground(new java.awt.Color(204, 204, 255));
 				} /*else if (!txtJobname.getText().equals("jobname/filename")) {
 					String txt = txtJobname.getText().replace(" ", "");
@@ -217,7 +217,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				txtJobname.setText(txtJobname.getText().replace(" ", ""));// È¥¿Õ¸ñ
+				txtJobname.setText(txtJobname.getText().replace(" ", ""));// å»ç©ºæ ¼
 			}
 		});
 
@@ -288,7 +288,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 
 		jLabel1.setText("Job/Tab");
 
-		txtJobname.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 2, 12));
+		txtJobname.setFont(new java.awt.Font("å¾®è½¯é›…é»‘", 2, 12));
 		txtJobname.setForeground(new java.awt.Color(204, 204, 255));
 		txtJobname.setText("jobname/filename");
 		txtJobname.setToolTipText("\u8f93\u5165job\u6216table,\u9017\u53f7\u5206\u9694");
@@ -298,7 +298,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 
 		button2.setLabel("\u67e5\u627e");
 
-		jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ä¬ÈÏ²¼¾Ö", "¿ìËÙ²¼¾Ö", "ÓĞ»ú²¼¾Ö", "Ê÷ĞÎ²¼¾Ö", "·ÅÉä²¼¾Ö", "¼ò½à²¼¾Ö", "ÇúÏß²¼¾Ö" }));
+		jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "é»˜è®¤å¸ƒå±€", "å¿«é€Ÿå¸ƒå±€", "æœ‰æœºå¸ƒå±€", "æ ‘å½¢å¸ƒå±€", "æ”¾å°„å¸ƒå±€", "ç®€æ´å¸ƒå±€", "æ›²çº¿å¸ƒå±€" }));
 		jComboBox1.setToolTipText("\u91cd\u65b0\u5e03\u5c40");
 
 		button3.setLabel("\u5e2e\u52a9");
@@ -419,13 +419,13 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 	 */
 	public static void main(String args[]) {
 		JobioAnalyst3_1 ds = new JobioAnalyst3_1();
-		int windowWidth = ds.getWidth(); // »ñµÃ´°¿Ú¿í
-		int windowHeight = ds.getHeight(); // »ñµÃ´°¿Ú¸ß
-		Toolkit kit = Toolkit.getDefaultToolkit(); // ¶¨Òå¹¤¾ß°ü
-		Dimension screenSize = kit.getScreenSize(); // »ñÈ¡ÆÁÄ»µÄ³ß´ç
-		int screenWidth = screenSize.width; // »ñÈ¡ÆÁÄ»µÄ¿í
-		int screenHeight = screenSize.height; // »ñÈ¡ÆÁÄ»µÄ¸ß
-		ds.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 3 - windowHeight / 3); // ¾ÓÖĞ
+		int windowWidth = ds.getWidth(); // è·å¾—çª—å£å®½
+		int windowHeight = ds.getHeight(); // è·å¾—çª—å£é«˜
+		Toolkit kit = Toolkit.getDefaultToolkit(); // å®šä¹‰å·¥å…·åŒ…
+		Dimension screenSize = kit.getScreenSize(); // è·å–å±å¹•çš„å°ºå¯¸
+		int screenWidth = screenSize.width; // è·å–å±å¹•çš„å®½
+		int screenHeight = screenSize.height; // è·å–å±å¹•çš„é«˜
+		ds.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 3 - windowHeight / 3); // å±…ä¸­
 		ds.setVisible(true);
 	}
 
@@ -451,14 +451,14 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 	// End of variables declaration//GEN-END:variables
 	int jbtype_in = 1;
 	int analyze_in = 0;
-	ArrayList<String> jobnameList = new ArrayList<String>(); //¼ÇÂ¼ÊäÈëµÄjobname
-	ArrayList<String> filenameList = new ArrayList<String>(); //¼ÇÂ¼ÊäÈëµÄfilename
+	ArrayList<String> jobnameList = new ArrayList<String>(); //è®°å½•è¾“å…¥çš„jobname
+	ArrayList<String> filenameList = new ArrayList<String>(); //è®°å½•è¾“å…¥çš„filename
 
-	//´¦Àí°´Å¥²Ù×÷
+	//å¤„ç†æŒ‰é’®æ“ä½œ
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String arg = e.getActionCommand();
-		logger.info("²Ù×÷£º "+arg);
+		logger.info("æ“ä½œï¼š "+arg);
 		if (arg.equals("bus")) {
 			jbtype_in = 1;
 		} else if (arg.equals("fin")) {
@@ -477,11 +477,11 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 			graph.setOutDatedVisible(jCheckBoxShowOutDated.isSelected());
 			graph.refresh();
 			//graph.getGraphLayoutCache().reload();
-		} else if (arg.equals("·ÖÎö")) {
+		} else if (arg.equals("åˆ†æ")) {
 			startAnalyze();
 			//graph.finder(txtJobname.getText());
 			//gotoFocus();
-		} else if (arg.equals("²éÕÒ") && graph.finder(txtJobname.getText())) {
+		} else if (arg.equals("æŸ¥æ‰¾") && graph.finder(txtJobname.getText())) {
 			// logger.debug("w="+jScrollPane1.getSize().width);
 			// logger.debug("h="+jScrollPane1.getSize().height);
 			gotoFocus(this.jScrollPane1, this.graph);
@@ -491,38 +491,38 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 			// jScrollPane1.getVerticalScrollBarPolicy();
 			// jScrollPane1.getHorizontalScrollBar().setValues(800, 600, 1600,
 			// 1200);
-		} else if (arg.equals("°ïÖú")) {
+		} else if (arg.equals("å¸®åŠ©")) {
 			showHelper();
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 0) {
-			defaultLayout();//Ä¬ÈÏ²¼¾Ö
+			defaultLayout();//é»˜è®¤å¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 1) {
-			rLayout(1);//¿ìËÙ²¼¾Ö
+			rLayout(1);//å¿«é€Ÿå¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 2) {
-			rLayout(2);//ÓĞ»ú²¼¾Ö
+			rLayout(2);//æœ‰æœºå¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 3) {
-			rLayout(3);//Ê÷ĞÎ²¼¾Ö
+			rLayout(3);//æ ‘å½¢å¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 4) {
-			rLayout(4);//·ÅÉä²¼¾Ö
+			rLayout(4);//æ”¾å°„å¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 5) {
-			rLayout(5);//¼ò½à²¼¾Ö
+			rLayout(5);//ç®€æ´å¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 6) {
-			rLayout(6);//ÇúÏß²¼¾Ö
-		} else if (arg.equals("µ÷¶È")) {
+			rLayout(6);//æ›²çº¿å¸ƒå±€
+		} else if (arg.equals("è°ƒåº¦")) {
 			//startSchedule();
 			showMonitor();
-		} else if (arg.equals("Ë¢ĞÂ")) {
+		} else if (arg.equals("åˆ·æ–°")) {
 			//graph.refreshScheduleJobLocationList(sch.getBatchno());
 		}
-		/*if (arg.equals("ÖØĞÂÅÅ²¼")) {
+		/*if (arg.equals("é‡æ–°æ’å¸ƒ")) {
 		JGraphFacade facade = new JGraphFacade(graph); // Pass the facade the JGraph instance
 		JGraphLayout layout = null;
 		switch (box.getSelectedIndex()) {
 		//new JGraphRadialTreeLayout();// new JGraphCompactTreeLayout();//new JGraphFastOrganicLayout(); 
-		case 1:layout = new JGraphOrganicLayout(); break;   //ÓĞ»ú
-		case 2: layout = new JGraphRadialTreeLayout(); break;   //·ÅÉä²¼¾Ö
-		case 3: layout = new JGraphCompactTreeLayout(); break;  //¼ò½àÊ÷ĞÎ
-		case 4: layout = new JGraphHierarchicalLayout(); break; //ÇúÏß
-		default: layout = new JGraphFastOrganicLayout(); break; //¿ìËÙ
+		case 1:layout = new JGraphOrganicLayout(); break;   //æœ‰æœº
+		case 2: layout = new JGraphRadialTreeLayout(); break;   //æ”¾å°„å¸ƒå±€
+		case 3: layout = new JGraphCompactTreeLayout(); break;  //ç®€æ´æ ‘å½¢
+		case 4: layout = new JGraphHierarchicalLayout(); break; //æ›²çº¿
+		default: layout = new JGraphFastOrganicLayout(); break; //å¿«é€Ÿ
 		}
 		layout.run(facade); // Run the layout on the facade. Note that layouts do not implement the Runnable interface, to avoid confusion
 		Map<?, ?> nested = facade.createNestedMap(true, true); // Obtain a map of the resulting attribute changes from the facade
@@ -530,7 +530,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 		}*/
 	}
 
-	// ·ÖÎö(ÑªÔµ/Ó°Ïì)
+	// åˆ†æ(è¡€ç¼˜/å½±å“)
 	public void startAnalyze() {
 		// graph.getModel().remove(c1.toArray());
 		// graph.getModel().remove(c2.toArray());
@@ -541,7 +541,7 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 			sampleAnalyze(this.graph);
 			return;
 		} else if (getNotExistsJobs(stype, txt).size() > 0) {
-			JOptionPane.showMessageDialog(null, "ÒÔÏÂjob/file²»´æÔÚ£¬Çë¼ì²é:\n" + "" + strNotExists.toString().replaceAll(",", "\n") + "", "ÊäÈë´íÎó", 0);
+			JOptionPane.showMessageDialog(null, "ä»¥ä¸‹job/fileä¸å­˜åœ¨ï¼Œè¯·æ£€æŸ¥:\n" + "" + strNotExists.toString().replaceAll(",", "\n") + "", "è¾“å…¥é”™è¯¯", 0);
 			return;
 		}
 		user.setOptionTime(new Date());
@@ -560,16 +560,16 @@ public class JobioAnalyst3_1 extends JobioBaseJFrame implements ActionListener {
 		graph.setTabVisible(jCheckBox1.isSelected());
 		graph.setBOVisible(jCheckBox2.isSelected());
 		graph.setOutDatedVisible(jCheckBoxShowOutDated.isSelected());
-		graph.getGraphLayoutCache().toFront(graph.jobs.toArray()); //jobs·ÅÉÏ²ã
-		/*if (!jcbFile.isSelected()) {//ÊÇ·ñÏÔÊ¾TAB
+		graph.getGraphLayoutCache().toFront(graph.jobs.toArray()); //jobsæ”¾ä¸Šå±‚
+		/*if (!jcbFile.isSelected()) {//æ˜¯å¦æ˜¾ç¤ºTAB
 			graph.getGraphLayoutCache().setVisible(graph.cF1.toArray(),false);
 			//graph.getGraphLayoutCache().setVisible(graph.cF2.toArray(),false);
 			//graph.getGraphLayoutCache().toFront(graph.cF1.toArray());
-			//³¢ÊÔÓÃsetVisible
+			//å°è¯•ç”¨setVisible
 			//graph.getModel().remove(graph.getDescendants(graph.cF1.toArray()));
 			//graph.getModel().remove(graph.cF2.toArray());
 		}
-		if (!jcbBO.isSelected()) {//ÊÇ·ñÏÔÊ¾boruntime
+		if (!jcbBO.isSelected()) {//æ˜¯å¦æ˜¾ç¤ºboruntime
 			//graph.getGraphLayoutCache().insert(graph.cBO1.toArray());
 			//graph.getGraphLayoutCache().insert(graph.cBO2.toArray());
 			//graph.getGraphLayoutCache().toFront(graph.cBO1.toArray());

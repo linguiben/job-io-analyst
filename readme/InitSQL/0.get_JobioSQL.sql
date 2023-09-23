@@ -1,4 +1,16 @@
-select * from table(db2inst1.get_JobioSQL('ktlrep_20200526','kjb_ods_to_ods_hldtran_inc'))t 
+select * from table(db2inst1.get_JobioSQL('ktlrep_20200526','kjb_ods_to_ods_hldtran_inc'))t
+
+create schema DBO;  // 创建schema
+drop table if exists dbo.Jobio_Version; // 版本控制表
+create table dbo.Jobio_Version (useable varchar(10),version decimal(5,2));
+insert into dbo.Jobio_Version values('Y','3.1'),('Y','3.2');
+insert into dbo.Jobio_Version values('Y','3.3');
+select * from dbo.Jobio_Version -- where version = 3.2
+
+// 用户表
+create table dbo.Jobio_User(id int, userName varchar(100), password varchar(100), optionTime timestamp, remark varchar(100), version decimal(5,2));
+insert into dbo.Jobio_User(id,userName,password) values(1,'Jupiter','Jupiter');
+select * from dbo.Jobio_User;
 
 /*返回JobIOSql
  *版本号V3.1 

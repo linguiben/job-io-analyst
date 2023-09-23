@@ -36,7 +36,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class DBUnit_bk {
 //
 //	private static ComboPooledDataSource ds = new ComboPooledDataSource();
-//	public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");//ÉèÖÃÈÕÆÚ¸ñÊ½
+//	public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");//è®¾ç½®æ—¥æœŸæ ¼å¼
 //	
 //	@Autowired
 //    private DBUnitMapper etlJobInoMapper;
@@ -47,12 +47,12 @@ public class DBUnit_bk {
 //		return jobnames;
 //	}
 //	
-//	//-2.ÅĞ¶ÏÊäÈëµÄjob/fileÊÇ·ñ´æÔÚ
+//	//-2.åˆ¤æ–­è¾“å…¥çš„job/fileæ˜¯å¦å­˜åœ¨
 //	public static ArrayList<String> checkJobnameEixts(String txt){
-//		ArrayList<String> jobnameList = new ArrayList<String>(); //¼ÇÂ¼´æÔÚµÄjobname
+//		ArrayList<String> jobnameList = new ArrayList<String>(); //è®°å½•å­˜åœ¨çš„jobname
 //		try {
 //			Connection conn = ds.getConnection();
-//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				String sql = "select distinct lower(trim(jobname))jobname from dbo.etl_jobino where lower(trim(jobname)) in("+txt+")";
 //				ResultSet rs = stmt.executeQuery(sql);
@@ -60,21 +60,21 @@ public class DBUnit_bk {
 //					jobnameList.add(rs.getString("jobname"));
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile("Î´Öª´íÎó1,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//			WriteLog.writeFile("æœªçŸ¥é”™è¯¯1,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //		}
 //		return jobnameList;
 //	}
 //	public static ArrayList<String> checkFilenameEixts(String txt){
-//		ArrayList<String> filenameList = new ArrayList<String>(); //¼ÇÂ¼´æÔÚµÄtablename
+//		ArrayList<String> filenameList = new ArrayList<String>(); //è®°å½•å­˜åœ¨çš„tablename
 //		try {
 //			Connection conn = ds.getConnection();
-//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				String sql = "select distinct upper(trim(inofile))inofile from dbo.etl_jobino where upper(trim(inofile)) in("+txt+")";
 //				ResultSet rs = stmt.executeQuery(sql);
@@ -82,23 +82,23 @@ public class DBUnit_bk {
 //					filenameList.add(rs.getString("inofile"));
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile("Î´Öª´íÎó2,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//			WriteLog.writeFile("æœªçŸ¥é”™è¯¯2,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //		}
 //		return filenameList;
 //	}
 //	
-//	//-2.1 ÅĞ¶ÏµÄjob/fileÊÇ·ñ´æÔÚ
+//	//-2.1 åˆ¤æ–­çš„job/fileæ˜¯å¦å­˜åœ¨
 //	public static ArrayList<String> checkNameEixts(String stype,String txt){
-//		ArrayList<String> l = new ArrayList<String>(); //¼ÇÂ¼´æÔÚµÄtablename\filename
+//		ArrayList<String> l = new ArrayList<String>(); //è®°å½•å­˜åœ¨çš„tablename\filename
 //		try {
 //			Connection conn = ds.getConnection();
-//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				String sql = "select case when name is not null then jobname1 else '' end as jobname1 from table(dbo.strExists('"+stype+"','"+txt+"'))as t" +
 //						" where name is not null";
@@ -107,23 +107,23 @@ public class DBUnit_bk {
 //					l.add(rs.getString("jobname1"));
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile("Î´Öª´íÎó3,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//			WriteLog.writeFile("æœªçŸ¥é”™è¯¯3,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //		}
 //		return l;
 //	}
 //	
-//	//-1.»ñÈ¡µ÷¶ÈµÄÈÎÎñÊı/³É¹¦Êı/Ê§°ÜÊı/Î´Íê³ÉÊı
+//	//-1.è·å–è°ƒåº¦çš„ä»»åŠ¡æ•°/æˆåŠŸæ•°/å¤±è´¥æ•°/æœªå®Œæˆæ•°
 //			public static int[] getScheduleStatus(String ScheduleType ,String batchno){
 //				int[] scheduleStatus = new int[5];
 //				try {
 //					Connection conn = ds.getConnection();
-//					Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//					Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //					try {
 //						String sql = "select count(1)amount " +
 //									",sum(case when jobStatus in(1,2) then 1 else 0 end)successAmount " +
@@ -135,7 +135,7 @@ public class DBUnit_bk {
 //									"where a.scheduleType = '"+ScheduleType+"' " +
 //									")t where rn = 1 "; 
 //						ResultSet rs = stmt.executeQuery(sql);
-//						// ½«½á¹û·ÅÈëjobInfoList
+//						// å°†ç»“æœæ”¾å…¥jobInfoList
 //						while (rs.next()) {
 //							scheduleStatus[0] = rs.getInt(1);
 //							scheduleStatus[1] = rs.getInt(2);
@@ -143,20 +143,20 @@ public class DBUnit_bk {
 //							scheduleStatus[3] = rs.getInt(4);
 //						}
 //					} catch (Exception e) {
-//						WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//						JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//						WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//						JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //					}
 //					conn.close();
 //				} catch (Exception e) {
-//					WriteLog.writeFile("Î´Öª´íÎó4,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//					JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//					WriteLog.writeFile("æœªçŸ¥é”™è¯¯4,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//					JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //				}
 //				
 //				
 //				return scheduleStatus;
 //			}
 //	
-//	//0.³õÊ¼»¯µ÷¶È£¬½«start¶ªÈëµÈ´ı³Ø
+//	//0.åˆå§‹åŒ–è°ƒåº¦ï¼Œå°†startä¸¢å…¥ç­‰å¾…æ± 
 //		public static boolean initSchedule(String scheduleType,String batchno,String jobname){
 //			try {
 //				Connection conn = ds.getConnection();
@@ -165,23 +165,23 @@ public class DBUnit_bk {
 //				String sql = "insert into dbo.jobWaitingPool " 
 //						+ "(scheduleType,batchno,headJobname,headJobtype,head_on_fail_action,headJobstatus,tailJobname,tailJobtype,tail_on_fail_action)values"
 //						+ "('"+scheduleType+"','"+batchno+"','','','',1,'"+jobname+"','blankjob','STOP')";
-//				System.out.println("³õÊ¼»¯:"+sql);
-//				WriteLog.writeFile("0.³õÊ¼»¯µ÷¶È£¬½«start¶ªÈëµÈ´ı³Ø\n" + sql);
+//				System.out.println("åˆå§‹åŒ–:"+sql);
+//				WriteLog.writeFile("0.åˆå§‹åŒ–è°ƒåº¦ï¼Œå°†startä¸¢å…¥ç­‰å¾…æ± \n" + sql);
 //				stmt.executeUpdate(sql);
-//				/*--³õÊ¼»¯µ÷¶È£¬½«start¶ªÈëµÈ´ı³Ø
+//				/*--åˆå§‹åŒ–è°ƒåº¦ï¼Œå°†startä¸¢å…¥ç­‰å¾…æ± 
 //				 * insert into dbo.jobWaitingPool
 //				(batchno,headJobname,headJobtype,tailJobname,tailJobtype,headJobstatus,on_fail_action)values
 //				('test001','','','start','BLANK',100,'STOP')*/
 //				conn.close();
 //			} catch (SQLException e) {
 //				e.printStackTrace();
-//				WriteLog.writeFile("initSchedule() Î´Öª´íÎó5,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
+//				WriteLog.writeFile("initSchedule() æœªçŸ¥é”™è¯¯5,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
 //				return false;
 //			}
 //			return true;
 //		}
 //	
-//	//1.´ÓµÈ´ı³Ø»ñÈ¡ÏÂ¼Ò,ÇÒ¸ÃÏÂ¼ÒÎ´½øÈëµ÷¶È
+//	//1.ä»ç­‰å¾…æ± è·å–ä¸‹å®¶,ä¸”è¯¥ä¸‹å®¶æœªè¿›å…¥è°ƒåº¦
 //	public static ArrayList<DefaultJob> getNextJobs(String batchno) {
 //		ArrayList<DefaultJob> jobs = new ArrayList<DefaultJob>();
 //		try {
@@ -199,9 +199,9 @@ public class DBUnit_bk {
 //					                     "and a.tailJobtype = b.tailJobtype and a.tailJobname = b.tailJobname and b.headjobstatus not in(1,2,4)) " +
 //					         "and not exists(select 1 from dbo.jobrunlog c where c.batchno = '"+batchno+"' " +
 //					                     				"and a.tailJobtype = c.Jobtype and a.tailJobname = c.Jobname))"  ;
-//			WriteLog.writeFile("1.´ÓµÈ´ı³Ø»ñÈ¡ÏÂ¼Ò,ÇÒ¸ÃÏÂ¼ÒÎ´½øÈëµ÷¶È\n" );  //+ sql
-//			//System.out.println("µ÷¶ÈÏß³Ì´ÓµÈ´ı³Ø»ñÈ¡ÏÂ¼Ò:" + sql);
-//			/*--µ±ÉÏ¼Ò×´Ì¬È«²¿Îª1/2/4(Ê§°ÜÌø¹ı),ÇÒ¸ÃÏÂ¼ÒÎ´½øÈëµ÷¶È
+//			WriteLog.writeFile("1.ä»ç­‰å¾…æ± è·å–ä¸‹å®¶,ä¸”è¯¥ä¸‹å®¶æœªè¿›å…¥è°ƒåº¦\n" );  //+ sql
+//			//System.out.println("è°ƒåº¦çº¿ç¨‹ä»ç­‰å¾…æ± è·å–ä¸‹å®¶:" + sql);
+//			/*--å½“ä¸Šå®¶çŠ¶æ€å…¨éƒ¨ä¸º1/2/4(å¤±è´¥è·³è¿‡),ä¸”è¯¥ä¸‹å®¶æœªè¿›å…¥è°ƒåº¦
 //			select batchno,tailJobname,tailJobtype,tail_on_fail_action,min(datetime)datetime,count(1)headJobAmount,sum(headJobstatus)headJobstatus 
 //			from dbo.jobWaitingPool a 
 //			where batchno = '20170730153316'and headjobstatus in(1,2,4)
@@ -214,34 +214,34 @@ public class DBUnit_bk {
 //			ResultSet rs = stmt.executeQuery(sql);
 //			//ResultSet rs = stmt.(sql);
 //			while (rs.next()) {
-//				//System.out.println("»ñÈ¡µ½ÏÂ¼Ò batchno:"+batchno + " tailJobname:" + rs.getString("tailJobname") +"     "+rs.getString("insertTime"));
+//				//System.out.println("è·å–åˆ°ä¸‹å®¶ batchno:"+batchno + " tailJobname:" + rs.getString("tailJobname") +"     "+rs.getString("insertTime"));
 //				DefaultJob job = new DefaultJob();
 //				job.setBatchno(rs.getString("batchno"));
 //				job.setJobname(rs.getString("jobname"));
 //				job.setJobtype(rs.getString("jobtype"));
-//				//job.headJobAmount = rs.getInt("headJobAmount");  //Ã»ÓÃ
-//				//job.headJobstatus = rs.getInt("headJobstatus");  //Ã»ÓÃ
-//				//job.setDatetime(rs.getString("insertTime"));     //Ã»ÓÃ
+//				//job.headJobAmount = rs.getInt("headJobAmount");  //æ²¡ç”¨
+//				//job.headJobstatus = rs.getInt("headJobstatus");  //æ²¡ç”¨
+//				//job.setDatetime(rs.getString("insertTime"));     //æ²¡ç”¨
 //				job.setOn_fail_action(rs.getString("on_fail_action"));  //on_fail_action
 //				jobs.add(job);
 //			}
 //			conn.close();
 //		} catch (SQLException e) {
 //			e.printStackTrace();
-//			WriteLog.writeFile("getNextJobs() Î´Öª´íÎó6,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
+//			WriteLog.writeFile("getNextJobs() æœªçŸ¥é”™è¯¯6,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
 //		}
 //		return jobs;
 //	}
 //	
-//	//2.¿ªÊ¼ÔËĞĞ
+//	//2.å¼€å§‹è¿è¡Œ
 //	public static boolean jobStart(String scheduleType,String batchno,String jobtype ,String jobname,int jobStatus){
 //		try {
 //			Connection conn = ds.getConnection();
-//			conn.setAutoCommit(true);//jdbcÄ¬ÈÏ×Ô¶¯Ìá½»
+//			conn.setAutoCommit(true);//jdbcé»˜è®¤è‡ªåŠ¨æäº¤
 //			// System.out.println(conn);
 //			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 //			String sqlStr = "update dbo.jobWaitingPool set HEADJOBSTATUS = 0 where batchno = '"+batchno+"' and headJobname = '"+jobname+"'";
-//			WriteLog.writeFile("2.¿ªÊ¼ÔËĞĞ\n" + sqlStr);
+//			WriteLog.writeFile("2.å¼€å§‹è¿è¡Œ\n" + sqlStr);
 //			//System.out.println(batchno + "  " + jobname+" is ready: "+sqlStr);
 //			//stmt.executeUpdate(sqlStr);
 //			stmt.addBatch(sqlStr);
@@ -255,7 +255,7 @@ public class DBUnit_bk {
 //					"and not exists(select 1 from dbo.jobWaitingPool b where b.batchno = '"+batchno+"' and a.tailJobname = b.tailJobname)" +  
 //					"and a.scheduleType = '"+scheduleType+"'";
 //			//System.out.println(batchno + "  " + jobname+" is ready: "+sqlStr);
-//			WriteLog.writeFile("2.¿ªÊ¼ÔËĞĞ\n" + sqlStr);
+//			WriteLog.writeFile("2.å¼€å§‹è¿è¡Œ\n" + sqlStr);
 //			stmt.addBatch(sqlStr);
 //			/*sqlStr = "insert into dbo.jobrunlog" +
 //					"(scheduleType,batchno,jobtype,jobname,starttime,jobstatus) values " +
@@ -263,7 +263,7 @@ public class DBUnit_bk {
 //			sqlStr = "update(select * from dbo.jobRunlog where scheduleType = '"+scheduleType+"' and batchno = '"+batchno+"' and jobname = '"+jobname+"' " +
 //					         "order by id desc fetch first 1 rows only " +
 //						    ")t set startTime = current timestamp,jobstatus = 0";
-//			WriteLog.writeFile("2.¿ªÊ¼ÔËĞĞ\n" + sqlStr);
+//			WriteLog.writeFile("2.å¼€å§‹è¿è¡Œ\n" + sqlStr);
 //			//System.out.println(batchno + "  " + jobname+" is ready: "+sqlStr);
 //			/*
 //			 update dbo.jobWaitingPool set HEADJOBSTATUS = 0 where batchno = batchno and headJobname = jobname;
@@ -280,25 +280,25 @@ public class DBUnit_bk {
 //		}
 //		return true;
 //	}
-//	//3.ÔËĞĞÍê³É£¬·µ»Øjob×´Ì¬£¬ Ğ´Èë×´Ì¬ 1-³É¹¦ 2-¾¯¸æ 3-Ê§°Ü£¬Í¨ÖªÏÂ¼Ò1-Íê³É
+//	//3.è¿è¡Œå®Œæˆï¼Œè¿”å›jobçŠ¶æ€ï¼Œ å†™å…¥çŠ¶æ€ 1-æˆåŠŸ 2-è­¦å‘Š 3-å¤±è´¥ï¼Œé€šçŸ¥ä¸‹å®¶1-å®Œæˆ
 //	public static boolean jobEnd(String scheduleType,String batchno,String jobtype ,String jobname,int jobStatus){
 //		try {
 //			Connection conn = ds.getConnection();
-//			conn.setAutoCommit(true);//jdbcÄ¬ÈÏ×Ô¶¯Ìá½»
+//			conn.setAutoCommit(true);//jdbcé»˜è®¤è‡ªåŠ¨æäº¤
 //			// System.out.println(conn);
 //			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 //			//String sqlStr = "insert into dbo.jobrunlog (batchno,jobtype,jobname,endtime,jobstatus,jobstatusstr)values ('"+batchno+"','"+jobtype+"','"+jobname+"',current timestamp,"+jobStatus+",'end')";
 //			String sqlStr = "update dbo.jobrunlog set endtime = current timestamp,jobstatus = "+jobStatus+" where batchno = '"+batchno+"' and jobtype = '"+jobtype+"' and jobname = '"+jobname+"'";
-//			WriteLog.writeFile("ÔËĞĞÍê³É£¬\n" + sqlStr);
+//			WriteLog.writeFile("è¿è¡Œå®Œæˆï¼Œ\n" + sqlStr);
 //			/*
 //			update dbo.jobWaitingPool set headJobstatus = 1 
 //			where batchno = 'batchno' and headJobname = 'jobname'
 //			 */
-//			//System.out.println(jobname+" ¸üĞÂÔËĞĞ×´Ì¬£º"+sqlStr);
+//			//System.out.println(jobname+" æ›´æ–°è¿è¡ŒçŠ¶æ€ï¼š"+sqlStr);
 //			//stmt.executeUpdate(sqlStr);
 //			stmt.addBatch(sqlStr);
 //			sqlStr = "update dbo.jobWaitingPool set headJobstatus = "+jobStatus+" " +"where batchno = '"+batchno+"' and headJobname = '"+jobname+"'";
-//			WriteLog.writeFile("ÔËĞĞÍê³É£¬\n" + sqlStr);
+//			WriteLog.writeFile("è¿è¡Œå®Œæˆï¼Œ\n" + sqlStr);
 //			//System.out.println(sqlStr);
 //			//stmt.executeUpdate(sqlStr);
 //			stmt.addBatch(sqlStr);
@@ -310,12 +310,12 @@ public class DBUnit_bk {
 //		}
 //		return true;
 //	}
-//	//4.·¢Õ¹ÏÂ¼Ò£¬°ÑÏÂ¼ÒÈÓ½øµÈ´ı³Ø£¬²¢¸æËßËüĞèµÈ´ıµÄÉÏ¼ÒÃûµ¥
+//	//4.å‘å±•ä¸‹å®¶ï¼ŒæŠŠä¸‹å®¶æ‰”è¿›ç­‰å¾…æ± ï¼Œå¹¶å‘Šè¯‰å®ƒéœ€ç­‰å¾…çš„ä¸Šå®¶åå•
 //	public static boolean jobPyramid(String scheduleType,String batchno,String jobtype ,String jobname,int jobStatus){
-//		//ÏÂ¼Ò¿ÉÄÜÓĞ¶àÎ»ÉÏ¼Ò£¬µ«Ö»»á±»µÚ1Î»ÉÏ¼ÒÀ­µ½µÈ´ı³ØÀï,´ËÊ±¸ÃÏÂ¼Ò×´Ì¬Îª100-ready
+//		//ä¸‹å®¶å¯èƒ½æœ‰å¤šä½ä¸Šå®¶ï¼Œä½†åªä¼šè¢«ç¬¬1ä½ä¸Šå®¶æ‹‰åˆ°ç­‰å¾…æ± é‡Œ,æ­¤æ—¶è¯¥ä¸‹å®¶çŠ¶æ€ä¸º100-ready
 //		try {
 //			Connection conn = ds.getConnection();
-//			conn.setAutoCommit(true);//jdbcÄ¬ÈÏ×Ô¶¯Ìá½»
+//			conn.setAutoCommit(true);//jdbcé»˜è®¤è‡ªåŠ¨æäº¤
 //			// System.out.println(conn);
 //			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 //			String sqlStr = "insert into dbo.jobWaitingPool(scheduleType,batchno,headJobname,headjobtype,head_on_fail_action,tailJobname,tailJobtype,tail_on_fail_action,headJobstatus) " +
@@ -327,9 +327,9 @@ public class DBUnit_bk {
 //					"where tailJobname in(select tailJobname from dbo.jobschedule b where headJobname = '"+jobname+"'" + " and a.scheduleType = b.scheduleType and b.scheduleType = '"+scheduleType+"') " + 
 //					"and not exists(select 1 from dbo.jobWaitingPool b where b.batchno = '"+batchno+"' and a.tailJobname = b.tailJobname)" +  
 //					"and a.scheduleType = '"+scheduleType+"'";
-//			WriteLog.writeFile("4.·¢Õ¹ÏÂ¼Ò£¬°ÑÏÂ¼ÒÈÓ½øµÈ´ı³Ø£¬²¢¸æËßËüĞèµÈ´ıµÄÉÏ¼ÒÃûµ¥\n" + sqlStr); 		
-//			/*--°ÑÏÂ¼ÒÈÓ½øµÈ´ı³Ø£¬²¢¸æËßËüĞèµÈ´ıµÄÉÏ¼ÒÃûµ¥
-//					--·¢Õ¹ĞÂÏÂ¼ÒÈëµÈ´ı³Ø
+//			WriteLog.writeFile("4.å‘å±•ä¸‹å®¶ï¼ŒæŠŠä¸‹å®¶æ‰”è¿›ç­‰å¾…æ± ï¼Œå¹¶å‘Šè¯‰å®ƒéœ€ç­‰å¾…çš„ä¸Šå®¶åå•\n" + sqlStr); 		
+//			/*--æŠŠä¸‹å®¶æ‰”è¿›ç­‰å¾…æ± ï¼Œå¹¶å‘Šè¯‰å®ƒéœ€ç­‰å¾…çš„ä¸Šå®¶åå•
+//					--å‘å±•æ–°ä¸‹å®¶å…¥ç­‰å¾…æ± 
 //					insert into dbo.jobWaitingPool(scheduleType,batchno,headJobname,headjobtype,head_on_fail_action,tailJobname,tailJobtype,tail_on_fail_action,headJobstatus) 
 //					select 's1','20170805151952',a.headJobname,b.jobtype,b.on_fail_action,a.tailJobname,c.Jobtype,c.on_fail_action
 //							,case when headJobname = 'start' then 1 else 100 end headJobstatus 
@@ -340,7 +340,7 @@ public class DBUnit_bk {
 //					and not exists(select 1 from dbo.jobWaitingPool b where b.batchno = '20170805151952' and a.tailJobname = b.tailJobname)
 //					and a.scheduleType = 's1'
 //			  		*/
-//			//System.out.println(jobname+" ·¢Õ¹ĞÂÏÂ¼Ò:");//+sqlStr);
+//			//System.out.println(jobname+" å‘å±•æ–°ä¸‹å®¶:");//+sqlStr);
 //			stmt.executeUpdate(sqlStr);
 //			conn.close();
 //		} catch (SQLException e) {
@@ -350,7 +350,7 @@ public class DBUnit_bk {
 //		return true;
 //	}
 //	
-//	//10.»ñÈ¡jobÏêÏ¸ÊäÈëÊä³ö(Ë«»÷²é¿´)
+//	//10.è·å–jobè¯¦ç»†è¾“å…¥è¾“å‡º(åŒå‡»æŸ¥çœ‹)
 //	public static DefaultJob getJobDetail(String jobname,String jobtype){
 //		DefaultJob jobDetail = new DefaultJob();
 //		try {
@@ -358,9 +358,9 @@ public class DBUnit_bk {
 //			conn.setAutoCommit(true);
 //			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 //			String sql = null;
-//			if (jobtype.equals("dsjob")||jobtype.equals("bojob"))//dsjobÀàĞÍ
+//			if (jobtype.equals("dsjob")||jobtype.equals("bojob"))//dsjobç±»å‹
 //				sql = "select * from dbo.etl_jobino where jobname = '" + jobname + "'";
-//			else {//ÈôÊäÈëµÄÊÇ±í
+//			else {//è‹¥è¾“å…¥çš„æ˜¯è¡¨
 //				jobname = jobname.substring(jobname.lastIndexOf(".") + 1);
 //				sql = "select * from dbo.etl_jobino where inofile = '" + jobname + "'";
 //			}
@@ -398,29 +398,29 @@ public class DBUnit_bk {
 //					}
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ĞĞSQL´íÎógetJobDetail:\n"+sql+"\n" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯getJobDetail:\n"+sql+"\n" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //			}
 //			conn.close();
 //		} catch (SQLException e) {
-//			WriteLog.writeFile("Á¬½ÓÊı¾İ¿âÒì³£:\n"+ e.getMessage());
+//			WriteLog.writeFile("è¿æ¥æ•°æ®åº“å¼‚å¸¸:\n"+ e.getMessage());
 //			e.printStackTrace();
 //		}
 //		return jobDetail;
 //	}
 //	
-//	// »ñÈ¡scheduJoblocation
+//	// è·å–scheduJoblocation
 //	public static ArrayList<Job> initScheduleJobLocationList(String scheduleType) {
 //		ArrayList<Job> jobs = new ArrayList<Job>();
 //		try {
 //			Connection conn = ds.getConnection();
 //			// stmt =
 //			// conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				//ResultSet rs = stmt.executeQuery("call dbo.initSchedule()");
 //				ResultSet rs = stmt.executeQuery("select * from dbo.jobProperty where scheduleType = '"+scheduleType+"'");
-//				// ½«½á¹û·ÅÈëjobInfoList
+//				// å°†ç»“æœæ”¾å…¥jobInfoList
 //				while (rs.next()) {
 //					//DefaultJob job = new DefaultJob();
 //					Job job = new Job(rs.getString("jobname"),rs.getInt("ISVALID"),rs.getString("JOBTYPE"));
@@ -436,22 +436,22 @@ public class DBUnit_bk {
 //					job.groupName = rs.getString("groupName");
 //					job.memo = rs.getString("memo");
 //					job.params = rs.getString("params");
-//					job.jobstatus = 1000;//rs.getInt("jobstatus");³õÊ¼×´Ì¬Îª1000-waiting
+//					job.jobstatus = 1000;//rs.getInt("jobstatus");åˆå§‹çŠ¶æ€ä¸º1000-waiting
 //					jobs.add(job);
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile("Î´Öª´íÎó7,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//			WriteLog.writeFile("æœªçŸ¥é”™è¯¯7,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //		}
 //		return jobs;
 //	}
 //	
-//	//»ñÈ¡scheduleJobRelation
+//	//è·å–scheduleJobRelation
 //	public static List<JobEdge> initScheduleJobRelationList(String scheduleType) {
 //		List<JobEdge> jobEdges = new ArrayList<JobEdge>(); 
 //		try {
@@ -462,7 +462,7 @@ public class DBUnit_bk {
 //			String sql = "select * from dbo.jobSchedule where scheduletype = '"+scheduleType+"'";
 //			System.out.println("initScheduleJobRelationList "+sql);
 //			ResultSet	rs = stmt.executeQuery(sql);
-//		// ½«½á¹û·ÅÈëjobInfoList
+//		// å°†ç»“æœæ”¾å…¥jobInfoList
 //		while (rs.next()) {
 //			JobEdge jobEdge = new JobEdge();
 //			jobEdge.headJobName = rs.getString("headJobName");
@@ -475,30 +475,30 @@ public class DBUnit_bk {
 //			jobEdges.add(jobEdge);
 //		}
 //		}catch (Exception e){
-//			WriteLog.writeFile("¶ÁÈ¡ÅäÖÃÎÄ¼şÊ±³ö´í:" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\n","Î´Öª´íÎó1,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±.",0);
+//			WriteLog.writeFile("è¯»å–é…ç½®æ–‡ä»¶æ—¶å‡ºé”™:" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\n","æœªçŸ¥é”™è¯¯1,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜.",0);
 //		}
 //		conn.close();
 //	} catch (Exception e) {
-//		WriteLog.writeFile("Î´Öª´íÎó8,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n"+e.getMessage());
-//		JOptionPane.showMessageDialog(null, e.getMessage() + "\n","Î´Öª´íÎó2,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±.",0);
+//		WriteLog.writeFile("æœªçŸ¥é”™è¯¯8,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n"+e.getMessage());
+//		JOptionPane.showMessageDialog(null, e.getMessage() + "\n","æœªçŸ¥é”™è¯¯2,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜.",0);
 //	}
 //	return jobEdges;
 //	}
 //
-//	//Ë¢ĞÂµ÷¶È×´Ì¬
+//	//åˆ·æ–°è°ƒåº¦çŠ¶æ€
 //	public static List<JobLocation> refreshScheduleJobLocationList(String batchno) {
 //		List<JobLocation> jobLocationList = new ArrayList<JobLocation>();
 //		try {
 //			Connection conn = ds.getConnection();
-//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				/*String sql = "merge into dbo.job_location a using " +
 //							 "(select jobname,max(jobstatus)jobstatus from dbo.jobrunlog b where b.batchno = '"+batchno+"' group by jobname )b "+
 //							 "on a.jobname = b.jobname " +
 //							 "when matched then update set a.jobstatus = b.jobstatus " +
 //							 "else ignore";*/
-//				//´Ójobrunlog»ñÈ¡×îĞÂµÄjob×´Ì¬
+//				//ä»jobrunlogè·å–æœ€æ–°çš„jobçŠ¶æ€
 //				String sql = "select jobname,jobstatus from (select jobname,jobstatus " +
 //							 			",row_number()over(partition by jobname order by insertTime desc)rn " + 
 //							 			"from dbo.jobrunlog "+
@@ -508,11 +508,11 @@ public class DBUnit_bk {
 //                              "where not exists(select 1 from dbo.jobRunlog b " +  
 //                            		  "where a.scheduleType = b.scheduleType and a.batchno = b.batchno and b.batchno = '"+batchno+"') " +
 //                                      "and a.batchno = '"+batchno+"' " ;
-//				//WriteLog.writeFile("Ë¢ĞÂµ÷¶È×´Ì¬\n" + sql); 	
+//				//WriteLog.writeFile("åˆ·æ–°è°ƒåº¦çŠ¶æ€\n" + sql); 	
 //				//System.out.println("refreshScheduleJob:"+sql);
 //				//stmt.executeUpdate(sql);
 //				ResultSet rs = stmt.executeQuery(sql);
-//				// ½«½á¹û·ÅÈëjobInfoList
+//				// å°†ç»“æœæ”¾å…¥jobInfoList
 //				while (rs.next()) {
 //					JobLocation jobLocation = new JobLocation();
 //					jobLocation.jobname = rs.getString("jobname");
@@ -526,23 +526,23 @@ public class DBUnit_bk {
 //					jobLocationList.add(jobLocation);
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile("Î´Öª´íÎó9,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//			WriteLog.writeFile("æœªçŸ¥é”™è¯¯9,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //		}
 //		return jobLocationList;
 //	}
 //			
-//	// ±£´æ×÷Òµ¼°ÆäÒÀÀµ¹ØÏµµ½Êı¾İ¿â
+//	// ä¿å­˜ä½œä¸šåŠå…¶ä¾èµ–å…³ç³»åˆ°æ•°æ®åº“
 //	public static boolean saveAllJob(String scheduleType, ArrayList<Job> jobs, ArrayList<JobEdge> jobEdges) {
-//		// 1.É¾³ı½«Òª²åÈëµÄÊı¾İ
+//		// 1.åˆ é™¤å°†è¦æ’å…¥çš„æ•°æ®
 //		String sqlPre1 = "delete from dbo.jobProperty where scheduleType = '" + scheduleType + "'";
 //		String sqlPre2 = "delete from dbo.jobSchedule where scheduleType = '" + scheduleType + "'";
-//		// 2.Éú³ÉjobPropertyµÄSQLÓï¾ä
+//		// 2.ç”ŸæˆjobPropertyçš„SQLè¯­å¥
 //		Job jb = jobs.get(0);
 //		String sql1 = "insert into dbo.jobProperty"
 //				+ "(scheduleType,jobtype,jobname,x,y,isvalid,isSchedule,on_fail_action,COST,groupID,groupName,memo,params)values";
@@ -551,7 +551,7 @@ public class DBUnit_bk {
 //			sql1 += ((i==0)?"":",") + "('" + scheduleType + "','" + jb.jobtype + "','" + jb.jobname + "'," + jb.x + "," + jb.y + "," + jb.isValid + "," + jb.isSchedule + ",'"
 //					+ jb.on_fail_action + "','" + jb.cost + "'," + jb.groupID + ",'" + jb.groupName + "','" + jb.memo + "','" + jb.params + "')\n";
 //		}
-//		// 3.Éú³ÉjobScheduleµÄSQLÓï¾ä
+//		// 3.ç”ŸæˆjobScheduleçš„SQLè¯­å¥
 //		JobEdge jobEdge = jobEdges.get(0);
 //		String sql2 = "insert into dbo.jobSchedule"
 //				+ "(scheduleType,headJobname,tailJobname)values ";
@@ -559,18 +559,18 @@ public class DBUnit_bk {
 //			jobEdge = jobEdges.get(i);
 //			sql2 += ((i==0)?"":",") + "('" + scheduleType + "','" + jobEdge.headJobName + "','"+ jobEdge.tailJobName +"')\n";
 //		}
-//		WriteLog.writeFile("1.É¾³ı½«Òª²åÈëµÄÊı¾İ\n"+sqlPre1);
-//		WriteLog.writeFile("1.É¾³ı½«Òª²åÈëµÄÊı¾İ\n"+sqlPre2);
-//		WriteLog.writeFile("2.Éú³ÉjobPropertyµÄSQLÓï¾ä\n"+sql1);
-//		WriteLog.writeFile("3.Éú³ÉjobScheduleµÄSQLÓï¾ä\n"+sql2);
+//		WriteLog.writeFile("1.åˆ é™¤å°†è¦æ’å…¥çš„æ•°æ®\n"+sqlPre1);
+//		WriteLog.writeFile("1.åˆ é™¤å°†è¦æ’å…¥çš„æ•°æ®\n"+sqlPre2);
+//		WriteLog.writeFile("2.ç”ŸæˆjobPropertyçš„SQLè¯­å¥\n"+sql1);
+//		WriteLog.writeFile("3.ç”ŸæˆjobScheduleçš„SQLè¯­å¥\n"+sql2);
 //		/*System.out.println(sqlPre1);
 //		System.out.println(sqlPre2);
 //		System.out.println(sql1);
 //		System.out.println(sql2);*/
-//		// 4.Ö´ĞĞSQLÓï¾ä
+//		// 4.æ‰§è¡ŒSQLè¯­å¥
 //		try {
 //			Connection conn = ds.getConnection();
-//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				conn.setAutoCommit(false);
 //				stmt.executeUpdate(sqlPre1);
@@ -584,17 +584,17 @@ public class DBUnit_bk {
 //				stmt.addBatch(sql2);
 //				stmt.executeBatch();*/
 //			} catch (Exception e) {
-//				WriteLog.writeFile("saveAllJob() Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "±£´æÊ§°Ü", 0);
+//				WriteLog.writeFile("saveAllJob() æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "ä¿å­˜å¤±è´¥", 0);
 //				return false;
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile("saveAllJob() Î´Öª´íÎó10,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Î´Öª´íÎó", 0);
+//			WriteLog.writeFile("saveAllJob() æœªçŸ¥é”™è¯¯10,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æœªçŸ¥é”™è¯¯", 0);
 //			return false;
 //		}
-//		JOptionPane.showMessageDialog(null, "     ¹§Ï²\n","±£´æ³É¹¦.",1);
+//		JOptionPane.showMessageDialog(null, "     æ­å–œ\n","ä¿å­˜æˆåŠŸ.",1);
 //		return true;
 //	}
 //
@@ -602,85 +602,85 @@ public class DBUnit_bk {
 //	public static boolean sample(ArrayList<DefaultJob> jobs, ArrayList<JobEdge> edgs) {
 //		try {
 //			Connection conn = ds.getConnection();
-//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				String sql = "s";
 //				ResultSet rs = stmt.executeQuery(sql);
-//				// ½«½á¹û·ÅÈëjobInfoList
+//				// å°†ç»“æœæ”¾å…¥jobInfoList
 //				while (rs.next()) {
 //					JobLocation jobLocation = new JobLocation();
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile("Î´Öª´íÎó11,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//			WriteLog.writeFile("æœªçŸ¥é”™è¯¯11,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //		}
 //		return true;
 //	}
 //
-//	//»ñÈ¡µ÷¶ÈÀàĞÍÁĞ±í
+//	//è·å–è°ƒåº¦ç±»å‹åˆ—è¡¨
 //	public static ArrayList<String> getScheduleType() {
 //		ArrayList<String> batchnos = new ArrayList<String>();
 //		try {
 //			Connection conn = ds.getConnection();
-//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				String sql = "select distinct scheduleType from dbo.jobProperty";
 //				System.out.println(sql);
 //				ResultSet rs = stmt.executeQuery(sql);
-//				// ½«½á¹û·ÅÈëjobInfoList
+//				// å°†ç»“æœæ”¾å…¥jobInfoList
 //				while (rs.next()) {
 //					batchnos.add(rs.getString("scheduleType"));
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile("Î´Öª´íÎó12,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//			WriteLog.writeFile("æœªçŸ¥é”™è¯¯12,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //		}
 //		return batchnos;
 //	}
 //
-//	//»ñÈ¡Åú´ÎÁĞ±í
+//	//è·å–æ‰¹æ¬¡åˆ—è¡¨
 //	public static ArrayList<String> getBatchno(String scheduleType){
 //		ArrayList<String> batchnos = new ArrayList<String>();
 //		try {
 //		Connection conn = ds.getConnection();
-//		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //		try {
-//			//jobRunlogĞèÒªÔö¼ÓscheduleType×Ö¶Î
+//			//jobRunlogéœ€è¦å¢åŠ scheduleTypeå­—æ®µ
 //			String sql = "select distinct batchno from dbo.jobRunLog where scheduleType = '"+scheduleType+"' order by batchno desc fetch first 16 rows only";// where scheduleType = '" + scheduleType +"'";
 //			System.out.println(sql);
 //			ResultSet rs = stmt.executeQuery(sql);
-//			// ½«½á¹û·ÅÈëjobInfoList
+//			// å°†ç»“æœæ”¾å…¥jobInfoList
 //			while (rs.next()) {
 //				batchnos.add(rs.getString("batchno"));
 //			}
 //		} catch (Exception e) {
-//			WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//			WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //		}
 //		conn.close();
 //	} catch (Exception e) {
-//		WriteLog.writeFile("Î´Öª´íÎó13,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//		JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//		WriteLog.writeFile("æœªçŸ¥é”™è¯¯13,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//		JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //	}
 //	return batchnos;
 //}
 //	
-//	// »ñÈ¡job_locations v3.0
+//	// è·å–job_locations v3.0
 //	public static List<JobLocation> getJobLocationList3_0(User user,int jbtype_in, int sourceOrTarget, String jobname) {
 //		List<JobLocation> jobLocationList = new ArrayList<JobLocation>();
 //		try {
 //			Connection conn = ds.getConnection();
-//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				//String sql = "CALL DBO.job_location_v2_1(" + jbtype_in + "," + sourceOrTarget + ",'" + jobname + "')";
 //				String sql = "CALL DBO.job_location_v3_0(" + jbtype_in + "," + sourceOrTarget + ",'" + jobname + "','"+user.getUserID()+"','"+sdf.format(user.getOptionTime())+"')";
@@ -689,7 +689,7 @@ public class DBUnit_bk {
 //				sql = "select jobname,x,y,isvalid,jobtype,cost from dbo.job_location where userid = '"+user.getUserID()+"' and datime = '"+sdf.format(user.getOptionTime())+"' order by x,y";
 //				WriteLog.writeFile("excute:" + sql);
 //				ResultSet rs = stmt.executeQuery(sql);
-//				// ½«½á¹û·ÅÈëjobInfoList
+//				// å°†ç»“æœæ”¾å…¥jobInfoList
 //				while (rs.next()) { // RID PNUMBER PREVIOUS BNUMBER BEHIND
 //					// PATHLENGTH RNUMBER2 X Y
 //					JobLocation jobLocation = new JobLocation();
@@ -703,26 +703,26 @@ public class DBUnit_bk {
 //					jobLocationList.add(jobLocation);
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //			}
 //			stmt.close();
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile("Î´Öª´íÎó14,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//			WriteLog.writeFile("æœªçŸ¥é”™è¯¯14,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //		}
 //		return jobLocationList;
 //	}
 //
-//	//»ñÈ¡job_relation
+//	//è·å–job_relation
 //	public static List<JobRelation> getJobRelationList(User user) {
 //			List<JobRelation> jobRelationList = new ArrayList<JobRelation>();
 //			String userID = user.getUserID();
 //			Date optionTime = user.getOptionTime();
 //			try {
 //				Connection conn = ds.getConnection();
-//				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //				try {
 //					String sql = "";
 //					sql = "select a.*,b.x,b.y,row_number()over(partition by BEHIND order by PATHLENGTH)rn " +
@@ -733,7 +733,7 @@ public class DBUnit_bk {
 //					WriteLog.writeFile("excute:"+sql);
 //					ResultSet rs = stmt.executeQuery(sql);
 //					// select * from dbo.job_relation
-//					// ½«½á¹û·ÅÈëjobInfoList
+//					// å°†ç»“æœæ”¾å…¥jobInfoList
 //					while (rs.next()) { // RID PNUMBER PREVIOUS BNUMBER BEHIND
 //										// PATHLENGTH RNUMBER2 X Y
 //						JobRelation jobinfo = new JobRelation();
@@ -750,20 +750,20 @@ public class DBUnit_bk {
 //						jobRelationList.add(jobinfo);
 //					}
 //				} catch (Exception e) {
-//					WriteLog.writeFile("DBUnit : Î´Öª´íÎó1,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//					JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "Î´Öª´íÎó1,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±.", 0);
+//					WriteLog.writeFile("DBUnit : æœªçŸ¥é”™è¯¯1,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//					JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "æœªçŸ¥é”™è¯¯1,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜.", 0);
 //				}
 //				stmt.close();
 //				conn.close();
 //			} catch (Exception e) {
-//				WriteLog.writeFile("DBUnit : Î´Öª´íÎó2,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "Î´Öª´íÎó2,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±.", 0);
+//				WriteLog.writeFile("DBUnit : æœªçŸ¥é”™è¯¯2,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "æœªçŸ¥é”™è¯¯2,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜.", 0);
 //			}
 //
 //			return jobRelationList;
 //		}
 //
-//	//µÇÂ¼
+//	//ç™»å½•
 //	public static int login(InitProperty ip) {
 //		int loginStatus = 0;
 //		String sql = "";
@@ -773,7 +773,7 @@ public class DBUnit_bk {
 //			conn = ds.getConnection();
 //			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); 
 //		} catch (Exception e) {
-//			//ÎŞ·¨Á¬½ÓÊı¾İ¿â
+//			//æ— æ³•è¿æ¥æ•°æ®åº“
 //			return -1;
 //		}
 //		try {
@@ -787,13 +787,13 @@ public class DBUnit_bk {
 //			stmt.close();
 //			conn.close();
 //		} catch (SQLException e) {
-//			//µÇÂ¼ÓÃ»§ÃÜÂë´íÎó
+//			//ç™»å½•ç”¨æˆ·å¯†ç é”™è¯¯
 //			e.printStackTrace();
 //		}
 //		return loginStatus;
 //	}
 //
-//	//»ñÈ¡×îĞÂ°æ±¾
+//	//è·å–æœ€æ–°ç‰ˆæœ¬
 //	public static double getLastVersion(){
 //		double version = 0;
 //			Connection conn;
@@ -811,7 +811,7 @@ public class DBUnit_bk {
 //		return version;
 //	}
 //	
-//	//µ±Ç°°æ±¾ÊÇ·ñ¿ÉÓÃ
+//	//å½“å‰ç‰ˆæœ¬æ˜¯å¦å¯ç”¨
 //	public static boolean isVersionUseable(double version){
 //		boolean useable = false;
 //		try {
@@ -840,7 +840,7 @@ public class DBUnit_bk {
 //		System.out.println(DBUnit_bk.isVersionUseable(3.0));
 //	}
 //	
-//	//»ñÈ¡µ¥¸öjobµÄº¢×Ó
+//	//è·å–å•ä¸ªjobçš„å­©å­
 //	public static ArrayList<Job> getChildren(Job job,DesignerGraph graph) {
 //		ArrayList<Job> children = new ArrayList<Job>();
 //		ArrayList<Job> jobsExists = graph.getAllJobs();
@@ -871,7 +871,7 @@ public class DBUnit_bk {
 //				for(int e=0;e<jobsExists.size();e++){
 //					Job jobExists = jobsExists.get(e);
 //					if(jobname.equalsIgnoreCase(jobExists.getJobname())){
-//						//Èç¹ûÏàÍ¬µÄJobÒÑ¾­´æÔÚ£¬½áÊøÑ­»·
+//						//å¦‚æœç›¸åŒçš„Jobå·²ç»å­˜åœ¨ï¼Œç»“æŸå¾ªç¯
 //						children.add(jobExists);
 //						continue f;
 //					}
@@ -907,7 +907,7 @@ public class DBUnit_bk {
 //		return children;
 //	}
 //	
-//	//»ñÈ¡µ¥¸öjobµÄroots
+//	//è·å–å•ä¸ªjobçš„roots
 //		public static ArrayList<Job> getRoots(Job job,DesignerGraph graph) {
 //			ArrayList<Job> roots = new ArrayList<Job>();
 //			ArrayList<Job> jobsExists = graph.getAllJobs();
@@ -938,7 +938,7 @@ public class DBUnit_bk {
 //					for(int e=0;e<jobsExists.size();e++){
 //						Job jobExists = jobsExists.get(e);
 //						if(jobname.equalsIgnoreCase(jobExists.getJobname())){
-//							//Èç¹ûÏàÍ¬µÄJobÒÑ¾­´æÔÚ£¬½áÊøÑ­»·
+//							//å¦‚æœç›¸åŒçš„Jobå·²ç»å­˜åœ¨ï¼Œç»“æŸå¾ªç¯
 //							roots.add(jobExists);
 //							continue f;
 //						}

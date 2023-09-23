@@ -4,31 +4,31 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class DefaultJob {
-	public String batchno;   //µ÷¶ÈÅú´ÎºÅ
-	public String joblocate;   //³ÌĞòËùÔÚÄ¿Â¼
-	public String jobname;   //Ãû³Æ
-	public String jobtype;   //ÀàĞÍ
-	public double x = 0;   //x×ø±ê
-	public double y = 0;   //y×ø±ê
-	public int isValid = 0;   //ÊÇ·ñÓĞĞ§
-	public int isSchedule = 0;   //±¾´ÎÊÇ·ñµ÷¶È
-	public String jobCommand;   //ÔËĞĞ×÷ÒµµÄÃüÁî
-	public String startTimie;   //µ÷¶È¿ªÊ¼Ê±¼ä
-	public String endTime;   //µ÷¶È½áÊøÊ±¼ä
-	public String datetime;   //ºÄÊ±
-	public int headJobAmount;  //¸¸½Úµã¸öÊı
-	public int headJobstatus;  //¸¸½ÚµãµÄ×´Ì¬
-	public int jobstatus;  //´óÓÚ1000-unready,100-ready,0-start,1-finished success,2-warning,3-faile,4-faild&skip
-	public String head_on_fail_action;  //Ç°ÃæµÄ×÷ÒµÊÇ·ñskip
-	public String on_fail_action;       //thisÊÇ·ñskip
+	public String batchno;   //è°ƒåº¦æ‰¹æ¬¡å·
+	public String joblocate;   //ç¨‹åºæ‰€åœ¨ç›®å½•
+	public String jobname;   //åç§°
+	public String jobtype;   //ç±»å‹
+	public double x = 0;   //xåæ ‡
+	public double y = 0;   //yåæ ‡
+	public int isValid = 0;   //æ˜¯å¦æœ‰æ•ˆ
+	public int isSchedule = 0;   //æœ¬æ¬¡æ˜¯å¦è°ƒåº¦
+	public String jobCommand;   //è¿è¡Œä½œä¸šçš„å‘½ä»¤
+	public String startTimie;   //è°ƒåº¦å¼€å§‹æ—¶é—´
+	public String endTime;   //è°ƒåº¦ç»“æŸæ—¶é—´
+	public String datetime;   //è€—æ—¶
+	public int headJobAmount;  //çˆ¶èŠ‚ç‚¹ä¸ªæ•°
+	public int headJobstatus;  //çˆ¶èŠ‚ç‚¹çš„çŠ¶æ€
+	public int jobstatus;  //å¤§äº1000-unready,100-ready,0-start,1-finished success,2-warning,3-faile,4-faild&skip
+	public String head_on_fail_action;  //å‰é¢çš„ä½œä¸šæ˜¯å¦skip
+	public String on_fail_action;       //thisæ˜¯å¦skip
 	public String params ;
-	public String cost;                //Æ½¾ùÏûºÄÊ±³¤
-	public int groupID;                 //ËùÊô×éID
-	public String groupName;                //×éÃû³Æ
-	public String memo;                //±¸×¢
-	public ArrayList<String> inputList = new ArrayList<String>();  //ÊäÈë±íÁĞ±í
-	public ArrayList<String> outputList = new ArrayList<String>(); //Êä³ö±íÁĞ±í
-	public ArrayList<String> detailList = new ArrayList<String>(); //±¸ÓÃ
+	public String cost;                //å¹³å‡æ¶ˆè€—æ—¶é•¿
+	public int groupID;                 //æ‰€å±ç»„ID
+	public String groupName;                //ç»„åç§°
+	public String memo;                //å¤‡æ³¨
+	public ArrayList<String> inputList = new ArrayList<String>();  //è¾“å…¥è¡¨åˆ—è¡¨
+	public ArrayList<String> outputList = new ArrayList<String>(); //è¾“å‡ºè¡¨åˆ—è¡¨
+	public ArrayList<String> detailList = new ArrayList<String>(); //å¤‡ç”¨
 		
 	public String getJoblocate() {
 		return joblocate;

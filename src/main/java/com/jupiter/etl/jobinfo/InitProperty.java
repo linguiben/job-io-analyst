@@ -50,11 +50,11 @@ public class InitProperty {
 	public static String driverName = "";
 	public static String url = "";
 	/*
-	 * ÅĞ¶ÏÊÇ·ñÎª¸¡µãÊı£¬°üÀ¨doubleºÍfloat
+	 * åˆ¤æ–­æ˜¯å¦ä¸ºæµ®ç‚¹æ•°ï¼ŒåŒ…æ‹¬doubleå’Œfloat
 	 * 
-	 * @param str ´«ÈëµÄ×Ö·û´®
+	 * @param str ä¼ å…¥çš„å­—ç¬¦ä¸²
 	 * 
-	 * @return ÊÇ¸¡µãÊı·µ»Øtrue,·ñÔò·µ»Øfalse
+	 * @return æ˜¯æµ®ç‚¹æ•°è¿”å›true,å¦åˆ™è¿”å›false
 	 */
 	public static boolean isDouble(String str) {
 		Pattern pattern = Pattern.compile("^[-\\+]?[.\\d]*$");
@@ -62,12 +62,12 @@ public class InitProperty {
 	}
 
 	/**
-	 * ¸´ÖÆµ¥¸öÎÄ¼ş
+	 * å¤åˆ¶å•ä¸ªæ–‡ä»¶
 	 * 
 	 * @param oldPath
-	 *            String Ô­ÎÄ¼şÂ·¾¶ Èç£ºc:/fqf.txt
+	 *            String åŸæ–‡ä»¶è·¯å¾„ å¦‚ï¼šc:/fqf.txt
 	 * @param newPath
-	 *            String ¸´ÖÆºóÂ·¾¶ Èç£ºf:/fqf.txt
+	 *            String å¤åˆ¶åè·¯å¾„ å¦‚ï¼šf:/fqf.txt
 	 * @return boolean
 	 */
 	public static void copyFile(String oldPath, String newPath) {
@@ -75,12 +75,12 @@ public class InitProperty {
 			int bytesum = 0;
 			int byteread = 0;
 			File oldfile = new File(oldPath);
-			if (oldfile.exists()) { // ÎÄ¼ş´æÔÚÊ±
-				InputStream inStream = new FileInputStream(oldPath); // ¶ÁÈëÔ­ÎÄ¼ş
+			if (oldfile.exists()) { // æ–‡ä»¶å­˜åœ¨æ—¶
+				InputStream inStream = new FileInputStream(oldPath); // è¯»å…¥åŸæ–‡ä»¶
 				FileOutputStream fs = new FileOutputStream(newPath);
 				byte[] buffer = new byte[1444];
 				while ((byteread = inStream.read(buffer)) != -1) {
-					bytesum += byteread; // ×Ö½ÚÊı ÎÄ¼ş´óĞ¡
+					bytesum += byteread; // å­—èŠ‚æ•° æ–‡ä»¶å¤§å°
 					// System.out.println(bytesum);
 					fs.write(buffer, 0, byteread);
 				}
@@ -101,7 +101,7 @@ public class InitProperty {
 	}
 
 	/**
-	 * ¹¹Ôì·½·¨£¬³õÊ¼»¯ÅäÖÃÎÄ¼ş
+	 * æ„é€ æ–¹æ³•ï¼Œåˆå§‹åŒ–é…ç½®æ–‡ä»¶
 	 * 
 	 * @throws Exception
 	 */
@@ -125,7 +125,7 @@ public class InitProperty {
 			
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			com.jupiter.WriteLog.writeFile("¶ÁÈ¡ÅäÖÃÎÄ¼ş³ö´í,ÍË³ö³ÌĞò");
+			com.jupiter.WriteLog.writeFile("è¯»å–é…ç½®æ–‡ä»¶å‡ºé”™,é€€å‡ºç¨‹åº");
 			System.exit(0);
 		}
 //		if (g_dbtype.toLowerCase().equals("db2")) {
@@ -141,13 +141,13 @@ public class InitProperty {
 //			url = "jdbc:sqlserver://" + db_host + ":" + g_port
 //					+ ";DatabaseName=" + db_dbname;
 //		}else{
-//			com.jupiter.WriteLog.writeFile("ÅäÖÃÎÄ¼şÊı¾İ¿âĞÅÏ¢´íÎó!ÎŞ·¨Ê¶±ğ´ËÀàĞÍÊı¾İ¿â£¡");
+//			com.jupiter.WriteLog.writeFile("é…ç½®æ–‡ä»¶æ•°æ®åº“ä¿¡æ¯é”™è¯¯!æ— æ³•è¯†åˆ«æ­¤ç±»å‹æ•°æ®åº“ï¼");
 //			System.exit(0);
 //		}
 	}
 
 	/**
-	 * ĞŞ¸ÄÅäÖÃÎÄ¼ş
+	 * ä¿®æ”¹é…ç½®æ–‡ä»¶
 	 * @param args
 	 * @throws Exception
 	 */
@@ -163,7 +163,7 @@ public class InitProperty {
 			output.close();
 		} catch (IOException e1) {
 			e1.printStackTrace();
-			com.jupiter.WriteLog.writeFile("ÎŞ·¨±£´æ");
+			com.jupiter.WriteLog.writeFile("æ— æ³•ä¿å­˜");
 			System.exit(0);
 		}
 	}

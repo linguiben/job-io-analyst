@@ -32,17 +32,17 @@ public class ParseDSXML {
 	private ArrayList<Collection> collections = new ArrayList<Collection>();
 	private ArrayList<SubRecord> subRecords = new ArrayList<SubRecord>();
 
-	// »ñÈ¡ÎÄ¼þÃû³Æ
+	// èŽ·å–æ–‡ä»¶åç§°
 	private File getFile(String cFileName) {
 		File tFile = new File(cFileName);
 		if (!tFile.exists()) {
-			System.out.println("ÕÒ²»µ½ÎÄ¼þ£º" + cFileName);
+			System.out.println("æ‰¾ä¸åˆ°æ–‡ä»¶ï¼š" + cFileName);
 			System.exit(0);
 		}
 		return tFile;
 	}
 
-	// ¿ªÊ¼½âÎö
+	// å¼€å§‹è§£æž
 	private String parseXML(File cFile) throws Exception {
 		InputSource in = new InputSource(new FileInputStream(cFile));
 		DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
@@ -143,7 +143,7 @@ public class ParseDSXML {
 				}
 				//}
 				
-				// ³¬¹ý1000Ê±Ð´ÈëÊý¾Ý¿â£¬ÊÍ·ÅÄÚ´æ
+				// è¶…è¿‡1000æ—¶å†™å…¥æ•°æ®åº“ï¼Œé‡Šæ”¾å†…å­˜
 				if (jobs.size() >= 1000) {
 					com.jupiter.WriteDSParse.writeJobs(jobs);
 					jobs.clear();
@@ -167,7 +167,7 @@ public class ParseDSXML {
 			}
 
 		}
-		// ´¦ÀíÎ²Êý
+		// å¤„ç†å°¾æ•°
 		if (jobs.size() > 0) {
 			com.jupiter.WriteDSParse.writeJobs(jobs);
 			jobs.clear();
@@ -196,7 +196,7 @@ public class ParseDSXML {
 	public static void main(String[] args) throws Exception {
 
 		ParseDSXML p = new ParseDSXML();
-		String tFileName = "D:\\×ÊÁÏ\\JAVAworkspace\\ETL_JOBINO\\xmlParse\\citi_bank.xml";
+		String tFileName = "D:\\èµ„æ–™\\JAVAworkspace\\ETL_JOBINO\\xmlParse\\citi_bank.xml";
 		//String tFileName = "\\\\gzbotsvr1\\Jupiter\\ETL_JOBINO\\xmlParse\\jb_dwn_covrpf_to_covrpf_ins.xml";
 		File tFile = p.getFile(tFileName);
 		

@@ -11,101 +11,112 @@ import java.util.Iterator;
 import java.util.Map;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ParseSelectSQL {
 
-	private static ComboPooledDataSource ds = new ComboPooledDataSource();
-	private List<String> end = (List<String>) Arrays.asList("SELECT","WHERE","GROUP","ORDER","UNION","INTERSECT","EXCEPT","MINUS");
+	private static final ComboPooledDataSource dataSource = new ComboPooledDataSource();
+
+	/** 遇到这些关键字则判断为一句新的SQL，或者subQuery */
+	private final List<String> resetKeyList = Arrays.asList("SELECT","WHERE","GROUP","HAVING","ORDER","UNION",
+			"INTERSECT",
+			"EXCEPT","MINUS");
+
 	/**
-	 * @param args 解析格SQL式化后的单词
+	 * @param sqlWordList 解析格SQL式化后的单词，
+	 * @return 返回 tableList of the sql input & output
 	 */
-	public ArrayList<String> parse(ArrayList<String> l) {
-		ArrayList<String> tbl= new ArrayList<String>();
-		boolean from = false; // 是否找到from
-		Iterator<String> iter = l.iterator();
-		String str = "";
-		while (iter.hasNext()) {
-			
-			// 遇到重置标记
-			if (end.contains(str.toUpperCase())) {
+	public List<String> parse(List<String> sqlWordList) {
+		List<String> tableList= new ArrayList<>(); // 存储找到的input table
+		Iterator<String> it = sqlWordList.iterator();
+		String word = ""; // 逐字分析
+		boolean from = false; // 记录是否遇到FROM关键字
+		while (it.hasNext()) {
+			// 遇到重置标记 (遇到这些关键字，则后面一定会出现FROM关键字)
+			if (resetKeyList.contains(word.toUpperCase())) {
 				from = false;
 			}
 
 			if (!from) {
-				// 1.分析from后面的值
-				str = (String) iter.next();
-				if (str.equalsIgnoreCase("FROM")) {
+				// 1.遇到FROM开始分析
+				word = it.next();
+				if (word.equalsIgnoreCase("FROM")) {
 					from = true;
-					String tb = (String) iter.next();
-					str = (String) iter.next();
-					if (str.equalsIgnoreCase(".")) {
-						tb = tb + "." + iter.next();
+					String tab = it.next();
+					word = it.next();
+					if (word.equalsIgnoreCase(".")) {
+						tab = tab + "." + it.next();
 					}
-					tbl.add(tb);
-					//System.out.println("tabnamef: " + tb);
+					log.debug("tableName: {}",tab);
+					tableList.add(tab);
 				}
 			} else {
-				if (str.equalsIgnoreCase("JOIN")) {
+				if (word.equalsIgnoreCase("JOIN")) {
 					// 2.分析join
-					str = (String) iter.next();
-					if (((String) iter.next()).equalsIgnoreCase(".")) {
-						str = str + "." + iter.next();
+					word = it.next();
+					if (it.next().equalsIgnoreCase(".")) {
+						word = word + "." + it.next();
 					}
-					tbl.add(str);
-					//System.out.println("tabnamej: " + str);
+					tableList.add(word);
+					log.debug("tableName: {}",word);
 					int left = 0, right = 0;
-					while (iter.hasNext()) {
-						str = (String) iter.next();
+					while (it.hasNext()) {
+						word = it.next();
 						// System.out.println(str1);
-						if(end.contains(str.toUpperCase()) || str.equalsIgnoreCase("JOIN")){
+						if(resetKeyList.contains(word.toUpperCase()) || word.equalsIgnoreCase("JOIN")){
 							break;
-						}else if (str.equals("(")) {
+						}else if (word.equals("(")) {
 							left++;
-						} else if (str.equals(")")) {
+						} else if (word.equals(")")) {
 							right++;
-						} else if (str.equals(",") && left == right) {
+						} else if (word.equals(",") && left == right) {
 							break;
 						}
 					}
-				} else if (str.equalsIgnoreCase(",")) {
+				} else if (word.equalsIgnoreCase(",")) {
 					// 3.分析笛卡儿积
-					str = (String) iter.next();
-					if (((String) iter.next()).equalsIgnoreCase(".")) {
-						str = str + "." + iter.next();
+					word = it.next();
+					if (it.next().equalsIgnoreCase(".")) {
+						word = word + "." + it.next();
 					}
-					tbl.add(str);
+					tableList.add(word);
 					//System.out.println("tabname,: " + str);
 				}else{
-					str = (String) iter.next();
+					word = it.next();
 				}
 			}
 		}
-		return tbl;
+		return tableList;
 	}
 	
 	/**
-	 * @param args 解析Slect SQL
+	 * @param str analyze the Select SQL
+	 *        return the input and output tables
 	 */
-	public ArrayList<String> parseSelect(String str){
-		ArrayList<String> tbs= new ArrayList<String>();
-		/*ArrayList<String> sqls = SQLStrFormat.getSubSQLStr(str);
-		for(int i=0;i<sqls.size();i++){
+	public List<String> parseSelect(String str){
+		List<String> inoTables= new ArrayList<>();
+		Map<String,String> sqls = SQLStrFormat.getSubSQLStr(str,1);
+		for (String sql : sqls.values()) {
+			List<String> sqlSplits = SQLStrFormat.split(sql);
+			List<String> tabList = parse(sqlSplits);
+			inoTables.addAll(tabList);
+		}
+		/*for(String i : sqls.keySet()){
 			tbs.addAll(parse(SQLStrFormat.split(sqls.get(i))));
 		}*/
-		Map<String,String> sqls = SQLStrFormat.getSubSQLStr(str,1);
-		for(String i : sqls.keySet()){
-			tbs.addAll(parse(SQLStrFormat.split(sqls.get(i))));
-		}
-		return tbs;		
+		return inoTables;
 	}
-	
-	public ArrayList<String> getStrList(String sql){
-		ArrayList<String> l = new ArrayList<String>();
+
+	// TODO: to be remove
+	public List<String> getStrList(String sql){
+		List<String> l = new ArrayList<String>();
 		try {
-			Connection conn = ds.getConnection();
+			Connection conn = dataSource.getConnection();
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
+				log.debug("sql:{}",sql);
 				//System.out.println(rs.getString("STR"));
 				l.add(Integer.parseInt(rs.getString("ID"))-1,rs.getString("STR"));
 			}

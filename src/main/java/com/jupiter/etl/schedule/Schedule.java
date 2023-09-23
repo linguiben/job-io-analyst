@@ -26,7 +26,7 @@ public class Schedule implements Runnable{
 	//private String scheduleType;
 	//private String batchno;
 	private boolean isInterrupt = false;
-	private int[] scheduleStatus = new int[5];  //ÈÎÎñÊı¡¢³É¹¦Êı¡¢Ê§°ÜÊı¡¢Î´Íê³ÉÊı
+	private int[] scheduleStatus = new int[5];  //ä»»åŠ¡æ•°ã€æˆåŠŸæ•°ã€å¤±è´¥æ•°ã€æœªå®Œæˆæ•°
 	
 	public boolean isSTOP() {
 		return isInterrupt;
@@ -36,7 +36,7 @@ public class Schedule implements Runnable{
 		isInterrupt = sTOP;
 	}
 
-	//µ÷ÓÃÎŞ²Ò²ÎÊı¹¹Ôì·½·¨ºó,ĞèÉèÖÃÆäbatchno
+	//è°ƒç”¨æ— æƒ¨å‚æ•°æ„é€ æ–¹æ³•å,éœ€è®¾ç½®å…¶batchno
 	public Schedule(){
 		try {
 			InputStream inputStream = this.getClass().getClassLoader()
@@ -45,8 +45,8 @@ public class Schedule implements Runnable{
 			try {
 				p.load(inputStream);
 			} catch (IOException e1) {
-				WriteLog.writeFile("1.¶ÁÈ¡ÅäÖÃÎÄ¼ş³ö´í,ÍË³ö³ÌĞò");
-				JOptionPane.showMessageDialog(null, e1.getMessage() + "Çë¼ì²éÅäÖÃÎÄ¼ş\n", "1.ÅäÖÃÎÄ¼ş´íÎó", 0);
+				WriteLog.writeFile("1.è¯»å–é…ç½®æ–‡ä»¶å‡ºé”™,é€€å‡ºç¨‹åº");
+				JOptionPane.showMessageDialog(null, e1.getMessage() + "è¯·æ£€æŸ¥é…ç½®æ–‡ä»¶\n", "1.é…ç½®æ–‡ä»¶é”™è¯¯", 0);
 			}
 			dsServer = p.getProperty("DSServer");
 			dsUser = p.getProperty("DSUser");
@@ -54,31 +54,31 @@ public class Schedule implements Runnable{
 			dsProject = p.getProperty("DSProject");
 			this.dsjobCommand = "dsjob -server "+dsServer+" -user "+dsUser+" -password "+dsPassword+" -run -wait -jobstatus ";
 		} catch (Exception e1) {
-			WriteLog.writeFile("2.¶ÁÈ¡ÅäÖÃÎÄ¼ş³ö´í,ÍË³ö³ÌĞò");
+			WriteLog.writeFile("2.è¯»å–é…ç½®æ–‡ä»¶å‡ºé”™,é€€å‡ºç¨‹åº");
 			e1.printStackTrace();
-			JOptionPane.showMessageDialog(null, e1.getMessage() + "Çë¼ì²éÅäÖÃÎÄ¼ş\n", "2.ÅäÖÃÎÄ¼ş´íÎó", 0);
+			JOptionPane.showMessageDialog(null, e1.getMessage() + "è¯·æ£€æŸ¥é…ç½®æ–‡ä»¶\n", "2.é…ç½®æ–‡ä»¶é”™è¯¯", 0);
 		}
 	}
 
-	//¿ªÊ¼ĞÂµÄµ÷¶È
+	//å¼€å§‹æ–°çš„è°ƒåº¦
 	public void startSchedule(String scheduleType,String batchno) {
 		
 		if(batchno == null || batchno.equals("")){
-			SimpleDateFormat dfstr = new SimpleDateFormat("yyyyMMddHHmmss");// ÉèÖÃÈÕÆÚ¸ñÊ½
+			SimpleDateFormat dfstr = new SimpleDateFormat("yyyyMMddHHmmss");// è®¾ç½®æ—¥æœŸæ ¼å¼
 			batchno = dfstr.format(new Date());
 		}
-		//Monitor.batchno = batchno;  //¸üĞÂMonitorµÄÅú´ÎºÅ
-		System.out.println("µ÷¶ÈÅäĞÍ:" + scheduleType);// new Date()Îª»ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä
-		System.out.println("µ÷¶ÈÅú´ÎºÅ£º" + batchno);// new Date()Îª»ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä
+		//Monitor.batchno = batchno;  //æ›´æ–°Monitorçš„æ‰¹æ¬¡å·
+		System.out.println("è°ƒåº¦é…å‹:" + scheduleType);// new Date()ä¸ºè·å–å½“å‰ç³»ç»Ÿæ—¶é—´
+		System.out.println("è°ƒåº¦æ‰¹æ¬¡å·ï¼š" + batchno);// new Date()ä¸ºè·å–å½“å‰ç³»ç»Ÿæ—¶é—´
 
-		// ³õÊ¼»¯µ÷¶È£¬½«start¶ªÈëµÈ´ı³Ø
+		// åˆå§‹åŒ–è°ƒåº¦ï¼Œå°†startä¸¢å…¥ç­‰å¾…æ± 
 		DBUnit.initSchedule(scheduleType,batchno, "start");
 
 		boolean isEnd = false;
 		boolean isAbort = false;
-		ExecutorService threadPool = Executors.newFixedThreadPool(Monitor.parallel); // ´´½¨¹Ì¶¨ÈİÁ¿µÄÏß³Ì³Ø
+		ExecutorService threadPool = Executors.newFixedThreadPool(Monitor.parallel); // åˆ›å»ºå›ºå®šå®¹é‡çš„çº¿ç¨‹æ± 
 		
-		//µ±ÈÎÎñÊı=³É¹¦Êı+Ê§°ÜÊı,ÔòisEnd=true;
+		//å½“ä»»åŠ¡æ•°=æˆåŠŸæ•°+å¤±è´¥æ•°,åˆ™isEnd=true;
 		while (!this.isInterrupt && !isEnd && !isAbort) { //&& flag < 10
 			try {
 				Thread.sleep(5000);
@@ -86,50 +86,50 @@ public class Schedule implements Runnable{
 				e.printStackTrace();
 			}
 			this.scheduleStatus = DBUnit.getScheduleStatus(this.scheduleType, this.batchno);
-			//µ±Î´Íê³ÉÊı=0 (ÈÎÎñÊı-³É¹¦Êı+Ê§°ÜÊı),ÔòisEnd=true;
+			//å½“æœªå®Œæˆæ•°=0 (ä»»åŠ¡æ•°-æˆåŠŸæ•°+å¤±è´¥æ•°),åˆ™isEnd=true;
 					System.out.println("isEnd = " + isEnd);
 				if(scheduleStatus[3]==0){
 					isEnd = true;
 					break;
 				}
-			// ´ÓµÈ´ı³Ø»ñÈ¡ÏÂ¼Ò,ÆäÉÏ¼Òin(1,2,4)
+			// ä»ç­‰å¾…æ± è·å–ä¸‹å®¶,å…¶ä¸Šå®¶in(1,2,4)
 			ArrayList<DefaultJob> jobs = DBUnit.getNextJobs(batchno);
-			// System.out.println("·µ»ØµÄµÚÒ»¸öjob:"+jobs.get(0).getJobname());
+			// System.out.println("è¿”å›çš„ç¬¬ä¸€ä¸ªjob:"+jobs.get(0).getJobname());
 			//int s = jobs.size();
 			for (int i = 0,s = jobs.size(); i < s; i++) {
 				DefaultJob job = jobs.get(0);
-				// BlankJobÏß³Ì
+				// BlankJobçº¿ç¨‹
 				if (job.getJobtype().equals("blankjob")) {
-					WriteLog.writeFile(Monitor.batchno + "  " + job.getJobname() + "½øÈëÖ´ĞĞ¶ÓÁĞ£º");
+					WriteLog.writeFile(Monitor.batchno + "  " + job.getJobname() + "è¿›å…¥æ‰§è¡Œé˜Ÿåˆ—ï¼š");
 					threadPool.execute(new BlankJob(scheduleType, job.getBatchno(), job.getJobname(), job.getOn_fail_action()));
 					// Thread runBlankJob = new Thread(new
 					// BlankJob(scheduleType,job.getBatchno(), job.getJobname(),
 					// job.getOn_fail_action()));
 					// runBlankJob.start();
-				}// dsjobÏß³Ì
+				}// dsjobçº¿ç¨‹
 				else if (job.getJobtype().equals("dsjob")) {
 					Thread jobDsjob = new Thread(new Dsjob(scheduleType,job.batchno,dsServer, dsUser, dsPassword, dsProject,job.jobname, job.on_fail_action));
 					jobDsjob.start();
 				} else {
-					WriteLog.writeFile("Î´Öªjobtype: " +job.getJobname() + " " + job.getJobtype());
+					WriteLog.writeFile("æœªçŸ¥jobtype: " +job.getJobname() + " " + job.getJobtype());
 					//this.STOP = true;
 				}
-				// BojobÏß³Ì
-				// ShellJobÏß³Ì
+				// Bojobçº¿ç¨‹
+				// ShellJobçº¿ç¨‹
 				jobs.remove(0);
 			}
 		}
 		
-		if (isEnd){//Õı³£½áÊø
-			WriteLog.writeFile("µ÷¶ÈÒÑ¾­Íê³É,µ÷¶ÈÀàĞÍ£º"+scheduleType+" Åú´ÎºÅ:"+batchno);
-			JOptionPane.showMessageDialog(null, "Åú´ÎºÅ:" + batchno, "Íê³É£¡", 0);
+		if (isEnd){//æ­£å¸¸ç»“æŸ
+			WriteLog.writeFile("è°ƒåº¦å·²ç»å®Œæˆ,è°ƒåº¦ç±»å‹ï¼š"+scheduleType+" æ‰¹æ¬¡å·:"+batchno);
+			JOptionPane.showMessageDialog(null, "æ‰¹æ¬¡å·:" + batchno, "å®Œæˆï¼", 0);
 			threadPool.shutdown();
-		}else if(isInterrupt) { //ÊÖ¹¤ÖÕÖ¹
-			WriteLog.writeFile("ÊÖ¶¯ÖĞ¶Ï,µ÷¶ÈÀàĞÍ£º"+scheduleType+" Åú´ÎºÅ:"+batchno);
-			JOptionPane.showMessageDialog(null, "µ÷¶ÈÒÑÍ£Ö¹,µ«ÕıÔÚÖ´ĞĞµÄ×÷Òµ¿ÉÄÜ²»»áÖÕÖ¹,Çë×ÔĞĞ´¦Àí¡£\n"+"Åú´ÎºÅ:" + batchno, "ÒÑÊÖ¶¯Í£Ö¹", 0);
+		}else if(isInterrupt) { //æ‰‹å·¥ç»ˆæ­¢
+			WriteLog.writeFile("æ‰‹åŠ¨ä¸­æ–­,è°ƒåº¦ç±»å‹ï¼š"+scheduleType+" æ‰¹æ¬¡å·:"+batchno);
+			JOptionPane.showMessageDialog(null, "è°ƒåº¦å·²åœæ­¢,ä½†æ­£åœ¨æ‰§è¡Œçš„ä½œä¸šå¯èƒ½ä¸ä¼šç»ˆæ­¢,è¯·è‡ªè¡Œå¤„ç†ã€‚\n"+"æ‰¹æ¬¡å·:" + batchno, "å·²æ‰‹åŠ¨åœæ­¢", 0);
 			threadPool.shutdownNow();
-		}else { //Òì³£½áÊø
-			//1)Ã»ÓĞÕıÔÚÔËĞĞµÄ×÷Òµ(½ø³Ì) ÇÒ2)»ñÈ¡²»µ½ÏÂ¼Ò ÇÒ3)µ÷¶ÈÎ´Íê³É
+		}else { //å¼‚å¸¸ç»“æŸ
+			//1)æ²¡æœ‰æ­£åœ¨è¿è¡Œçš„ä½œä¸š(è¿›ç¨‹) ä¸”2)è·å–ä¸åˆ°ä¸‹å®¶ ä¸”3)è°ƒåº¦æœªå®Œæˆ
 		}
 		
         while(!threadPool.isTerminated()){
@@ -137,7 +137,7 @@ public class Schedule implements Runnable{
         	WriteLog.writeFile("Thread Pool is over");
 	}
 	
-	//ĞøÅÜ
+	//ç»­è·‘
 	public void continueSchedule(String babchno){
 		
 	}
@@ -146,7 +146,7 @@ public class Schedule implements Runnable{
 		Thread dsjob2 = new Dsjob("GZDBTSVR5","dsadm","dsadm","dev","jb_gd_etl_agencyinfo_dimn_d_all");
 		dsjob1.start();
 		dsjob2.start();*/
-		//SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//ÉèÖÃÈÕÆÚ¸ñÊ½
+		//SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//è®¾ç½®æ—¥æœŸæ ¼å¼
 		Schedule sch = new Schedule();
 		sch.startSchedule("s1","");
 	}

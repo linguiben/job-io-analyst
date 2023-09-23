@@ -19,7 +19,8 @@ public enum AnotherSQLKeyWord {
     ,UNION("UNION")
     ,INTERSECT("INTERSECT")
     ,EXCEPT("EXCEPT")
-    ,MINUS("MINUS");
+    ,MINUS("MINUS")
+    ,HAVING("HAVING");
     
     private String key;
    // private String value;

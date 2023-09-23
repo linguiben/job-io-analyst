@@ -14,10 +14,9 @@
 				value="db2inst1" /> </dataSource> -->
 		</environment>
 	</environments>
-	<!-- 
 	<mappers>
-		<mapper resource="com/jupiter/mybatis/mapper/DBUnitMapper.xml" />
-		<mapper resource="com/jupiter/mybatis/mapper/UserMapper.xml" />
+		<!-- 已经整合到spring中，这里不再重复配置，否则会报Mapped Statements collection already contains -->
+<!--		<mapper resource="com/jupiter/mybatis/mapper/DBUnitMapper.xml"/>-->
+<!--		<mapper resource="com/jupiter/mybatis/mapper/UserMapper.xml" />-->
 	</mappers>
-	 -->
 </configuration>

@@ -17,7 +17,7 @@ public class JobRelation {
 	public int rn = 0;
 	
 	public static void main(String args[]) throws Exception {
-		WriteLog.writeFile("´¦Àí¿ªÊ¼....");
+		WriteLog.writeFile("å¤„ç†å¼€å§‹....");
 //		new DBconnect();
 //		System.out.println("url = " + DBconnect.getUrl());		
 	}

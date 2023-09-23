@@ -55,25 +55,25 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 
 	/** Creates new form Designer2_1 */
 	public Designer2_2() {
-		// ÉèÖÃÍ¼ĞÎ½çÃæÍâ¹Û
+		// è®¾ç½®å›¾å½¢ç•Œé¢å¤–è§‚
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		initComponents();
-		jScrollPane1.getVerticalScrollBar().setUnitIncrement(20); //ÉèÖÃ¹öÂÖËÙ¶È
+		jScrollPane1.getVerticalScrollBar().setUnitIncrement(20); //è®¾ç½®æ»šè½®é€Ÿåº¦
 		jScrollPane1.getHorizontalScrollBar().setUnitIncrement(20);
 
-		graph.setEditable(false); //²»¿É±à¼­ job
+		graph.setEditable(false); //ä¸å¯ç¼–è¾‘ job
 
 		buttonGroup1.add(jRadioButton1);
 		buttonGroup1.add(jRadioButton2);
-		choice1.add("ÑªÔµ·ÖÎö");
-		choice1.add("Ó°Ïì·ÖÎö");
+		choice1.add("è¡€ç¼˜åˆ†æ");
+		choice1.add("å½±å“åˆ†æ");
 		choice1.add("Both");
 
-		//Ôö¼Ó²Ù×÷¼à¿Ø
+		//å¢åŠ æ“ä½œç›‘æ§
 		jRadioButton1.addActionListener(this);
 		jRadioButton2.addActionListener(this);
 		button1.addActionListener(this);
@@ -95,7 +95,7 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 				}
 			}
 
-			// Êó±êÒÆ¿ªÊ±ÅĞ¶Ï³öÊäÈëµÄjob¡¢fileºÍ·Ç·¨ÊäÈë
+			// é¼ æ ‡ç§»å¼€æ—¶åˆ¤æ–­å‡ºè¾“å…¥çš„jobã€fileå’Œéæ³•è¾“å…¥
 			public void mouseExited(MouseEvent e) {
 			}
 		});
@@ -104,7 +104,7 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 			public void focusGained(FocusEvent e) {
 				if (txtJobname.getText().equals("jobname/filename")) {
 					txtJobname.setText("");
-					txtJobname.setFont(new Font("Î¢ÈíÑÅºÚ", 0, 12));
+					txtJobname.setFont(new Font("å¾®è½¯é›…é»‘", 0, 12));
 					txtJobname.setForeground(new java.awt.Color(0, 0, 0));
 				}
 			}
@@ -113,7 +113,7 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 			public void focusLost(FocusEvent e) {
 				if ("".equals(txtJobname.getText())) {
 					txtJobname.setText("jobname/filename");
-					txtJobname.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 2, 12));
+					txtJobname.setFont(new java.awt.Font("å¾®è½¯é›…é»‘", 2, 12));
 					txtJobname.setForeground(new java.awt.Color(204, 204, 255));
 				} else if (!txtJobname.getText().equals("jobname/filename")) {
 					String txt = txtJobname.getText().replace(" ", "");
@@ -124,7 +124,7 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 					strNotExists.removeAll(DBUnit.checkNameEixts(stype, txt));
 
 					/*
-					//ÓĞÊäÈëÊ±¿ªÊ¼ÅĞ¶Ï
+					//æœ‰è¾“å…¥æ—¶å¼€å§‹åˆ¤æ–­
 					String txt = txtJobname.getText().replace(" ", "");
 					String[] tmp = txt.split(",");
 					txt = "'" + tmp[0] + "'";
@@ -160,7 +160,7 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				txtJobname.setText(txtJobname.getText().replace(" ", ""));// È¥¿Õ¸ñ
+				txtJobname.setText(txtJobname.getText().replace(" ", ""));// å»ç©ºæ ¼
 			}
 		});
 
@@ -211,7 +211,7 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 
 		jLabel1.setText("Job/Tab");
 
-		txtJobname.setFont(new java.awt.Font("Î¢ÈíÑÅºÚ", 2, 12));
+		txtJobname.setFont(new java.awt.Font("å¾®è½¯é›…é»‘", 2, 12));
 		txtJobname.setForeground(new java.awt.Color(204, 204, 255));
 		txtJobname.setText("jobname/filename");
 		txtJobname.setToolTipText("\u8f93\u5165job\u6216table,\u9017\u53f7\u5206\u9694");
@@ -221,7 +221,7 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 
 		button2.setLabel("\u67e5\u627e");
 
-		jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ä¬ÈÏ²¼¾Ö", "¿ìËÙ²¼¾Ö", "ÓĞ»ú²¼¾Ö", "Ê÷ĞÎ²¼¾Ö", "·ÅÉä²¼¾Ö", "¼ò½à²¼¾Ö", "ÇúÏß²¼¾Ö" }));
+		jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "é»˜è®¤å¸ƒå±€", "å¿«é€Ÿå¸ƒå±€", "æœ‰æœºå¸ƒå±€", "æ ‘å½¢å¸ƒå±€", "æ”¾å°„å¸ƒå±€", "ç®€æ´å¸ƒå±€", "æ›²çº¿å¸ƒå±€" }));
 		jComboBox1.setToolTipText("\u91cd\u65b0\u5e03\u5c40");
 
 		button3.setLabel("\u5e2e\u52a9");
@@ -301,13 +301,13 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 	 */
 	public static void main(String args[]) {
 		Designer2_2 ds = new Designer2_2();
-		int windowWidth = ds.getWidth(); // »ñµÃ´°¿Ú¿í
-		int windowHeight = ds.getHeight(); // »ñµÃ´°¿Ú¸ß
-		Toolkit kit = Toolkit.getDefaultToolkit(); // ¶¨Òå¹¤¾ß°ü
-		Dimension screenSize = kit.getScreenSize(); // »ñÈ¡ÆÁÄ»µÄ³ß´ç
-		int screenWidth = screenSize.width; // »ñÈ¡ÆÁÄ»µÄ¿í
-		int screenHeight = screenSize.height; // »ñÈ¡ÆÁÄ»µÄ¸ß
-		ds.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 3 - windowHeight / 3); // ¾ÓÖĞ
+		int windowWidth = ds.getWidth(); // è·å¾—çª—å£å®½
+		int windowHeight = ds.getHeight(); // è·å¾—çª—å£é«˜
+		Toolkit kit = Toolkit.getDefaultToolkit(); // å®šä¹‰å·¥å…·åŒ…
+		Dimension screenSize = kit.getScreenSize(); // è·å–å±å¹•çš„å°ºå¯¸
+		int screenWidth = screenSize.width; // è·å–å±å¹•çš„å®½
+		int screenHeight = screenSize.height; // è·å–å±å¹•çš„é«˜
+		ds.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 3 - windowHeight / 3); // å±…ä¸­
 		ds.setVisible(true);
 		/*java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -336,11 +336,11 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 	// End of variables declaration//GEN-END:variables
 	int jbtype_in = 1;
 	int analyze_in = 0;
-	ArrayList<String> jobnameList = new ArrayList<String>(); //¼ÇÂ¼ÊäÈëµÄjobname
-	ArrayList<String> filenameList = new ArrayList<String>(); //¼ÇÂ¼ÊäÈëµÄfilename
-	List<String> strNotExists = new ArrayList<String>(); //¼ÇÂ¼ÊäÈë´íÎó(²»´æÔÚµÄjob/file)
+	ArrayList<String> jobnameList = new ArrayList<String>(); //è®°å½•è¾“å…¥çš„jobname
+	ArrayList<String> filenameList = new ArrayList<String>(); //è®°å½•è¾“å…¥çš„filename
+	List<String> strNotExists = new ArrayList<String>(); //è®°å½•è¾“å…¥é”™è¯¯(ä¸å­˜åœ¨çš„job/file)
 
-	//´¦Àí°´Å¥²Ù×÷
+	//å¤„ç†æŒ‰é’®æ“ä½œ
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String arg = e.getActionCommand();
@@ -360,11 +360,11 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 			graph.setOutDatedVisible(jCheckBoxShowOutDated.isSelected());
 			graph.refresh();
 			//graph.getGraphLayoutCache().reload();
-		} else if (arg.equals("·ÖÎö")) {
+		} else if (arg.equals("åˆ†æ")) {
 			startAnalyze();
 			//graph.finder(txtJobname.getText());
 			//gotoFocus();
-		} else if (arg.equals("²éÕÒ") && graph.finder(txtJobname.getText())) {
+		} else if (arg.equals("æŸ¥æ‰¾") && graph.finder(txtJobname.getText())) {
 			// System.out.println("w="+jScrollPane1.getSize().width);
 			// System.out.println("h="+jScrollPane1.getSize().height);
 			gotoFocus();
@@ -374,38 +374,38 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 			// jScrollPane1.getVerticalScrollBarPolicy();
 			// jScrollPane1.getHorizontalScrollBar().setValues(800, 600, 1600,
 			// 1200);
-		} else if (arg.equals("°ïÖú")) {
+		} else if (arg.equals("å¸®åŠ©")) {
 			showHelper();
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 0) {
-			defaultLayout();//Ä¬ÈÏ²¼¾Ö
+			defaultLayout();//é»˜è®¤å¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 1) {
-			rLayout(1);//¿ìËÙ²¼¾Ö
+			rLayout(1);//å¿«é€Ÿå¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 2) {
-			rLayout(2);//ÓĞ»ú²¼¾Ö
+			rLayout(2);//æœ‰æœºå¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 3) {
-			rLayout(3);//Ê÷ĞÎ²¼¾Ö
+			rLayout(3);//æ ‘å½¢å¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 4) {
-			rLayout(4);//·ÅÉä²¼¾Ö
+			rLayout(4);//æ”¾å°„å¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 5) {
-			rLayout(5);//¼ò½à²¼¾Ö
+			rLayout(5);//ç®€æ´å¸ƒå±€
 		} else if (arg.equals("comboBoxChanged") && jComboBox1.getSelectedIndex() == 6) {
-			rLayout(6);//ÇúÏß²¼¾Ö
-		} else if (arg.equals("µ÷¶È")) {
+			rLayout(6);//æ›²çº¿å¸ƒå±€
+		} else if (arg.equals("è°ƒåº¦")) {
 			//startSchedule();
 			showMonitor();
-		} else if (arg.equals("Ë¢ĞÂ")) {
+		} else if (arg.equals("åˆ·æ–°")) {
 			//graph.refreshScheduleJobLocationList(sch.getBatchno());
 		}
-		/*if (arg.equals("ÖØĞÂÅÅ²¼")) {
+		/*if (arg.equals("é‡æ–°æ’å¸ƒ")) {
 		JGraphFacade facade = new JGraphFacade(graph); // Pass the facade the JGraph instance
 		JGraphLayout layout = null;
 		switch (box.getSelectedIndex()) {
 		//new JGraphRadialTreeLayout();// new JGraphCompactTreeLayout();//new JGraphFastOrganicLayout(); 
-		case 1:layout = new JGraphOrganicLayout(); break;   //ÓĞ»ú
-		case 2: layout = new JGraphRadialTreeLayout(); break;   //·ÅÉä²¼¾Ö
-		case 3: layout = new JGraphCompactTreeLayout(); break;  //¼ò½àÊ÷ĞÎ
-		case 4: layout = new JGraphHierarchicalLayout(); break; //ÇúÏß
-		default: layout = new JGraphFastOrganicLayout(); break; //¿ìËÙ
+		case 1:layout = new JGraphOrganicLayout(); break;   //æœ‰æœº
+		case 2: layout = new JGraphRadialTreeLayout(); break;   //æ”¾å°„å¸ƒå±€
+		case 3: layout = new JGraphCompactTreeLayout(); break;  //ç®€æ´æ ‘å½¢
+		case 4: layout = new JGraphHierarchicalLayout(); break; //æ›²çº¿
+		default: layout = new JGraphFastOrganicLayout(); break; //å¿«é€Ÿ
 		}
 		layout.run(facade); // Run the layout on the facade. Note that layouts do not implement the Runnable interface, to avoid confusion
 		Map<?, ?> nested = facade.createNestedMap(true, true); // Obtain a map of the resulting attribute changes from the facade
@@ -420,14 +420,14 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 		//System.out.println("Width:"+jScrollPane1.getHorizontalScrollBar().getValue()+"\t"+"Height"+jScrollPane1.getVerticalScrollBar().getValue());
 	}
 
-	//Ä¬ÈÏ²¼¾Ö
+	//é»˜è®¤å¸ƒå±€
 	public void defaultLayout() {
 		graph.defaultLayout();
 		/*jScrollPane1.resize(1500, 3000);
 		this.resize(1000, 500);*/
 	}
 
-	//ÖØĞÂ²¼¾Ö
+	//é‡æ–°å¸ƒå±€
 	public void rLayout(int arg) {
 		JGraphFacade facade = new JGraphFacade(graph); // Pass the facade the JGraph instance
 		JGraphLayout layout = null;
@@ -439,12 +439,12 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 		//new JGraphRadialTreeLayout();// new JGraphCompactTreeLayout();//new JGraphFastOrganicLayout(); 
 		case 1:
 			layout = new JGraphFastOrganicLayout();
-			break; //¿ìËÙ
+			break; //å¿«é€Ÿ
 		case 2:
 			jol = new JGraphOrganicLayout();
 			jol.setApproxNodeDimensions(true);
 			layout = jol;
-			break; //ÓĞ»ú
+			break; //æœ‰æœº
 		case 3:
 			treeLayout = new JGraphTreeLayout();
 			treeLayout.setAlignment(SwingConstants.BOTTOM);
@@ -452,28 +452,28 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 			treeLayout.setNodeDistance(2);
 			//treeLayout.setRouteTreeEdges(true);
 			layout = treeLayout;
-			break; //Ê÷ĞÎ²¼¾Ö
+			break; //æ ‘å½¢å¸ƒå±€
 		case 4:
 			layout = new JGraphRadialTreeLayout();
-			break; //·ÅÉä²¼¾Ö
+			break; //æ”¾å°„å¸ƒå±€
 		case 5:
 			jctl = new JGraphCompactTreeLayout();
 			jctl.setPositionMultipleTrees(true);
 			layout = jctl;
-			break; //¼ò½àÊ÷ĞÎ
+			break; //ç®€æ´æ ‘å½¢
 		case 6:
 			layout = new JGraphHierarchicalLayout();
-			break; //ÇúÏß
+			break; //æ›²çº¿
 		}
 		layout.run(facade); // Run the layout on the facade. Note that layouts do not implement the Runnable interface, to avoid confusion
 		Map<?, ?> nested = facade.createNestedMap(true, true); // Obtain a map of the resulting attribute changes from the facade
 		graph.getGraphLayoutCache().edit(nested); // Apply the results to the actual graph
 	}
 
-	//·ÖÎö(ÑªÔµ/Ó°Ïì)
+	//åˆ†æ(è¡€ç¼˜/å½±å“)
 	public void startAnalyze() {
 		if (this.strNotExists.size() > 0) {
-			JOptionPane.showMessageDialog(null, "ÒÔÏÂjob/file²»´æÔÚ£¬Çë¼ì²é:\n" + "" + strNotExists.toString().replaceAll(",", "\n") + "", "ÊäÈë´íÎó", 0);
+			JOptionPane.showMessageDialog(null, "ä»¥ä¸‹job/fileä¸å­˜åœ¨ï¼Œè¯·æ£€æŸ¥:\n" + "" + strNotExists.toString().replaceAll(",", "\n") + "", "è¾“å…¥é”™è¯¯", 0);
 			return;
 		}
 
@@ -516,15 +516,15 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 		graph.setTabVisible(jCheckBox1.isSelected());
 		graph.setBOVisible(jCheckBox2.isSelected());
 		graph.setOutDatedVisible(jCheckBoxShowOutDated.isSelected());
-		/*if (!jcbFile.isSelected()) {//ÊÇ·ñÏÔÊ¾TAB
+		/*if (!jcbFile.isSelected()) {//æ˜¯å¦æ˜¾ç¤ºTAB
 			graph.getGraphLayoutCache().setVisible(graph.cF1.toArray(),false);
 			//graph.getGraphLayoutCache().setVisible(graph.cF2.toArray(),false);
 			//graph.getGraphLayoutCache().toFront(graph.cF1.toArray());
-			//³¢ÊÔÓÃsetVisible
+			//å°è¯•ç”¨setVisible
 			//graph.getModel().remove(graph.getDescendants(graph.cF1.toArray()));
 			//graph.getModel().remove(graph.cF2.toArray());
 		}
-		if (!jcbBO.isSelected()) {//ÊÇ·ñÏÔÊ¾boruntime
+		if (!jcbBO.isSelected()) {//æ˜¯å¦æ˜¾ç¤ºboruntime
 			//graph.getGraphLayoutCache().insert(graph.cBO1.toArray());
 			//graph.getGraphLayoutCache().insert(graph.cBO2.toArray());
 			//graph.getGraphLayoutCache().toFront(graph.cBO1.toArray());
@@ -533,31 +533,31 @@ public class Designer2_2 extends javax.swing.JFrame implements ActionListener {
 		}*/
 	}
 
-	//Æô¶¯µ÷¶È´°¿Ú
+	//å¯åŠ¨è°ƒåº¦çª—å£
 	public void showMonitor() {
 		Monitor monitor = new Monitor();
 		monitor.setLocationRelativeTo(getParent());
 		monitor.setVisible(true);
 	}
 
-	//°ïÖú
+	//å¸®åŠ©
 	public void showHelper() {
 		/*Object[] group = graph.getSelectionCells();
 		graph.getGraphLayoutCache().collapse(group);
 		graph.getGraphLayoutCache().update();
 		graph.getGraphLayoutCache().reload();*/
 
-		JOptionPane.showMessageDialog(null, "×¢£ºjobnameÁô¿ÕÔòÎªÑªÔµ·ÖÎö£¬·ñÔòÎªÓ°Ïì·ÖÎö\n\n" //
-				+ "¿ì½İ¼ü:\n" //
-				+ "¸´ÖÆ£ºctrl+Êó±êÍÏÒ·\n" //
-				+ "Ëõ·Å£ºctrl+¹öÂÖ\n" //
-				+ "Ç¿Ñ¡£ºalt+×ó¼ü\n" //
-				+ "É¾³ı£ºdel                    ´øÁ¬½ÓÉ¾³ı:shift+del\n"//
-				+ "ÏûÉ«£ºË«»÷\n" //
-				+ "µ÷¶È×´Ì¬(jobstatus): 1000-ÅÅ¶Ó(gray) 100-ready(white) 0-¿ªÊ¼(running/blue) \n"
-				+ "                    1-³É¹¦(green) 2-¾¯¸æ(yellow) 3-Ê§°Ü(red) 4-Ê§°ÜÌø¹ı(orange)\n" + "µØ·½Ì«Ğ¡Ğ´²»ÏÂÁË...\n"//
-				+ "Èô²¼¾Ö½ÏÂÒ£¬¶à³¢ÊÔ¼¸´ÎÆäËû²¼¾Ö·½Ê½¡£\n" //
-				+ "\n×÷Õß£º¦á¨ãÄ¾Ä¾©dÍõ×Ó,2018-01,V2.2", "jbio......", -1);
+		JOptionPane.showMessageDialog(null, "æ³¨ï¼šjobnameç•™ç©ºåˆ™ä¸ºè¡€ç¼˜åˆ†æï¼Œå¦åˆ™ä¸ºå½±å“åˆ†æ\n\n" //
+				+ "å¿«æ·é”®:\n" //
+				+ "å¤åˆ¶ï¼šctrl+é¼ æ ‡æ‹–æ›³\n" //
+				+ "ç¼©æ”¾ï¼šctrl+æ»šè½®\n" //
+				+ "å¼ºé€‰ï¼šalt+å·¦é”®\n" //
+				+ "åˆ é™¤ï¼šdel                    å¸¦è¿æ¥åˆ é™¤:shift+del\n"//
+				+ "æ¶ˆè‰²ï¼šåŒå‡»\n" //
+				+ "è°ƒåº¦çŠ¶æ€(jobstatus): 1000-æ’é˜Ÿ(gray) 100-ready(white) 0-å¼€å§‹(running/blue) \n"
+				+ "                    1-æˆåŠŸ(green) 2-è­¦å‘Š(yellow) 3-å¤±è´¥(red) 4-å¤±è´¥è·³è¿‡(orange)\n" + "åœ°æ–¹å¤ªå°å†™ä¸ä¸‹äº†...\n"//
+				+ "è‹¥å¸ƒå±€è¾ƒä¹±ï¼Œå¤šå°è¯•å‡ æ¬¡å…¶ä»–å¸ƒå±€æ–¹å¼ã€‚\n" //
+				+ "\nä½œè€…ï¼šï¿½å±ºéš³ç¸äº¬dç‹å­,2018-01,V2.2", "jbio......", -1);
 	}
 
 }

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.jupiter.mybatis.mapper;
 
@@ -16,18 +16,20 @@ import com.jupiter.mybatis.po.EtlJobIno;
  * @author: Jupiter
  * @date @time
  */
-@Mapper /*3.4.0Ö§³Ö*/
+ @Mapper /*3.4.0æ”¯æŒ*/
 public interface DBUnitMapper {
 
-	public List<String> checkJobnameByInput(@Param("txt") String txt);
-	public int addJobIno(EtlJobIno etljobino);
-    public int deleteJobInoByJobname(String jobname);
-    
-    //¼ì²é°æ±¾ÊÇ·ñ¿ÉÓÃ
-    public String isVersionUseable(double version);
+    List<String> checkJobnameByInput(@Param("txt") String txt);
 
-  //»ñÈ¡×îĞÂ°æ±¾
-    public double getLastVersion();
-    
-    public int getLoginStatus(String userName,String password) ;
+    int addJobIno(EtlJobIno etljobino);
+
+    int deleteJobInoByJobname(String jobname);
+
+    //æ£€æŸ¥ç‰ˆæœ¬æ˜¯å¦å¯ç”¨
+    String isVersionUseable(double version);
+
+    //è·å–æœ€æ–°ç‰ˆæœ¬
+    double getLastVersion();
+
+    int getLoginStatus(String userName, String password);
 }

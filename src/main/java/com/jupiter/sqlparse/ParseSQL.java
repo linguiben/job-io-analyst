@@ -43,10 +43,9 @@ public class ParseSQL {
 	}
 	
 	/**
-	 * @param args 解析单句SQL
-	 * @param serverName 
-	 * @param jobname 
-	 * @param stype 
+	 * @param ssql 解析单句SQL
+	 * @param serverName sername
+	 * @param job  etl job
 	 */
 	public void parseSQL(String ssql, String serverName,JobInfo job){ //String stype,String joblocate, String jobname, 
 		String sql = SQLStrFormat.format(ssql);
@@ -108,7 +107,7 @@ public class ParseSQL {
         alias.addAll(ks);
         alias.addAll(subSQLAlias);
         //if (sqls.size() > 0) {
-            ArrayList<String> strs = SQLStrFormat.split(isql);
+            List<String> strs = SQLStrFormat.split(isql);
             Iterator<String> it = strs.iterator();
             while (it.hasNext()) {
                 String str = it.next();
@@ -156,13 +155,13 @@ public class ParseSQL {
          */
 		Map<String,String> sqls = SQLStrFormat.getSubSQLStr(sqlStr,1);
 		Set<String> keySet = sqls.keySet();
-		ArrayList<String> alias = new ArrayList<String>(); 
+		List<String> alias = new ArrayList<String>();
 		alias.addAll(keySet);
 		alias.addAll(subSQLAlias);
 		for(String key : keySet){
 			//parseSelect(SQLStrFormat.split(sqls.get(key)),ss,stype,jobname,serverName);
 		    String sql = sqls.get(key);
-		    ArrayList<String> strs = SQLStrFormat.split(sql);
+		    List<String> strs = SQLStrFormat.split(sql);
 		    String str1 = strs.get(0);
 		    if(str1.equalsIgnoreCase("WITH")) {
 		        parseWith(sql,alias,serverName,job);
@@ -178,7 +177,7 @@ public class ParseSQL {
 	
 
 	/**
-	 * @param 增加subSQLName aliasName
+	 * @param stype 增加subSQLName aliasName
 	 */
 	public void parseSelect(ArrayList<String> l,List<String> wi, String stype, String jobname, String serverName) {
 	    parseSingleSelect(l,wi,serverName,new JobInfo(stype,"","",jobname));
@@ -309,7 +308,7 @@ public class ParseSQL {
      * @param jobname 
      * @param stype 
      */
-	public void parseSingleSelect(ArrayList<String> strs, List<String> aliasNames, String serverName, JobInfo job) {
+	public void parseSingleSelect(List<String> strs, List<String> aliasNames, String serverName, JobInfo job) {
         boolean select = false; // 是否找到select
         boolean from = false; // 是否找到from
         Iterator<String> iter = strs.iterator();
@@ -356,7 +355,7 @@ public class ParseSQL {
          * String stype = job.stype; String joblocate = job.joblocate; String jobname =
          * job.jobname;
          */
-		ArrayList<String> strs = SQLStrFormat.split(sql);
+		List<String> strs = SQLStrFormat.split(sql);
 		Iterator<String> it = strs.iterator();
 		String str = "", ino = "out", schema = "", inofile = "";
 		str = it.next();
@@ -416,7 +415,7 @@ public class ParseSQL {
 	private void parseCall(String sql,  String serverName,JobInfo job) {
 		// sql = "CALL SYSPROC.ADMIN_CMD('import from /dev/null of del replace
 		// into #v_jb_eser_schema#.GiveQuaNum_dwn');";
-		ArrayList<String> strs = SQLStrFormat.split(sql);
+		List<String> strs = SQLStrFormat.split(sql);
 		Iterator<String> it = strs.iterator();
 		String str = "", schema = "";
 		str = it.next();
@@ -494,7 +493,7 @@ public class ParseSQL {
 	}
 
     private void parseImport(String sql, String serverName,JobInfo job) {
-		ArrayList<String> strs = SQLStrFormat.split(sql);
+		List<String> strs = SQLStrFormat.split(sql);
 		Iterator<String> it = strs.iterator();
 		String str = "", inofile = "";//, ino = "out"
 		while (it.hasNext()) {
@@ -524,7 +523,7 @@ public class ParseSQL {
 	}
 
     private void parseExport(String sql,String serverName, JobInfo job) {
-		ArrayList<String> strs = SQLStrFormat.split(sql);
+		List<String> strs = SQLStrFormat.split(sql);
 		Iterator<String> it = strs.iterator();
 		String str = "", ino = "out", inofile = "";
 		while (it.hasNext()) {
@@ -563,7 +562,7 @@ public class ParseSQL {
 		ss.addAll(subSQLAlias);
 		String mainSql = sqls.get("__main__");
 		ks.remove("__main__");
-		ArrayList<String> strs = SQLStrFormat.split(mainSql);
+		List<String> strs = SQLStrFormat.split(mainSql);
 		Iterator<String> it = strs.iterator();
 		String str = "", ino = "out", inofile = "";
 		while (it.hasNext()) {
@@ -611,7 +610,7 @@ public class ParseSQL {
 		String isql = sqls.get("__main__");
 		ks.remove("__main__");
 		// System.out.println("isql: " + isql);
-		ArrayList<String> strs = SQLStrFormat.split(isql);
+		List<String> strs = SQLStrFormat.split(isql);
 		Iterator<String> it = strs.iterator();
 		//str = it.hasNext()?it.next():"";
 		while (it.hasNext()) {
@@ -660,11 +659,11 @@ public class ParseSQL {
 		parseInsert(sql,"","","");
 	}
 	private void parseAlter(String sql, String serverName,JobInfo job) {
-		ArrayList<String> strs = SQLStrFormat.split(sql);
+		List<String> strs = SQLStrFormat.split(sql);
 		parseAlter(strs, serverName,job);
 	}
 	
-	private void parseAlter(ArrayList<String> strs, String serverName,JobInfo job) {
+	private void parseAlter(List<String> strs, String serverName,JobInfo job) {
 	    Iterator<String> it = strs.iterator();
         String str = "", ino = "out", inofile = "";
         str = it.hasNext() ? it.next() : "";
@@ -687,7 +686,7 @@ public class ParseSQL {
      * @param args 解析ReadFile
      */
     private void parseReadFile(String sql,  String serverName,JobInfo job) {
-        ArrayList<String> strs = SQLStrFormat.split(sql);
+		List<String> strs = SQLStrFormat.split(sql);
         Iterator<String> it = strs.iterator();
         String str = "", ino = "in", schema = "", inofile = "";
         str = (String) it.next();
@@ -714,7 +713,7 @@ public class ParseSQL {
      * @param args 解析WriteFile
      */
     private void parseWriteFile(String sql,  String serverName,JobInfo job) {
-        ArrayList<String> strs = SQLStrFormat.split(sql);
+		List<String> strs = SQLStrFormat.split(sql);
         Iterator<String> it = strs.iterator();
         String str = "", ino = "out", schema = "", inofile = "";
         str = (String) it.next();
@@ -763,7 +762,7 @@ public class ParseSQL {
 			String isql = sqls.get(k);
 			ks.remove(k);
 			// System.out.println("isql: " + isql);
-			ArrayList<String> strs = SQLStrFormat.split(isql);
+			List<String> strs = SQLStrFormat.split(isql);
 			Iterator<String> it = strs.iterator();
 			// String str ="", ino = "out", schema = "", inofile = "";
 			while (it.hasNext()) {
@@ -855,7 +854,7 @@ public class ParseSQL {
 			String isql = sqls.get(k);
 			ks.remove(k);
 			//System.out.println("isql: " + isql);
-			ArrayList<String> strs = SQLStrFormat.split(isql);
+			List<String> strs = SQLStrFormat.split(isql);
 			Iterator<String> it = strs.iterator();
 			//String str ="", ino = "out", schema = "", inofile = "";
 			while (it.hasNext()) {

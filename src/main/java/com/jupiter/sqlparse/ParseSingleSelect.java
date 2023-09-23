@@ -22,7 +22,8 @@ public class ParseSingleSelect {
     //private HashSet<JobInputOutput> jobinoSet;
     
     
-    public static HashSet<JobInputOutput> parseSingleSelect(ArrayList<String> strs, HashSet<JobInputOutput> jobinoSet, List<String> subqueryNames, String serverName, JobInfo job) {
+    public static HashSet<JobInputOutput> parseSingleSelect(List<String> strs, HashSet<JobInputOutput> jobinoSet,
+                                                            List<String> subqueryNames, String serverName, JobInfo job) {
         boolean select = false; // 是否找到select
         boolean from = false; // 是否找到from
         Iterator<String> iter = strs.iterator();

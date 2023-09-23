@@ -20,7 +20,7 @@ import com.jupiter.etl.jobinfo.entities.JobLocation;
 import com.jupiter.etl.jobinfo.entities.JobRelation;
 
 public class DBconnect {
-	//±¸×¢111
+	//å¤‡æ³¨111
 	// @SuppressWarnings("unchecked")
 //	private int rptdtdate = 0;
 //
@@ -77,7 +77,7 @@ public class DBconnect {
 //			try {
 //				p.load(inputStream);
 //			} catch (IOException e1) {
-//				WriteLog.writeFile("1.¶ÁÈ¡ÅäÖÃÎÄ¼ş³ö´í,ÍË³ö³ÌĞò");
+//				WriteLog.writeFile("1.è¯»å–é…ç½®æ–‡ä»¶å‡ºé”™,é€€å‡ºç¨‹åº");
 //			}
 //			g_host = p.getProperty("SERVERNAME");
 //			g_dbname = p.getProperty("DBNAME");
@@ -86,7 +86,7 @@ public class DBconnect {
 //			g_port = p.getProperty("PORT");
 //			g_dbtype = p.getProperty("DBTYPE");
 //		} catch (Exception e1) {
-//			WriteLog.writeFile("2.¶ÁÈ¡ÅäÖÃÎÄ¼ş³ö´í,ÍË³ö³ÌĞò");
+//			WriteLog.writeFile("2.è¯»å–é…ç½®æ–‡ä»¶å‡ºé”™,é€€å‡ºç¨‹åº");
 //			e1.printStackTrace();
 //			System.exit(0);
 //		}
@@ -103,7 +103,7 @@ public class DBconnect {
 //			setUrl("jdbc:sqlserver://" + g_host + ":" + g_port
 //					+ ";DatabaseName=" + g_dbname);
 //		} else {
-//			WriteLog.writeFile("ÅäÖÃÎÄ¼şÊı¾İ¿âĞÅÏ¢´íÎó!ÎŞ·¨Ê¶±ğ´ËÀàĞÍÊı¾İ¿â£¡");
+//			WriteLog.writeFile("é…ç½®æ–‡ä»¶æ•°æ®åº“ä¿¡æ¯é”™è¯¯!æ— æ³•è¯†åˆ«æ­¤ç±»å‹æ•°æ®åº“ï¼");
 //			System.exit(0);
 //		}
 //		
@@ -127,19 +127,19 @@ public class DBconnect {
 //					SQL = rr.getString("SQL");
 //			}
 //			CallableStatement stmt = conn.prepareCall(SQL);//"{call dbo.p_test}"
-//			rs = stmt.executeQuery();// ÅĞ¶Ïµ±Ç°±¨±íÈÕÆÚ
-//			WriteLog.writeFile("³É¹¦µ÷ÓÃ£º" + SQL);
+//			rs = stmt.executeQuery();// åˆ¤æ–­å½“å‰æŠ¥è¡¨æ—¥æœŸ
+//			WriteLog.writeFile("æˆåŠŸè°ƒç”¨ï¼š" + SQL);
 //			if (rs.next())
 //				rptdtdate = rs.getInt("rptdate");
 //			conn.close();
-//			WriteLog.writeFile("µ±Ç°Êı¾İÈÕÆÚ:" + rptdtdate);
+//			WriteLog.writeFile("å½“å‰æ•°æ®æ—¥æœŸ:" + rptdtdate);
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
 //		return rptdtdate;
 //	}
 	
-	//»ñÈ¡job_relation
+	//è·å–job_relation
 //	public List<JobRelation> getJobRelationList(String jobname, String filename) {
 //		List<JobRelation> jobRelationList = new ArrayList<JobRelation>();
 //		try {
@@ -147,7 +147,7 @@ public class DBconnect {
 //			conn = DriverManager.getConnection(url, g_user, g_pwd);
 //			// stmt =
 //			// conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-//			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				// rs =
 //				// stmt.executeQuery("CALL DBO.job_location('"+jobname+"','"+filename+"')");
@@ -158,7 +158,7 @@ public class DBconnect {
 //				rs = stmt
 //						.executeQuery("select a.*,b.x,b.y,row_number()over(partition by BEHIND order by PATHLENGTH)rn from dbo.job_relation a inner join dbo.job_location b on a.BEHIND = b.JOBNAME order by RID,PREVIOUS,BNUMBER");
 //				// select * from dbo.job_relation
-//				// ½«½á¹û·ÅÈëjobInfoList
+//				// å°†ç»“æœæ”¾å…¥jobInfoList
 //				while (rs.next()) { // RID PNUMBER PREVIOUS BNUMBER BEHIND
 //									// PATHLENGTH RNUMBER2 X Y
 //					JobRelation jobinfo = new JobRelation();
@@ -175,19 +175,19 @@ public class DBconnect {
 //					jobRelationList.add(jobinfo);
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("¶ÁÈ¡ÅäÖÃÎÄ¼şÊ±³ö´í:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "Î´Öª´íÎó1,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±.", 0);
+//				WriteLog.writeFile("è¯»å–é…ç½®æ–‡ä»¶æ—¶å‡ºé”™:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "æœªçŸ¥é”™è¯¯1,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜.", 0);
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile(this.getClass().getName()+"Î´Öª´íÎó2,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "Î´Öª´íÎó2,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±.", 0);
+//			WriteLog.writeFile(this.getClass().getName()+"æœªçŸ¥é”™è¯¯2,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\n", "æœªçŸ¥é”™è¯¯2,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜.", 0);
 //		}
 //
 //		return jobRelationList;
 //	}
 
-	// »ñÈ¡job_locations
+	// è·å–job_locations
 //	public List<JobLocation> getJobLocationList(int jbtype_in, String jobname, String filename) {
 //		List<JobLocation> jobLocationList = new ArrayList<JobLocation>();
 //		try {
@@ -195,7 +195,7 @@ public class DBconnect {
 //			conn = DriverManager.getConnection(url, g_user, g_pwd);
 //			// stmt =
 //			// conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-//			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				// rs =
 //				// stmt.executeQuery("CALL DBO.job_location('jb_etl_dtime_dimn_foretl')");
@@ -204,7 +204,7 @@ public class DBconnect {
 //				rs = stmt.executeQuery("select jobname,x,y,isvalid,jobtype,cost from dbo.job_location order by x,y");
 //				// rs =
 //				// stmt.executeQuery("select jobname,x,y,cost from dbo.job_location");
-//				// ½«½á¹û·ÅÈëjobInfoList
+//				// å°†ç»“æœæ”¾å…¥jobInfoList
 //				while (rs.next()) { // RID PNUMBER PREVIOUS BNUMBER BEHIND
 //									// PATHLENGTH RNUMBER2 X Y
 //					JobLocation jobLocation = new JobLocation();
@@ -218,18 +218,18 @@ public class DBconnect {
 //					jobLocationList.add(jobLocation);
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile(this.getClass().getName()+":Î´Öª´íÎó3,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//			WriteLog.writeFile(this.getClass().getName()+":æœªçŸ¥é”™è¯¯3,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //		}
 //		return jobLocationList;
 //	}
 
-	// »ñÈ¡job_locations v2.1 --ÒÑÒÆÖ²µ½DBUit.java.getJobLocationList2_1
+	// è·å–job_locations v2.1 --å·²ç§»æ¤åˆ°DBUit.java.getJobLocationList2_1
 //	public List<JobLocation> getJobLocationList2_1(int jbtype_in, int sourceOrTarget, String jobname) {
 //		List<JobLocation> jobLocationList = new ArrayList<JobLocation>();
 //		try {
@@ -237,7 +237,7 @@ public class DBconnect {
 //			conn = DriverManager.getConnection(url, g_user, g_pwd);
 //			// stmt =
 //			// conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-//			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+//			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 //			try {
 //				// rs =
 //				// stmt.executeQuery("CALL DBO.job_location('jb_etl_dtime_dimn_foretl')");
@@ -246,7 +246,7 @@ public class DBconnect {
 //				rs = stmt.executeQuery("select jobname,x,y,isvalid,jobtype,cost from dbo.job_location order by x,y");
 //				// rs =
 //				// stmt.executeQuery("select jobname,x,y,cost from dbo.job_location");
-//				// ½«½á¹û·ÅÈëjobInfoList
+//				// å°†ç»“æœæ”¾å…¥jobInfoList
 //				while (rs.next()) { // RID PNUMBER PREVIOUS BNUMBER BEHIND
 //									// PATHLENGTH RNUMBER2 X Y
 //					JobLocation jobLocation = new JobLocation();
@@ -260,13 +260,13 @@ public class DBconnect {
 //					jobLocationList.add(jobLocation);
 //				}
 //			} catch (Exception e) {
-//				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "Ö´ĞĞSQL´íÎó", 0);
+//				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+//				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 //			}
 //			conn.close();
 //		} catch (Exception e) {
-//			WriteLog.writeFile("Î´Öª´íÎó,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "´íÎó", 0);
+//			WriteLog.writeFile("æœªçŸ¥é”™è¯¯,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+//			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + DBconnect.getUrl(), "é”™è¯¯", 0);
 //		}
 //		return jobLocationList;
 //	}
@@ -275,7 +275,7 @@ public class DBconnect {
 	 * @param args
 	 */
 //	public static void main(String[] args) {
-//		WriteLog.writeFile("´¦Àí¿ªÊ¼....");
+//		WriteLog.writeFile("å¤„ç†å¼€å§‹....");
 //		DBconnect dbconn = new DBconnect();
 //		System.out.println("url = " + DBconnect.getUrl());
 //		List<JobLocation> jobInfoList= dbconn.getJobLocationList(1,"jb_dwn_chdrpf_to_chdrpf","");

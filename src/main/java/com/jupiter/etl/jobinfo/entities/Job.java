@@ -13,35 +13,35 @@ import org.jgraph.graph.GraphConstants;
 public class Job extends DefaultGraphCell{
 
 	private static final long serialVersionUID = -5759372474279563972L;
-	public String scheduleType; //µ÷¶ÈÀàĞÍ,ÓÃÓÚµ÷¶ÈÏß³ÌÀïÇø±ğ²»Í¬ÀàĞÍÓĞÏàÍ¬µÄ×÷Òµ
-	public String batchno;   //µ÷¶ÈÅú´ÎºÅ
-	public String joblocate;   //³ÌĞòËùÔÚÄ¿Â¼
-	public String jobname;   //Ãû³Æ
-	public String jobtype;   //ÀàĞÍ
-	public double x = 0;   //x×ø±ê
-	public double y = 0;   //y×ø±ê
-	public int isValid = 0;   //ÊÇ·ñÓĞĞ§
-	public int isSchedule = 0;   //±¾´ÎÊÇ·ñµ÷¶È
-	public String jobCommand;   //ÔËĞĞ×÷ÒµµÄÃüÁî
-	public String startTimie;   //µ÷¶È¿ªÊ¼Ê±¼ä
-	public String endTime;   //µ÷¶È½áÊøÊ±¼ä
-	public String datetime = "00:00:00";   //ºÄÊ±
-	public int headJobAmount;  //¸¸½Úµã¸öÊı
-	public int headJobstatus;  //¸¸½ÚµãµÄ×´Ì¬
-	public int jobstatus;  //´óÓÚ100-waiting,100-ready,0-start,1-finished success,2-warning,3-faile,4-faild&skip
-	public String head_on_fail_action;  //Ç°ÃæµÄ×÷ÒµÊÇ·ñskip
-	public String on_fail_action;       //thisÊÇ·ñskip
+	public String scheduleType; //è°ƒåº¦ç±»å‹,ç”¨äºè°ƒåº¦çº¿ç¨‹é‡ŒåŒºåˆ«ä¸åŒç±»å‹æœ‰ç›¸åŒçš„ä½œä¸š
+	public String batchno;   //è°ƒåº¦æ‰¹æ¬¡å·
+	public String joblocate;   //ç¨‹åºæ‰€åœ¨ç›®å½•
+	public String jobname;   //åç§°
+	public String jobtype;   //ç±»å‹
+	public double x = 0;   //xåæ ‡
+	public double y = 0;   //yåæ ‡
+	public int isValid = 0;   //æ˜¯å¦æœ‰æ•ˆ
+	public int isSchedule = 0;   //æœ¬æ¬¡æ˜¯å¦è°ƒåº¦
+	public String jobCommand;   //è¿è¡Œä½œä¸šçš„å‘½ä»¤
+	public String startTimie;   //è°ƒåº¦å¼€å§‹æ—¶é—´
+	public String endTime;   //è°ƒåº¦ç»“æŸæ—¶é—´
+	public String datetime = "00:00:00";   //è€—æ—¶
+	public int headJobAmount;  //çˆ¶èŠ‚ç‚¹ä¸ªæ•°
+	public int headJobstatus;  //çˆ¶èŠ‚ç‚¹çš„çŠ¶æ€
+	public int jobstatus;  //å¤§äº100-waiting,100-ready,0-start,1-finished success,2-warning,3-faile,4-faild&skip
+	public String head_on_fail_action;  //å‰é¢çš„ä½œä¸šæ˜¯å¦skip
+	public String on_fail_action;       //thisæ˜¯å¦skip
 	public String params ;
-	public String cost = "00:00:00";                //Æ½¾ùÏûºÄÊ±³¤
-	public int groupID;                 //ËùÊô×éID
-	public String groupName;                //×éÃû³Æ
-	public String memo;                //±¸×¢
-	public ArrayList<String> inputList = new ArrayList<String>();  //ÊäÈë±íÁĞ±í
-	public ArrayList<String> outputList = new ArrayList<String>(); //Êä³ö±íÁĞ±í
-	public ArrayList<String> detailList = new ArrayList<String>(); //±¸ÓÃ
+	public String cost = "00:00:00";                //å¹³å‡æ¶ˆè€—æ—¶é•¿
+	public int groupID;                 //æ‰€å±ç»„ID
+	public String groupName;                //ç»„åç§°
+	public String memo;                //å¤‡æ³¨
+	public ArrayList<String> inputList = new ArrayList<String>();  //è¾“å…¥è¡¨åˆ—è¡¨
+	public ArrayList<String> outputList = new ArrayList<String>(); //è¾“å‡ºè¡¨åˆ—è¡¨
+	public ArrayList<String> detailList = new ArrayList<String>(); //å¤‡ç”¨
 	Logger logger = Logger.getLogger(Job.class);
 	
-	//´øÎ»ÖÃ´´½¨
+	//å¸¦ä½ç½®åˆ›å»º
 	public Job(double x,double y,String jobname, int isvalid, String jobtype) {
 		super(jobname);
 		this.jobname = jobname;
@@ -52,7 +52,7 @@ public class Job extends DefaultGraphCell{
 		GraphConstants.setBounds(this.getAttributes(), new Rectangle2D.Double(x, y, this.jobname.length() * 7, 16));
 		GraphConstants.setAutoSize(this.getAttributes(), true);
 		GraphConstants.setFont(this.getAttributes(), new Font("Default Sans Serif", 0, 10));
-		this.add(new DefaultPort());  //¿ÉÁ¬½Ó
+		this.add(new DefaultPort());  //å¯è¿æ¥
 		this.setColor();
 	}
 	
@@ -65,7 +65,7 @@ public class Job extends DefaultGraphCell{
 		GraphConstants.setAutoSize(this.getAttributes(), true);
 		GraphConstants.setFont(this.getAttributes(), new Font("Default Sans Serif", 0, 10));
 		this.setColor();
-		this.add(new DefaultPort());  //¿ÉÁ¬½Ó
+		this.add(new DefaultPort());  //å¯è¿æ¥
 	}
 
 	public Job(String s1) {
@@ -104,28 +104,28 @@ public class Job extends DefaultGraphCell{
 		this.on_fail_action = on_fail_action;
 	}
 
-	//¸ù¾İJobÀàĞÍÉèÖÃÑÕÉ«
+	//æ ¹æ®Jobç±»å‹è®¾ç½®é¢œè‰²
 	public void setColor(){
 		logger.debug(this.jobname+".isValid=" +this.isValid );
 		if(this.isValid == 0){
-			//¹ıÊ±µÄ×÷ÒµÏÔÊ¾ÎªÇ³»Ò
+			//è¿‡æ—¶çš„ä½œä¸šæ˜¾ç¤ºä¸ºæµ…ç°
 			GraphConstants.setForeground(this.getAttributes(),Color.lightGray);
 			//GraphConstants.setOpaque(jCell.getAttributes(), true);
 		}else if(this.jobtype.equals("TAB")){//fn.contains(jb.jobname)
-			//±íÏÔÊ¾Îª³ÈÉ«
+			//è¡¨æ˜¾ç¤ºä¸ºæ©™è‰²
 				//jb.jobname.equalsIgnoreCase(filename)
 			GraphConstants.setForeground(this.getAttributes(),Color.PINK);
 			//GraphConstants.setOpaque(jCell.getAttributes(), true);
 		}else if(this.jobtype.equals("bojob")){
-			//boruntimeÏÔÊ¾ÎªÀ¶É«
+			//boruntimeæ˜¾ç¤ºä¸ºè“è‰²
 			GraphConstants.setForeground(this.getAttributes(),Color.BLUE);
 			//GraphConstants.setOpaque(jCell.getAttributes(), true);
 		}else if(this.jobtype.equals("shell")){
-			//boruntimeÏÔÊ¾Îª·ÛÉ«
+			//boruntimeæ˜¾ç¤ºä¸ºç²‰è‰²
 			GraphConstants.setForeground(this.getAttributes(),Color.RED);
 			//GraphConstants.setOpaque(jCell.getAttributes(), true);
 		}else if(this.jobtype.equals("BlankJob")) {
-			//¿Õ×÷Òµ(Ó°Ïì·ÖÎöÊ±,ÊäÈëµÄ±í,ÎªÁËÓëTABÀàĞÍÇø·Ö,¼ÇÎªBlankJob)ÏÔÊ¾ÎªÇ³»Ò
+			//ç©ºä½œä¸š(å½±å“åˆ†ææ—¶,è¾“å…¥çš„è¡¨,ä¸ºäº†ä¸TABç±»å‹åŒºåˆ†,è®°ä¸ºBlankJob)æ˜¾ç¤ºä¸ºæµ…ç°
 			//GraphConstants.setBackground(jCell.getAttributes(), Color.yellow);
 			//GraphConstants.setGradientColor(arg0, arg1)
 			//GraphConstants.setForeground(arg0, arg1)

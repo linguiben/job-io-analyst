@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <c3p0-config>
 	<default-config>
+		<!--
 		<property name="jdbcUrl">jdbc:db2://centos6:50000/DW:currentSchema=DB2INST1;currentIsolation=CS;</property>
 		<property name="driverClass">com.ibm.db2.jcc.DB2Driver</property>
 		<property name="user">db2inst1</property>
 		<property name="password">db2inst1</property>
+		-->
+		<property name="jdbcUrl">jdbc:postgresql://localhost:25432/postgres</property>
+		<property name="driverClass">org.postgresql.Driver</property>
+		<property name="user">postgres</property>
+<!--		<property name="password"></property>-->
 		<property name="checkoutTimeout">3000</property>
 		<property name="idleConnectionTestPeriod">30</property>
 		<property name="initialPoolSize">3</property>

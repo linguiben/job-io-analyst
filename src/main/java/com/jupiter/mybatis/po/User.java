@@ -98,7 +98,7 @@ public class User {
 
 	
     @Override
-    public String toString() { // 为了方便查看结果，重写了toString方法
+    public String toString() { // 涓轰簡鏂逛究鏌ョ湅缁撴灉锛岄噸鍐欎簡toString鏂规硶
         return ("Jobio_User:[ID=" + id + ",USERNAME=" + username) + (remark=="" ? "," : ",REMARK=" + remark +"]");
     }
     

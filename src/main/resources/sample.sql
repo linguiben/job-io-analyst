@@ -24,7 +24,7 @@ SELECT v1.ActuGetNo
 				WHERE e.EdorNo = v1.OtherNo
 					AND e.grpcontno = v1.GrpContNo
 				)
-			THEN 'Õ¯…œ±£»´'
+			THEN 'ÁΩë‰∏ä‰øùÂÖ®'
 		ELSE ''
 		END EdorSource
 	,(
@@ -150,7 +150,7 @@ FROM (
 								)
 							)
 						)
-					THEN ' «'
+					THEN 'ÊòØ'
 				ELSE ' '
 				END
 			) isFinRed

@@ -35,34 +35,34 @@ import com.jupiter.util.DBconnect;
 public class Monitor extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 9081016140666889788L;
-	public static String scheduleType = null; //¹«¿ªµ±Ç°µ÷¶ÈÀàĞÍ
-	public static String batchno; //¹«¿ªµ±Ç°Åú´ÎºÅ£¬ÒÔ±ãµ÷¶ÈºÍ¼à¿ØÊ¹ÓÃ
-	private int[] scheduleStatus = new int[5]; //ÈÎÎñÊı¡¢³É¹¦Êı¡¢Ê§°ÜÊı¡¢Î´Íê³ÉÊı
+	public static String scheduleType = null; //å…¬å¼€å½“å‰è°ƒåº¦ç±»å‹
+	public static String batchno; //å…¬å¼€å½“å‰æ‰¹æ¬¡å·ï¼Œä»¥ä¾¿è°ƒåº¦å’Œç›‘æ§ä½¿ç”¨
+	private int[] scheduleStatus = new int[5]; //ä»»åŠ¡æ•°ã€æˆåŠŸæ•°ã€å¤±è´¥æ•°ã€æœªå®Œæˆæ•°
 	private MonitorGraph graph;
-	private Schedule sch; //µ÷¶ÈÀà
+	private Schedule sch; //è°ƒåº¦ç±»
 	private Thread thredSch;
-	public static int refreshTime = 1;//Ë¢ĞÂÆµÂÊ0/1/2/3  (µ¥Î»£ºsconde)
-	public static int parallel = 2; //×÷Òµ²¢ĞĞ¶È
+	public static int refreshTime = 1;//åˆ·æ–°é¢‘ç‡0/1/2/3  (å•ä½ï¼šsconde)
+	public static int parallel = 2; //ä½œä¸šå¹¶è¡Œåº¦
 	private java.util.Timer timer;
 	private Map<String, Map<Thread, Schedule>> typeMap1 = new HashMap<String, Map<Thread, Schedule>>();;
 	private HashMap<String, String[]> typeMap = new HashMap<String, String[]>();
-	private HashMap<String, Schedule> batchnoMap = new HashMap<String, Schedule>(); //ÓÃ»§Í£Ö¹¡¢ĞøÅÜÅú´Î
-	private HashMap<Schedule, Thread> scheduleMap = new HashMap<Schedule, Thread>(); //ÓÃÓÚ·ÀÖ¹ÖØ¸´Æô¶¯
+	private HashMap<String, Schedule> batchnoMap = new HashMap<String, Schedule>(); //ç”¨æˆ·åœæ­¢ã€ç»­è·‘æ‰¹æ¬¡
+	private HashMap<Schedule, Thread> scheduleMap = new HashMap<Schedule, Thread>(); //ç”¨äºé˜²æ­¢é‡å¤å¯åŠ¨
 
 	/** Creates new form Monitor */
 	public Monitor() {
-		// ÉèÖÃÍ¼ĞÎ½çÃæÍâ¹Û
+		// è®¾ç½®å›¾å½¢ç•Œé¢å¤–è§‚
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		// JGraph¶ÔÏó
+		// JGraphå¯¹è±¡
 		graph = new MonitorGraph();
 		graph.setEditable(false);
 		graph.setMonitor(this);
-		// ´´½¨µ÷¶ÈÊµÀı
+		// åˆ›å»ºè°ƒåº¦å®ä¾‹
 		//sch = new Schedule();
 		// graph.removeMouseListener(graph.getMouseListeners());
 		/*
@@ -72,7 +72,7 @@ public class Monitor extends javax.swing.JFrame {
 
 		initComponents();
 
-		// ³ÌĞò³õÊ¼»¯Ë¢ĞÂµ÷¶ÈÀàĞÍ
+		// ç¨‹åºåˆå§‹åŒ–åˆ·æ–°è°ƒåº¦ç±»å‹
 		refreshScheduleType(null);
 		/*ArrayList<String> batchnos = DBUnit.getScheduleType();
 		for (int i = 0; i < batchnos.size(); i++) {
@@ -410,7 +410,7 @@ public class Monitor extends javax.swing.JFrame {
 	}
 
 	private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {
-		graph.rLayout(5); //¼ò½àÅÅ°æ
+		graph.rLayout(5); //ç®€æ´æ’ç‰ˆ
 	}
 
 	private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -422,16 +422,16 @@ public class Monitor extends javax.swing.JFrame {
 	}
 
 	private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {
-		// ¶¨Ê±Æ÷
-		newTimer(5); //5·ÖÖÓË¢ĞÂ
+		// å®šæ—¶å™¨
+		newTimer(5); //5åˆ†é’Ÿåˆ·æ–°
 	}
 
 	private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {
-		newTimer(3); //3·ÖÖÓË¢ĞÂ
+		newTimer(3); //3åˆ†é’Ÿåˆ·æ–°
 	}
 
 	private void refreshBatchnoMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {
-		newTimer(1); //5·ÖÖÓË¢ĞÂ
+		newTimer(1); //5åˆ†é’Ÿåˆ·æ–°
 
 	}
 
@@ -450,7 +450,7 @@ public class Monitor extends javax.swing.JFrame {
 		graph.refreshScheduleJobLocationList(Monitor.batchno);
 	}
 
-	//Ë¢ĞÂµ÷¶ÈÀàĞÍ
+	//åˆ·æ–°è°ƒåº¦ç±»å‹
 	private void refreshScheduleType(java.awt.event.ActionEvent evt) {
 		loadScheduTypeMenu.removeAll();
 		loadScheduTypeMenu.add(refreshScheduTypeMenuItem);
@@ -459,30 +459,30 @@ public class Monitor extends javax.swing.JFrame {
 			JMenuItem jMenuItemN = new javax.swing.JMenuItem(batchnos.get(i));
 			jMenuItemN.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent evt) {
-					//¼ÓÔØµ÷¶Èµ÷¶ÈÀàĞÍºÍ×÷Òµ
+					//åŠ è½½è°ƒåº¦è°ƒåº¦ç±»å‹å’Œä½œä¸š
 					addScheduleType(evt.getActionCommand());
-					//¼ÓÔØµ÷¶ÈÀàĞÍµÄÍ¬Ê±Ë¢ĞÂÅú´ÎºÅ
+					//åŠ è½½è°ƒåº¦ç±»å‹çš„åŒæ—¶åˆ·æ–°æ‰¹æ¬¡å·
 					refreshBatchnoMenuItemActionPerformed(evt);
 				}
 			});
-			loadScheduTypeMenu.add(jMenuItemN); //Ôö¼ÓmunuÑ¡Ôñ
+			loadScheduTypeMenu.add(jMenuItemN); //å¢åŠ munué€‰æ‹©
 		}
-		//Ë¢ĞÂµ÷¶ÈÀàĞÍÊ±ÎŞĞèË¢ĞÂÅú´ÎºÅ,´ıÑ¡Ôñµ÷¶ÈÀàĞÍ²¢¼ÓÔØºóÔÙË¢ĞÂ
+		//åˆ·æ–°è°ƒåº¦ç±»å‹æ—¶æ— éœ€åˆ·æ–°æ‰¹æ¬¡å·,å¾…é€‰æ‹©è°ƒåº¦ç±»å‹å¹¶åŠ è½½åå†åˆ·æ–°
 		//refreshBatchnoMenuItemActionPerformed(evt);
 		//Monitor.batchno = null;
 	}
 
-	//¼ÓÔØµ÷¶ÈÀàĞÍµÄ×÷Òµ
-	// ¼ÓÔØµ÷¶ÈµÄ×÷Òµ
+	//åŠ è½½è°ƒåº¦ç±»å‹çš„ä½œä¸š
+	// åŠ è½½è°ƒåº¦çš„ä½œä¸š
 	public void addScheduleType(String scheduleType) {
 		if (timer != null)
-			timer.cancel(); //È¡Ïû¶¨Ê±Ë¢ĞÂ
-		//¼ÇÏÂµ÷¶ÈÀàĞÍºÍÅú´Î,ĞøÅÜµ÷¶ÈÊ±´«¸øµ÷¶ÈÏß³Ì
-		//System.out.println("µ±Ç°¼à¿ØµÄÀàĞÍ0000000£º" + Monitor.scheduleType);
+			timer.cancel(); //å–æ¶ˆå®šæ—¶åˆ·æ–°
+		//è®°ä¸‹è°ƒåº¦ç±»å‹å’Œæ‰¹æ¬¡,ç»­è·‘è°ƒåº¦æ—¶ä¼ ç»™è°ƒåº¦çº¿ç¨‹
+		//System.out.println("å½“å‰ç›‘æ§çš„ç±»å‹0000000ï¼š" + Monitor.scheduleType);
 		Monitor.scheduleType = scheduleType;
 		Monitor.batchno = null;
-		//System.out.println("µ±Ç°¼à¿ØµÄÀàĞÍ11111£º" + Monitor.scheduleType);
-		// Çå¿ÕËùÓĞlist,ÒÆ³ıËùÓĞcell
+		//System.out.println("å½“å‰ç›‘æ§çš„ç±»å‹11111ï¼š" + Monitor.scheduleType);
+		// æ¸…ç©ºæ‰€æœ‰list,ç§»é™¤æ‰€æœ‰cell
 		graph.getGraphLayoutCache().remove(graph.jobs.toArray());
 		graph.getGraphLayoutCache().remove(graph.jobRelations.toArray());
 		graph.jobs.clear();
@@ -492,21 +492,21 @@ public class Monitor extends javax.swing.JFrame {
 		graph.files.clear();
 		graph.filesEdgs.clear();
 		//graph.getJobRelationsList(graph.getScheduleJobLocationList(actionCommand));
-		ArrayList<Job> jobsList = graph.getScheduleJobLocationList(scheduleType); //¸ù¾İµ÷¶ÈÀàĞÍ»ñÈ¡µ÷¶È×÷Òµ
-		List<JobEdge> relationsList = graph.getScheduleJobRelationsList(scheduleType,jobsList); //¸ù¾İµ÷¶È×÷Òµ»ñÈ¡×÷ÒµÒÀÀµ¹ØÏµ
+		ArrayList<Job> jobsList = graph.getScheduleJobLocationList(scheduleType); //æ ¹æ®è°ƒåº¦ç±»å‹è·å–è°ƒåº¦ä½œä¸š
+		List<JobEdge> relationsList = graph.getScheduleJobRelationsList(scheduleType,jobsList); //æ ¹æ®è°ƒåº¦ä½œä¸šè·å–ä½œä¸šä¾èµ–å…³ç³»
 		//graph.getScheduleJobRelationsList(scheduleType, graph.getScheduleJobLocationList(scheduleType));
-		//ÏÔÊ¾µ÷¶ÈĞÅÏ¢:
-		GraphConstants.setValue(graph.getInfoCell().getAttributes(), "µ÷¶ÈÀàĞÍ:" + Monitor.scheduleType + " Åú´ÎºÅ:" + Monitor.batchno);
-		graph.getGraphLayoutCache().insert(jobsList.toArray()); //ArrayList¿ÉÄÜ°üº¬nullµÄÔªËØ£¬×ª³ÉÊı×éÈ¥³ınull
+		//æ˜¾ç¤ºè°ƒåº¦ä¿¡æ¯:
+		GraphConstants.setValue(graph.getInfoCell().getAttributes(), "è°ƒåº¦ç±»å‹:" + Monitor.scheduleType + " æ‰¹æ¬¡å·:" + Monitor.batchno);
+		graph.getGraphLayoutCache().insert(jobsList.toArray()); //ArrayListå¯èƒ½åŒ…å«nullçš„å…ƒç´ ï¼Œè½¬æˆæ•°ç»„å»é™¤null
 		graph.getGraphLayoutCache().insert(relationsList.toArray());
 		//graph.getGraphLayoutCache().setVisible(graph.getEndCell(), false);
 		graph.getGraphLayoutCache().toFront(jobsList.toArray());
 		graph.getGraphLayoutCache().insert(graph.getInfoCell());
 	}
 
-	//Ë¢ĞÂÅú´ÎºÅ
+	//åˆ·æ–°æ‰¹æ¬¡å·
 	private void refreshBatchnoMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-		//Ñ¡ÔñÅú´ÎºÅÍ¬Ê±,¸üĞÂgraphºÍ
+		//é€‰æ‹©æ‰¹æ¬¡å·åŒæ—¶,æ›´æ–°graphå’Œ
 		loadBatchnoMenu.removeAll();
 		loadBatchnoMenu.add(refreshBatchnoMenuItem);
 		ArrayList<String> batchnos = DBUnit.getBatchno(Monitor.scheduleType);
@@ -516,14 +516,14 @@ public class Monitor extends javax.swing.JFrame {
 				public void actionPerformed(java.awt.event.ActionEvent evt) {
 					//addScheduleType(evt.getActionCommand());\
 					if (timer != null)
-						timer.cancel(); //È¡Ïû¶¨Ê±Ë¢ĞÂ
+						timer.cancel(); //å–æ¶ˆå®šæ—¶åˆ·æ–°
 					addScheduleType(Monitor.scheduleType);
-					Monitor.batchno = evt.getActionCommand(); //Ñ¡ÔñÅú´ÎºÅ
+					Monitor.batchno = evt.getActionCommand(); //é€‰æ‹©æ‰¹æ¬¡å·
 					graph.refreshScheduleJobLocationList(batchno);
-					//ÏÔÊ¾µ÷¶ÈĞÅÏ¢:
+					//æ˜¾ç¤ºè°ƒåº¦ä¿¡æ¯:
 					scheduleStatus = DBUnit.getScheduleStatus(Monitor.scheduleType, Monitor.batchno);
-					GraphConstants.setValue(graph.getInfoCell().getAttributes(), "µ÷¶ÈÀàĞÍ:" + Monitor.scheduleType + " Åú´ÎºÅ:" + Monitor.batchno + "   ÈÎÎñÊı:"
-							+ scheduleStatus[0] + " ³É¹¦Êı:" + scheduleStatus[1] + " Ê§°ÜÊı:" + scheduleStatus[2] + " Î´Íê³ÉÊı:" + scheduleStatus[3] + "  ");
+					GraphConstants.setValue(graph.getInfoCell().getAttributes(), "è°ƒåº¦ç±»å‹:" + Monitor.scheduleType + " æ‰¹æ¬¡å·:" + Monitor.batchno + "   ä»»åŠ¡æ•°:"
+							+ scheduleStatus[0] + " æˆåŠŸæ•°:" + scheduleStatus[1] + " å¤±è´¥æ•°:" + scheduleStatus[2] + " æœªå®Œæˆæ•°:" + scheduleStatus[3] + "  ");
 					graph.getGraphLayoutCache().insert(graph.getInfoCell());
 				}
 			});
@@ -531,10 +531,10 @@ public class Monitor extends javax.swing.JFrame {
 		}
 	}
 
-	//´´½¨×Ô¶¯Ë¢ĞÂ¶¨Ê±Æ÷
+	//åˆ›å»ºè‡ªåŠ¨åˆ·æ–°å®šæ—¶å™¨
 	public void newTimer(int refreshTime) {
 		if (sch == null)
-			return; //ÎŞµ÷¶ÈÊ±²»Ë¢ĞÂ
+			return; //æ— è°ƒåº¦æ—¶ä¸åˆ·æ–°
 		if (timer != null)
 			timer.cancel();
 		Monitor.refreshTime = refreshTime;
@@ -544,8 +544,8 @@ public class Monitor extends javax.swing.JFrame {
 			@Override
 			public void run() {
 				scheduleStatus = sch.getScheduleStatus();
-				GraphConstants.setValue(graph.getInfoCell().getAttributes(), "µ÷¶ÈÀàĞÍ:" + Monitor.scheduleType + " Åú´ÎºÅ:" + Monitor.batchno + "   ÈÎÎñÊı:"
-						+ scheduleStatus[0] + " ³É¹¦Êı:" + scheduleStatus[1] + " Ê§°ÜÊı:" + scheduleStatus[2] + " Î´Íê³ÉÊı:" + scheduleStatus[3] + "  ");
+				GraphConstants.setValue(graph.getInfoCell().getAttributes(), "è°ƒåº¦ç±»å‹:" + Monitor.scheduleType + " æ‰¹æ¬¡å·:" + Monitor.batchno + "   ä»»åŠ¡æ•°:"
+						+ scheduleStatus[0] + " æˆåŠŸæ•°:" + scheduleStatus[1] + " å¤±è´¥æ•°:" + scheduleStatus[2] + " æœªå®Œæˆæ•°:" + scheduleStatus[3] + "  ");
 				graph.refreshScheduleJobLocationList(Monitor.batchno);
 				//scheduleStatus = DBUnit.getScheduleStatus(Monitor.scheduleType, Monitor.batchno);
 				//graph.getGraphLayoutCache().update();
@@ -565,44 +565,44 @@ public class Monitor extends javax.swing.JFrame {
 		}, 0, refreshTime * 1000);
 	}
 
-	//Æô¶¯µ÷¶È
+	//å¯åŠ¨è°ƒåº¦
 	public void startSchedule(java.awt.event.ActionEvent evt) {
 		if (Monitor.scheduleType == null) {
-			JOptionPane.showMessageDialog(null, "ÇëÑ¡ÔñÒµÎñÀàĞÍ" + "", "µ÷¶ÈÀàĞÍÎª¿Õ", 0);
+			JOptionPane.showMessageDialog(null, "è¯·é€‰æ‹©ä¸šåŠ¡ç±»å‹" + "", "è°ƒåº¦ç±»å‹ä¸ºç©º", 0);
 			return;
 		}
-		System.out.println("Æô¶¯µÄµ÷¶ÈÀàĞÍ2£º" + Monitor.scheduleType);
+		System.out.println("å¯åŠ¨çš„è°ƒåº¦ç±»å‹2ï¼š" + Monitor.scheduleType);
 		Map<Thread, Schedule> map = new HashMap<Thread, Schedule>();
 		if (thredSch != null && thredSch.isAlive()) {
-			JOptionPane.showMessageDialog(null, "ÇëÎğÖØ¸´µ÷¶È," + "Åú´ÎºÅ:" + Monitor.batchno, "µ÷¶ÈÕıÔÚÔËĞĞ", 0);
+			JOptionPane.showMessageDialog(null, "è¯·å‹¿é‡å¤è°ƒåº¦," + "æ‰¹æ¬¡å·:" + Monitor.batchno, "è°ƒåº¦æ­£åœ¨è¿è¡Œ", 0);
 		} else {
 			addScheduleType(scheduleType);
-			//Æô¶¯µ÷¶ÈÏß³Ì
-			SimpleDateFormat dfstr = new SimpleDateFormat("yyyyMMddHHmmss");// ÉèÖÃÈÕÆÚ¸ñÊ½
-			batchno = dfstr.format(new Date()); //Éú³Éµ÷¶ÈÅú´ÎºÅ
-			GraphConstants.setValue(graph.getInfoCell().getAttributes(), "µ÷¶ÈÀàĞÍ:" + Monitor.scheduleType + " Åú´ÎºÅ:" + Monitor.batchno);
+			//å¯åŠ¨è°ƒåº¦çº¿ç¨‹
+			SimpleDateFormat dfstr = new SimpleDateFormat("yyyyMMddHHmmss");// è®¾ç½®æ—¥æœŸæ ¼å¼
+			batchno = dfstr.format(new Date()); //ç”Ÿæˆè°ƒåº¦æ‰¹æ¬¡å·
+			GraphConstants.setValue(graph.getInfoCell().getAttributes(), "è°ƒåº¦ç±»å‹:" + Monitor.scheduleType + " æ‰¹æ¬¡å·:" + Monitor.batchno);
 			graph.getGraphLayoutCache().insert(graph.getInfoCell());
-			// ´´½¨µ÷¶ÈÊµÀı
+			// åˆ›å»ºè°ƒåº¦å®ä¾‹
 			sch = new Schedule();
 			sch.setScheduleType(Monitor.scheduleType);
 			sch.setBatchno(Monitor.batchno);
-			sch.setSTOP(false); //ÖÃÎª·ÇÍ£Ö¹×´Ì¬
+			sch.setSTOP(false); //ç½®ä¸ºéåœæ­¢çŠ¶æ€
 			thredSch = new Thread(sch);
 
 			map.put(thredSch, sch);
 			typeMap1.put(Monitor.scheduleType, map);
 			thredSch.start();
-			newTimer(1); //Ä¬ÈÏ1·ÖÖÓË¢ĞÂ¶¨Ê±Æ÷
+			newTimer(1); //é»˜è®¤1åˆ†é’Ÿåˆ·æ–°å®šæ—¶å™¨
 		}
 	}
 
-	//Í£Ö¹µ÷¶È
+	//åœæ­¢è°ƒåº¦
 	public void stopSchedule(java.awt.event.ActionEvent evt) {
-		//1.ÕÒ³öScheleºÍThreadºÍ
+		//1.æ‰¾å‡ºScheleå’ŒThreadå’Œ
 		if (thredSch == null)
-			JOptionPane.showMessageDialog(null, "ÎŞÔËĞĞÖĞµÄµ÷¶È", "Í£Ö¹µ÷¶È", 0);
+			JOptionPane.showMessageDialog(null, "æ— è¿è¡Œä¸­çš„è°ƒåº¦", "åœæ­¢è°ƒåº¦", 0);
 		else if (!thredSch.isAlive())
-			JOptionPane.showMessageDialog(null, "ÒÑÍ£Ö¹," + "Åú´ÎºÅ:" + Monitor.batchno, "Í£Ö¹µ÷¶È", 0);
+			JOptionPane.showMessageDialog(null, "å·²åœæ­¢," + "æ‰¹æ¬¡å·:" + Monitor.batchno, "åœæ­¢è°ƒåº¦", 0);
 		else
 			sch.stop();
 	}
@@ -612,13 +612,13 @@ public class Monitor extends javax.swing.JFrame {
 	 */
 	public static void main(String args[]) {
 		Monitor monior = new Monitor();
-		int windowWidth = monior.getWidth(); // »ñµÃ´°¿Ú¿í
-		int windowHeight = monior.getHeight(); // »ñµÃ´°¿Ú¸ß
-		Toolkit kit = Toolkit.getDefaultToolkit(); // ¶¨Òå¹¤¾ß°ü
-		Dimension screenSize = kit.getScreenSize(); // »ñÈ¡ÆÁÄ»µÄ³ß´ç
-		int screenWidth = screenSize.width; // »ñÈ¡ÆÁÄ»µÄ¿í
-		int screenHeight = screenSize.height; // »ñÈ¡ÆÁÄ»µÄ¸ß
-		monior.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 3 - windowHeight / 3); // ¾ÓÖĞ
+		int windowWidth = monior.getWidth(); // è·å¾—çª—å£å®½
+		int windowHeight = monior.getHeight(); // è·å¾—çª—å£é«˜
+		Toolkit kit = Toolkit.getDefaultToolkit(); // å®šä¹‰å·¥å…·åŒ…
+		Dimension screenSize = kit.getScreenSize(); // è·å–å±å¹•çš„å°ºå¯¸
+		int screenWidth = screenSize.width; // è·å–å±å¹•çš„å®½
+		int screenHeight = screenSize.height; // è·å–å±å¹•çš„é«˜
+		monior.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 3 - windowHeight / 3); // å±…ä¸­
 		monior.setVisible(true);
 		/*java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {

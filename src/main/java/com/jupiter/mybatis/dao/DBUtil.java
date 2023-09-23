@@ -17,7 +17,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 * @Description:
 * @author: Jupiter.Lin
 * @version: V1.0 
-* @date: 2020Äê10ÔÂ10ÈÕ ÉÏÎç11:30:20 
+* @date: 2020å¹´10æœˆ10æ—¥ ä¸Šåˆ11:30:20 
 */
 public class DBUtil {
     
@@ -25,7 +25,7 @@ public class DBUtil {
     private ComboPooledDataSource dsAdpp;
     
     
-    private DBUtil(){}; //½ûÖ¹Íâ²¿´´½¨ÊµÀı
+    private DBUtil(){}; //ç¦æ­¢å¤–éƒ¨åˆ›å»ºå®ä¾‹
     public static DBUtil getInstance() {
         if(dbutil == null) {
             dbutil = new DBUtil();
@@ -33,12 +33,12 @@ public class DBUtil {
         return dbutil;
     }
     
-    //Ö´ĞĞSQL£¬·µ»ØList<Map<String, Object>>
+    //æ‰§è¡ŒSQLï¼Œè¿”å›List<Map<String, Object>>
     public List<Map<String, Object>> excute(String dbname,String sql) {
         //String sql = "select sysdate from dual ";
         switch (dbname.toLowerCase()) {
         case "adpp":
-            if (dsAdpp == null) {//´´½¨c3p0Á¬½Ó³Ø
+            if (dsAdpp == null) {//åˆ›å»ºc3p0è¿æ¥æ± 
                 dsAdpp = new ComboPooledDataSource("adpp"); 
             }
             break;
@@ -71,7 +71,7 @@ public class DBUtil {
         return list;
     }
     
-    //ResultSet×ªList
+    //ResultSetè½¬List
     public List<Map<String, Object>> convertList(ResultSet rs) {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         try {

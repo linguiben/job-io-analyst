@@ -52,30 +52,30 @@ import com.jupiter.mybatis.dao.DBUnit;
 import com.jupiter.mybatis.po.User;
 
 public class DesignerGraph extends JGraph implements KeyListener, MouseListener, MouseWheelListener {
-	private int contorl = 0; // ÊÇ·ñ°´ÏÂctrl
-	private double d = 1.0; // Ëõ·Å²ÎÊı
-	private int fi = 0; // ²éÕÒµ½µÚ¼¸¸ö(finderIndex)
-	private double focusX = 0; // ½¹µãx×ø±ê
-	private double focusY = 0; // ½¹µãy×ø±ê
-	public ArrayList<Job> jobs = new ArrayList<Job>(); // È«²¿×÷Òµ(²»°üÀ¨±ß):job+file+bo
+	private int contorl = 0; // æ˜¯å¦æŒ‰ä¸‹ctrl
+	private double d = 1.0; // ç¼©æ”¾å‚æ•°
+	private int fi = 0; // æŸ¥æ‰¾åˆ°ç¬¬å‡ ä¸ª(finderIndex)
+	private double focusX = 0; // ç„¦ç‚¹xåæ ‡
+	private double focusY = 0; // ç„¦ç‚¹yåæ ‡
+	public ArrayList<Job> jobs = new ArrayList<Job>(); // å…¨éƒ¨ä½œä¸š(ä¸åŒ…æ‹¬è¾¹):job+file+bo
 	Logger logger = Logger.getLogger(DesignerGraph.class);
 
 	public ArrayList<Job> getAllJobs() {
 		return jobs;
 	}
 
-	public ArrayList<JobEdge> jobRelations = new ArrayList<JobEdge>(); // È«²¿±ß
-	public ArrayList<Job> files = new ArrayList<Job>(); // TABÀàĞÍ
-	public ArrayList<JobEdge> filesEdgs = new ArrayList<JobEdge>(); // TABÀàĞÍµÄ±ß
-	public ArrayList<Job> boruntimes = new ArrayList<Job>(); // boruntimeÀàĞÍ
-	public ArrayList<JobEdge> boruntimesEdgs = new ArrayList<JobEdge>(); // boruntimeÀàĞÍµÄ±ß
-	public ArrayList<Job> outDatedJobs = new ArrayList<Job>(); // ¹ıÊ±µÄ×÷Òµ
-	//public ArrayList<Job> outDatedEdges = new ArrayList<Job>(); // ¹ıÊ±µÄ×÷ÒµµÄ±ß
-	private Job endCell; // µ÷¶È½áÊø±ê¼Ç,Òş²Ø²»¿É¼û
-	// private JobEdge jobEdgeSelect = new JobEdge("",""); //Ñ¡ÔñµÄ±ßÏÔÊ¾ÑÕÉ«
+	public ArrayList<JobEdge> jobRelations = new ArrayList<JobEdge>(); // å…¨éƒ¨è¾¹
+	public ArrayList<Job> files = new ArrayList<Job>(); // TABç±»å‹
+	public ArrayList<JobEdge> filesEdgs = new ArrayList<JobEdge>(); // TABç±»å‹çš„è¾¹
+	public ArrayList<Job> boruntimes = new ArrayList<Job>(); // boruntimeç±»å‹
+	public ArrayList<JobEdge> boruntimesEdgs = new ArrayList<JobEdge>(); // boruntimeç±»å‹çš„è¾¹
+	public ArrayList<Job> outDatedJobs = new ArrayList<Job>(); // è¿‡æ—¶çš„ä½œä¸š
+	//public ArrayList<Job> outDatedEdges = new ArrayList<Job>(); // è¿‡æ—¶çš„ä½œä¸šçš„è¾¹
+	private Job endCell; // è°ƒåº¦ç»“æŸæ ‡è®°,éšè—ä¸å¯è§
+	// private JobEdge jobEdgeSelect = new JobEdge("",""); //é€‰æ‹©çš„è¾¹æ˜¾ç¤ºé¢œè‰²
 	GraphUndoManager undoManager; // ctrl + z
 
-	PopupMenu edgMenu = new PopupMenu(); // ÓÒ¼ü²Ëµ¥
+	PopupMenu edgMenu = new PopupMenu(); // å³é”®èœå•
 
 	/**
 	 * 
@@ -105,42 +105,42 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 	public void init() {
 		this.setModel(model);
 		this.setGraphLayoutCache(view);
-		// this.setCellMenu(cellMenu); //³õÊ¼»¯ÓÒ¼ü²Ëµ¥
-		// this.add(cellMenu); //Ìí¼Óµ½graph
-		// Ò»Ğ©graph¶ÔÏóµÄ¼òµ¥µ÷Õû
-		// graph.setMoveable(false);//¿É·ñÒÆ¶¯Õû¸öÍ¼ĞÎ
-		this.setDisconnectable(false);// ²»ÄÜÒÆ¶¯±ßµÄÖ¸Ïò,µ«ÊÇ¿ÉÒÔÒÆ¶¯Í¼ĞÎ
+		// this.setCellMenu(cellMenu); //åˆå§‹åŒ–å³é”®èœå•
+		// this.add(cellMenu); //æ·»åŠ åˆ°graph
+		// ä¸€äº›graphå¯¹è±¡çš„ç®€å•è°ƒæ•´
+		// graph.setMoveable(false);//å¯å¦ç§»åŠ¨æ•´ä¸ªå›¾å½¢
+		this.setDisconnectable(false);// ä¸èƒ½ç§»åŠ¨è¾¹çš„æŒ‡å‘,ä½†æ˜¯å¯ä»¥ç§»åŠ¨å›¾å½¢
 		this.setSizeable(false);
-		// graph.setDisconnectOnMove(false);//¿É·ñÒÆ¶¯Õû¸ö±ß,µ«ÊÇÔÚ±ßµÄÔ´µãÖÕµã¸Ä±äºóÊ§Ğ§
+		// graph.setDisconnectOnMove(false);//å¯å¦ç§»åŠ¨æ•´ä¸ªè¾¹,ä½†æ˜¯åœ¨è¾¹çš„æºç‚¹ç»ˆç‚¹æ”¹å˜åå¤±æ•ˆ
 		/*
-		 * ÏÔÊ¾Íø¸ñ { graph.setGridEnabled(true); graph.setGridVisible(true); }
+		 * æ˜¾ç¤ºç½‘æ ¼ { graph.setGridEnabled(true); graph.setGridVisible(true); }
 		 * graph.setGridMode(JGraph.CROSS_GRID_MODE);
 		 */
-		// this.setMoveBelowZero(true); //ÊÇ·ñÔÊĞícellÔ½³ö×óÉÏ½Ç.Í¨³£ÉèÖÃÎªfalse,³ı·ÇÓĞÌØÊâÓÃ´¦
-		this.setAntiAliased(true);// Ô²»¬Í¼ÏñÏßÌõ
-		// graph.setSelectionEnabled(false);//ÄÜ·ñÑ¡Ôñµ¥¸öcell
-		this.setCloneable(true); // ÊÇ·ñ¿É¸´ÖÆ ctrl+ÍÏÒ·
+		// this.setMoveBelowZero(true); //æ˜¯å¦å…è®¸cellè¶Šå‡ºå·¦ä¸Šè§’.é€šå¸¸è®¾ç½®ä¸ºfalse,é™¤éæœ‰ç‰¹æ®Šç”¨å¤„
+		this.setAntiAliased(true);// åœ†æ»‘å›¾åƒçº¿æ¡
+		// graph.setSelectionEnabled(false);//èƒ½å¦é€‰æ‹©å•ä¸ªcell
+		this.setCloneable(true); // æ˜¯å¦å¯å¤åˆ¶ ctrl+æ‹–æ›³
 		this.setBendable(true);
-		this.setConnectable(true); // ÍÏÒ·Á¬½Ó
-		// this.setFont(new Font("ËÎÌå",1,12)); //×ÖÌå
-		this.setFont(new Font("Default Sans Serif", 0, 10)); // ×ÖÌå
+		this.setConnectable(true); // æ‹–æ›³è¿æ¥
+		// this.setFont(new Font("å®‹ä½“",1,12)); //å­—ä½“
+		this.setFont(new Font("Default Sans Serif", 0, 10)); // å­—ä½“
 		this.getSelectionModel().setChildrenSelectable(true);
 		this.setLockedHandleColor(Color.green);
-		this.setMarqueeColor(Color.black); // Êó±êÍÏÒ·Ñ¡Ôñ¿ò
-		this.setHighlightColor(Color.red); // ¸ßÁÁÑÕÉ«
+		this.setMarqueeColor(Color.black); // é¼ æ ‡æ‹–æ›³é€‰æ‹©æ¡†
+		this.setHighlightColor(Color.red); // é«˜äº®é¢œè‰²
 		// graph.setJumpToDefaultPort(true);
-		this.setFocusable(true); // ¿ÉÒÔ»òÕß½¹µã
+		this.setFocusable(true); // å¯ä»¥æˆ–è€…ç„¦ç‚¹
 
-		this.addMouseListener(this); // ¼àÌıÊó±ê
-		this.addKeyListener(this); // ¼àÌı¼üÅÌ
-		this.addMouseWheelListener(this); // ¼àÌı¹öÂÖ
+		this.addMouseListener(this); // ç›‘å¬é¼ æ ‡
+		this.addKeyListener(this); // ç›‘å¬é”®ç›˜
+		this.addMouseWheelListener(this); // ç›‘å¬æ»šè½®
 		undoManager = new GraphUndoManager(); // ctrl+z
 		// Register UndoManager with the Model
 		this.getModel().addUndoableEditListener(undoManager);// ctrl+z
 		/*
 		 * this.addMouseListener(new MouseAdapter() { public void
 		 * mousePressed(MouseEvent e) { //
-		 * logger.info(graph.getSelectionCells().length) // ÓÒ¼üË«»÷É¾³ı // Get
+		 * logger.info(graph.getSelectionCells().length) // å³é”®åŒå‡»åˆ é™¤ // Get
 		 * Selected Cells Object[] cells = getSelectionCells(); if
 		 * (e.isMetaDown() & e.getClickCount() == 2 & cells != null) { // Remove
 		 * Cells (incl. Descendants) from the Model
@@ -153,14 +153,14 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		 * lab); //Object clone = DefaultGraphModel.cloneCell(graph.getModel(),
 		 * cell); //graph.getGraphLayoutCache().insert(clone);
 		 * GraphConstants.setGradientColor(((DefaultGraphCell)
-		 * cell).getAttributes(), Color.WHITE);// ÉèÖÃÑÕÉ«
+		 * cell).getAttributes(), Color.WHITE);// è®¾ç½®é¢œè‰²
 		 * //GraphConstants.setOpaque
-		 * (((DefaultGraphCell)cell).getAttributes(),true);// ÉèÖÃÍ¸Ã÷¶È
+		 * (((DefaultGraphCell)cell).getAttributes(),true);// è®¾ç½®é€æ˜åº¦
 		 * //graph.refresh(); getGraphLayoutCache().reload(); } } } } });
 		 */
 	}
 
-	// ³õÊ¼»¯ÓÒ¼ü²Ëµ¥(jobCell)
+	// åˆå§‹åŒ–å³é”®èœå•(jobCell)
 	public void initCellMenu(PopupMenu menu, final String jobname, final Job job, final DesignerGraph graph) {
 		MenuItem viewDetail = new MenuItem("View Detail");
 		MenuItem analyzeBackwardItem = new MenuItem("Analyze Backward");
@@ -184,11 +184,11 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		menu.add(newAJobItem);
 		menu.setEnabled(true);
 
-		// ²é¿´job/fileÏêÏ¸ĞÅÏ¢
+		// æŸ¥çœ‹job/fileè¯¦ç»†ä¿¡æ¯
 		viewDetail.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// logger.info("²é¿´ÊäÈëÊä³ö");
+				// logger.info("æŸ¥çœ‹è¾“å…¥è¾“å‡º");
 				DetailFrame detailFrame = new DetailFrame(jobname, job.jobtype);
 				detailFrame.setLocationRelativeTo(backgroundComponent);// backgroundComponent
 				detailFrame.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -196,7 +196,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 				detailFrame.setAlwaysOnTop(true);
 			}
 		});
-		// ±à¼­jobÊôĞÔ
+		// ç¼–è¾‘jobå±æ€§
 		editItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -205,7 +205,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 				edit.setVisible(true);
 			}
 		});
-		// ÕÛµş
+		// æŠ˜å 
 		collapseItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -235,7 +235,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			}
 		});
 	
-		// ÏìÓ¦select rootsÊÂ¼ş
+		// å“åº”select rootsäº‹ä»¶
 				selectRootsItem.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -243,7 +243,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 					}
 				});
 
-				// ÏìÓ¦select allÊÂ¼ş
+				// å“åº”select alläº‹ä»¶
 				selectChildrenItem.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -267,10 +267,10 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 				JobEdge jobEdge = this.jobRelations.get(j);
 				if (jobEdge.headJobName.equals(root.jobname) && jobEdge.tailJobName.equals(Child.jobname)){
 					//jobRelations.add(jobEdge);
-					continue i; //jobEdgeÒÑ¾­´æÔÚ£¬²»ÔÙnew£¬Ìø³öÑ­»·
+					continue i; //jobEdgeå·²ç»å­˜åœ¨ï¼Œä¸å†newï¼Œè·³å‡ºå¾ªç¯
 				}
 			}
-			//´´½¨Ò»ÌõjobEdge
+			//åˆ›å»ºä¸€æ¡jobEdge
 			JobEdge jobRelation = new JobEdge(root, Child);
 			jobRelations.add(jobRelation);
 		}
@@ -319,7 +319,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		this.getGraphLayoutCache().toFront(cells.toArray());
 	}
 
-	// ¶ÔËùÓĞjob½øĞĞ·ÖÀà£¬¹©½çÃæÊÇ·ñÏÔÊ¾
+	// å¯¹æ‰€æœ‰jobè¿›è¡Œåˆ†ç±»ï¼Œä¾›ç•Œé¢æ˜¯å¦æ˜¾ç¤º
 	public void classfy(ArrayList<Job> cells) {
 		this.jobs.addAll(cells);
 		for (int i = 0; i < cells.size(); i++) {
@@ -331,12 +331,12 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 				boruntimes.add(job);
 			}
 			if (job.isValid == 0) {
-				outDatedJobs.add(job); // ¹ıÊ±µÄ×÷Òµ
+				outDatedJobs.add(job); // è¿‡æ—¶çš„ä½œä¸š
 			}
 		}
 	}
 
-	// ³õÊ¼»¯ÓÒ¼ü²Ëµ¥(schedule)
+	// åˆå§‹åŒ–å³é”®èœå•(schedule)
 	public void initScheduleMenu(PopupMenu menu, final DesignerGraph graph) {
 		MenuItem saveAll = new MenuItem("Save");
 		MenuItem selectAllItem = new MenuItem("Select All");
@@ -346,7 +346,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		menu.add(clearAll);
 		menu.setEnabled(true);
 		
-		//ÏìÓ¦save AllÊÂ¼ş
+		//å“åº”save Alläº‹ä»¶
 		saveAll.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -357,7 +357,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			}
 		});
 		
-		//ÏìÓ¦clear AllÊÂ¼ş
+		//å“åº”clear Alläº‹ä»¶
 		clearAll.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -375,7 +375,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			}
 		});
 		
-		//ÏìÓ¦select allÊÂ¼ş
+		//å“åº”select alläº‹ä»¶
 		selectAllItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -385,20 +385,20 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 	}
 
 
-	// ÑİÊ¾,ÒÑÆúÓÃ
+	// æ¼”ç¤º,å·²å¼ƒç”¨
 	public ArrayList<DefaultGraphCell> initCellsList() {
-		// ¶¨ÒåÒ»¸ö´æ·ÅcellµÄ¼¯ºÏÀà
+		// å®šä¹‰ä¸€ä¸ªå­˜æ”¾cellçš„é›†åˆç±»
 		ArrayList<DefaultGraphCell> cells = new ArrayList<DefaultGraphCell>();
-		// ½¨Á¢ÄãµÄµÚÒ»¸övertex¶ÔÏó
+		// å»ºç«‹ä½ çš„ç¬¬ä¸€ä¸ªvertexå¯¹è±¡
 		cells.add(new DefaultGraphCell(new String("jb_dwn_chdrpf_to_chdrpf")));
-		GraphConstants.setBounds(cells.get(0).getAttributes(), new Rectangle2D.Double(20, 80, "jb_dwn_chdrpf_to_chdrpf".length() * 7, 20)); // ¿ªÊ¼×ø±êxy,¿í¸ß
-		// ÉèÖÃÑÕÉ«ºÍÍ¸Ã÷ÊôĞÔ
+		GraphConstants.setBounds(cells.get(0).getAttributes(), new Rectangle2D.Double(20, 80, "jb_dwn_chdrpf_to_chdrpf".length() * 7, 20)); // å¼€å§‹åæ ‡xy,å®½é«˜
+		// è®¾ç½®é¢œè‰²å’Œé€æ˜å±æ€§
 		GraphConstants.setGradientColor(cells.get(0).getAttributes(), Color.orange);
 		GraphConstants.setOpaque(cells.get(0).getAttributes(), true);
-		// ÎªÕâ¸övertex¼ÓÈëÒ»¸öport
+		// ä¸ºè¿™ä¸ªvertexåŠ å…¥ä¸€ä¸ªport
 		DefaultPort port0 = new DefaultPort();
 		cells.get(0).add(port0);
-		// Í¬Àí¼ÓÈëµÚ¶ş¸övertex
+		// åŒç†åŠ å…¥ç¬¬äºŒä¸ªvertex
 		cells.add(new DefaultGraphCell(new String("jb_hq_commission_file_month_temp2")));
 		GraphConstants.setBounds(cells.get(1).getAttributes(), new Rectangle2D.Double(220, 20, "jb_hq_commission_file_month_temp2".length() < 23 ? 160
 				: "jb_hq_commission_file_month_temp2".length() * 7, 20));
@@ -406,7 +406,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		GraphConstants.setOpaque(cells.get(1).getAttributes(), true);
 		DefaultPort port1 = new DefaultPort();
 		cells.get(1).add(port1);
-		// Í¬Àí¼ÓÈëµÚÈı¸övertex
+		// åŒç†åŠ å…¥ç¬¬ä¸‰ä¸ªvertex
 		cells.add(new DefaultGraphCell(new String("jb_hq_policy_file_temp3_first")));
 		GraphConstants.setBounds(cells.get(2).getAttributes(), new Rectangle2D.Double(220, 140, "jb_hq_policy_file_temp3_first".length() < 23 ? 160
 				: "jb_hq_policy_file_temp3_first".length() * 7, 20));
@@ -415,48 +415,48 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		DefaultPort port2 = new DefaultPort();
 		cells.get(2).add(port2);
 
-		// ¼ÓÈëÒ»Ìõ±ß£¬½«jb_dwn_chdrpf_to_chdrpfºÍjb_hq_commission_file_month_temp2µÄÁ½¸öportÁ¬½ÓÆğÀ´
+		// åŠ å…¥ä¸€æ¡è¾¹ï¼Œå°†jb_dwn_chdrpf_to_chdrpfå’Œjb_hq_commission_file_month_temp2çš„ä¸¤ä¸ªportè¿æ¥èµ·æ¥
 		DefaultEdge edge = new DefaultEdge();
 		edge.setSource(cells.get(0).getChildAt(0));
 		edge.setTarget(cells.get(1).getChildAt(0));
-		// ÎªedgeÉèÖÃÒ»¸ö¼ıÍ·
+		// ä¸ºedgeè®¾ç½®ä¸€ä¸ªç®­å¤´
 		int arrow = GraphConstants.ARROW_CLASSIC;
 		GraphConstants.setLineEnd(edge.getAttributes(), arrow);
-		GraphConstants.setEndFill(edge.getAttributes(), true); // Ìî³ä¼ıÍ·
-		// ½«edge¼ÓÈëcell¼¯ºÏÀà
+		GraphConstants.setEndFill(edge.getAttributes(), true); // å¡«å……ç®­å¤´
+		// å°†edgeåŠ å…¥cellé›†åˆç±»
 		cells.add(edge);
-		// Í¬Àí
+		// åŒç†
 		DefaultEdge edge1 = new DefaultEdge();
 		edge1.setSource(cells.get(0).getChildAt(0));
 		edge1.setTarget(cells.get(2).getChildAt(0));
-		GraphConstants.setLineEnd(edge1.getAttributes(), arrow); // Îªedge1ÉèÖÃÒ»¸ö¼ıÍ·
-		// ½«edge¼ÓÈëcell¼¯ºÏÀà
+		GraphConstants.setLineEnd(edge1.getAttributes(), arrow); // ä¸ºedge1è®¾ç½®ä¸€ä¸ªç®­å¤´
+		// å°†edgeåŠ å…¥cellé›†åˆç±»
 		cells.add(edge1);
-		// Í¬Àí
+		// åŒç†
 		DefaultEdge edge2 = new DefaultEdge();
 		edge2.setSource(cells.get(2).getChildAt(0));
 		edge2.setTarget(cells.get(1).getChildAt(0));
-		GraphConstants.setLineEnd(edge2.getAttributes(), arrow); // Îªedge1ÉèÖÃÒ»¸ö¼ıÍ·
-		// ½«edge¼ÓÈëcell¼¯ºÏÀà
+		GraphConstants.setLineEnd(edge2.getAttributes(), arrow); // ä¸ºedge1è®¾ç½®ä¸€ä¸ªç®­å¤´
+		// å°†edgeåŠ å…¥cellé›†åˆç±»
 		cells.add(edge2);
 
 		return cells;
 	}
 
-	// ¼ÆËã¹öÂÖÊı×Ö
+	// è®¡ç®—æ»šè½®æ•°å­—
 	private double updatePreferredSize(int wheelRotation, Point stablePoint) {
 		double scaleFactor = findScaleFactor(wheelRotation);
 		return scaleFactor;
 	}
 
-	// ¼ÆËãËõ·ÅµÄ²ÎÊı
+	// è®¡ç®—ç¼©æ”¾çš„å‚æ•°
 	private double findScaleFactor(int wheelRotation) {
 		double d = wheelRotation * 0.1;
 		// return (d > 0) ? 1/d : -d;
 		return d;
 	}
 
-//	// »ñÈ¡jobÁĞ±í¼°ÆäÎ»ÖÃ v2.0Ö®Ç°
+//	// è·å–jobåˆ—è¡¨åŠå…¶ä½ç½® v2.0ä¹‹å‰
 //	public ArrayList<Job> getJobLocationsList(int jbtype_in, String jobname, String filename) {
 //		ArrayList<Job> cells = new ArrayList<Job>();
 //		DBconnect dbconn = new DBconnect();
@@ -478,8 +478,8 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 //			}
 //			// GraphConstants.setBounds(cells.get(0).getAttributes(),new
 //			// Rectangle2D.Double(20, jobLocationList.get(0).y/2, 35,
-//			// 20));//x,y,³¤,¿í
-//			GraphConstants.setBounds(cells.get(0).getAttributes(), new Rectangle2D.Double(20, (minY + maxY) / 2, 35, 20));// x,y,³¤,¿í
+//			// 20));//x,y,é•¿,å®½
+//			GraphConstants.setBounds(cells.get(0).getAttributes(), new Rectangle2D.Double(20, (minY + maxY) / 2, 35, 20));// x,y,é•¿,å®½
 //			// GraphConstants.setLineStyle(cells.get(0).getAttributes(),1);
 //		} else {
 //			cells.add(new Job("null", 1, "blankjob"));
@@ -496,7 +496,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 //			JobLocation jb = jobLocationList.get(i);
 //			Job jCell = new Job(jb.jobname, jobLocationList.get(i).isvalid, jobLocationList.get(i).jobtype);
 //			cells.add(jCell);
-//			GraphConstants.setBounds(jCell.getAttributes(), new Rectangle2D.Double(jb.x, jb.y, jb.jobname.length() * 7, 16)); // ¿ªÊ¼×ø±êxy,¿í¸ß
+//			GraphConstants.setBounds(jCell.getAttributes(), new Rectangle2D.Double(jb.x, jb.y, jb.jobname.length() * 7, 16)); // å¼€å§‹åæ ‡xy,å®½é«˜
 //			// System.out.printf(jb.jobname);//+": x = " +
 //			// this.getCellBounds(cells.get(i)).getX());
 //			// logger.info("y = " +
@@ -508,7 +508,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 //			// Point2D.Double(jb.x*3-200, jb.y/2));
 //			GraphConstants.setAutoSize(jCell.getAttributes(), true);
 //			GraphConstants.setFont(jCell.getAttributes(), new Font("Default Sans Serif", 0, 10));
-//			if (jb.jobtype.equals("TAB")) {// ÉèÖÃÑªÔµ·ÖÎöÖÕµãÑÕÉ« fn.contains(jb.jobname)
+//			if (jb.jobtype.equals("TAB")) {// è®¾ç½®è¡€ç¼˜åˆ†æç»ˆç‚¹é¢œè‰² fn.contains(jb.jobname)
 //				// jb.jobname.equalsIgnoreCase(filename)
 //				files.add(jCell);
 //				GraphConstants.setBackground(jCell.getAttributes(), Color.ORANGE);
@@ -529,12 +529,12 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 //		return cells;
 //	}
 
-	// »ñÈ¡jobÁĞ±í¼°ÆäÎ»ÖÃ v2.1\2.2
+	// è·å–jobåˆ—è¡¨åŠå…¶ä½ç½® v2.1\2.2
 	public ArrayList<Job> getJobLocationsList2_1(User user, int jbtype_in, int sourceOrTarget, String jobname) {
 		ArrayList<Job> cells = new ArrayList<Job>();
 		List<JobLocation> jobLocationList = DBUnit.getJobLocationList3_0(user, jbtype_in, sourceOrTarget, jobname);
 		if (jobLocationList.size() <= 0) {
-			// ·µ»ØÎª¿ÕÊ±
+			// è¿”å›ä¸ºç©ºæ—¶
 			Job nullJob = new Job(20, 10, "null", 1, "blankjob");
 			cells.add(nullJob);
 			// GraphConstants.setBounds(nullJob.getAttributes(), new
@@ -553,20 +553,20 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 					maxY = jobLocationList.get(i).y;
 				i++;
 			}
-			// ´´½¨ÆğÊ¼½Úµã
+			// åˆ›å»ºèµ·å§‹èŠ‚ç‚¹
 			Job job0 = new Job(20.0, (minY + maxY) / 2, "start", 1, "blankjob");
 			cells.add(job0);
-			// ÉèÖÃ"start"½ÚµãµÄÊôĞÔ
-			GraphConstants.setBackground(job0.getAttributes(), Color.GRAY); // ÑÕÉ«
-			GraphConstants.setOpaque(job0.getAttributes(), true); // ²»Í¸Ã÷
-			GraphConstants.setAbsolute(job0.getAttributes(), true); // ¿É±ä´óĞ¡?
+			// è®¾ç½®"start"èŠ‚ç‚¹çš„å±æ€§
+			GraphConstants.setBackground(job0.getAttributes(), Color.GRAY); // é¢œè‰²
+			GraphConstants.setOpaque(job0.getAttributes(), true); // ä¸é€æ˜
+			GraphConstants.setAbsolute(job0.getAttributes(), true); // å¯å˜å¤§å°?
 			GraphConstants.setVerticalAlignment(job0.getAttributes(), 0);
 			// GraphConstants.setBounds(cells.get(0).getAttributes(),new
 			// Rectangle2D.Double(20, jobLocationList.get(0).y/2, 35,
-			// 20));//x,y,³¤,¿í
+			// 20));//x,y,é•¿,å®½
 			/*
 			 * GraphConstants.setBounds(job0.getAttributes(), new
-			 * Rectangle2D.Double(20, (minY + maxY) / 2, 35, 20));// x,y,³¤,¿í
+			 * Rectangle2D.Double(20, (minY + maxY) / 2, 35, 20));// x,y,é•¿,å®½
 			 * job0.setX(20.0); job0.setY((minY + maxY) / 2);
 			 */
 			// GraphConstants.setLineStyle(cells.get(0).getAttributes(),1);
@@ -583,7 +583,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			cells.add(jCell);
 			// GraphConstants.setBounds(jCell.getAttributes(), new
 			// Rectangle2D.Double(jb.x, jb.y, jb.jobname.length() * 7, 16)); //
-			// ¿ªÊ¼×ø±êxy,¿í¸ß
+			// å¼€å§‹åæ ‡xy,å®½é«˜
 			// logger.info(jb.jobname + " x = " +
 			// GraphConstants.getBounds(jCell.getAttributes()).getX());
 
@@ -592,14 +592,14 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			// GraphConstants.setAutoSize(jCell.getAttributes(), true);
 			// GraphConstants.setFont(jCell.getAttributes(), new
 			// Font("Default Sans Serif", 0, 10));
-			// ·Ö±ğÓÃCF1¡¢cBO1¼ÇÂ¼ ±í¡¢bountime
+			// åˆ†åˆ«ç”¨CF1ã€cBO1è®°å½• è¡¨ã€bountime
 			/*
 			 * if (jCell.jobtype.equals("TAB")) { files.add(jCell); } else if
 			 * (jCell.jobtype.equals("bojob")) { boruntimes.add(jCell); } //
-			 * ¼ÇÂ¼¹ıÊ±µÄ×÷ÒµºÍ±í if (jCell.isValid == 0) { outDatedJobs.add(jCell); }
+			 * è®°å½•è¿‡æ—¶çš„ä½œä¸šå’Œè¡¨ if (jCell.isValid == 0) { outDatedJobs.add(jCell); }
 			 */
-			// jCell.setColor();// ÑÕÉ«
-			// this.allCells.add(jCell);// È«²¿
+			// jCell.setColor();// é¢œè‰²
+			// this.allCells.add(jCell);// å…¨éƒ¨
 			// DefaultPort port0 = new DefaultPort();
 			// jCell.add(port0);
 			// GraphConstants.setOpaque(cells.get(j).getAttributes(), true);
@@ -608,7 +608,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		return cells;
 	}
 
-	// »ñÈ¡jobµÄÒÀÀµ¹ØÏµ
+	// è·å–jobçš„ä¾èµ–å…³ç³»
 	public ArrayList<JobEdge> getJobRelationsList(User user, ArrayList<Job> c1) {
 		ArrayList<JobEdge> c2 = new ArrayList<JobEdge>();
 		// List<JobRelation> jobInfoList = dbconn.getRelationList("","");
@@ -616,11 +616,11 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		if (jobInfoList.size() > 0)
 			for (int i = 0; i < jobInfoList.size(); i++) {
 				JobEdge edge1 = new JobEdge(jobInfoList.get(i).previous, jobInfoList.get(i).behind);
-				this.jobRelations.add(edge1); // È«²¿±ß·Å½øc2
+				this.jobRelations.add(edge1); // å…¨éƒ¨è¾¹æ”¾è¿›c2
 				for (int j = 0; j < c1.size(); j++) {
 					int f = 0;
 					Job jCell = c1.get(j);
-					// ËÑË÷±ßµÄÔ´
+					// æœç´¢è¾¹çš„æº
 					if (jobInfoList.get(i).previous.equals(jCell.toString())) {
 						edge1.setSource(jCell.getChildAt(0));
 						if (jCell.isValid == 0) {
@@ -629,7 +629,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 						}
 						f++;
 					}
-					// ËÑË÷±ßµÄÄ¿±ê
+					// æœç´¢è¾¹çš„ç›®æ ‡
 					if (jobInfoList.get(i).behind.equals(jCell.toString())) {
 						edge1.setTarget(jCell.getChildAt(0));
 						if (jCell.isValid == 0) {
@@ -637,7 +637,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 							GraphConstants.setLineColor(edge1.getAttributes(), Color.lightGray);
 						}
 						if (jCell.getJobtype().equals("TAB")) {
-							this.filesEdgs.add(edge1); // Ö¸ÏòfileµÄ±ß
+							this.filesEdgs.add(edge1); // æŒ‡å‘fileçš„è¾¹
 						} else if (jCell.getJobtype().equals("bojob")) {
 							this.boruntimesEdgs.add(edge1);
 						}
@@ -646,17 +646,17 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 					if (f == 2)
 						break;
 				}
-				// ÎªedgeÉèÖÃÒ»¸ö¼ıÍ·
+				// ä¸ºedgeè®¾ç½®ä¸€ä¸ªç®­å¤´
 				GraphConstants.setLineEnd(edge1.getAttributes(), GraphConstants.ARROW_CLASSIC);
 				// GraphConstants.setEndFill(edge1.getAttributes(), true); //
-				// Ìî³ä¼ıÍ·
+				// å¡«å……ç®­å¤´
 				c2.add(edge1);
 			}
 
 		return c2;
 	}
 
-	// ÊÇ·ñÏÔÊ¾Î¬±í/ÊÂÊµ±í
+	// æ˜¯å¦æ˜¾ç¤ºç»´è¡¨/äº‹å®è¡¨
 	public void setTabVisible(boolean b) {
 		if (b == false)
 			this.getGraphLayoutCache().setVisible(this.files.toArray(), false);
@@ -664,23 +664,23 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			this.getGraphLayoutCache().setVisible(this.files.toArray(), true);
 
 		/*
-		 * ÂäºóµÄ°ì·¨£¬ÒÑÆúÓÃ if(b==false){
+		 * è½åçš„åŠæ³•ï¼Œå·²å¼ƒç”¨ if(b==false){
 		 * //this.getModel().remove(tabCells.toArray());/
 		 * /this.getDescendants(tabCells.toArray())
 		 * //this.getModel().remove(listEdges.toArray(new
 		 * Object[listEdges.size()]));
 		 * this.getModel().remove(this.getDescendants(cF1.toArray())); //
-		 * µÃµ½Ö¸¶¨±ßµÄÄ¿±ê //logger.info("===" +
+		 * å¾—åˆ°æŒ‡å®šè¾¹çš„ç›®æ ‡ //logger.info("===" +
 		 * getModel().getParent(getModel().getTarget(cF2.get(1))));
 		 * this.getModel().remove(cF2.toArray()); }else{ Iterator<JobEdge> it =
 		 * cF2.iterator(); while(it.hasNext()){ JobEdge jEdge =
-		 * (JobEdge)it.next(); //Ö¸¶¨Ô´ for(int i=0;i<c1.size();i++){ JobGraphCell
+		 * (JobEdge)it.next(); //æŒ‡å®šæº for(int i=0;i<c1.size();i++){ JobGraphCell
 		 * jCell = c1.get(i); if(jEdge.getPrevious().equals(jCell.toString()))
-		 * jEdge.setSource(jCell.getChildAt(0)); } //Ö¸¶¨Ä¿±ê for(int
+		 * jEdge.setSource(jCell.getChildAt(0)); } //æŒ‡å®šç›®æ ‡ for(int
 		 * i=0;i<cF1.size();i++){ JobGraphCell jCell = cF1.get(i); if
 		 * (jEdge.getBehind().equals(jCell.toString())) { jCell.add(new
 		 * DefaultPort()); //logger.info("jCell.getChildCount()=" +
-		 * jCell.getChildCount()); ÓĞ¶àÓàµÄport
+		 * jCell.getChildCount()); æœ‰å¤šä½™çš„port
 		 * jEdge.setTarget(jCell.getChildAt(0)); } } }
 		 * this.getGraphLayoutCache().insert(cF1.toArray());
 		 * this.getGraphLayoutCache().insert(cF2.toArray());
@@ -688,7 +688,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		 */
 	}
 
-	// ÊÇ·ñÏÔÊ¾boruntime
+	// æ˜¯å¦æ˜¾ç¤ºboruntime
 	public void setBOVisible(boolean selected) {
 		if (selected == false)
 			this.getGraphLayoutCache().setVisible(this.boruntimes.toArray(), false);
@@ -702,17 +702,17 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		 * //this.getModel().remove(listEdges.toArray(new
 		 * Object[listEdges.size()]));
 		 * this.getModel().remove(this.getDescendants(cBO1.toArray())); //
-		 * µÃµ½Ö¸¶¨±ßµÄÄ¿±ê //logger.info("===" +
+		 * å¾—åˆ°æŒ‡å®šè¾¹çš„ç›®æ ‡ //logger.info("===" +
 		 * getModel().getParent(getModel().getTarget(cF2.get(1))));
 		 * this.getModel().remove(cBO2.toArray()); }else{ Iterator<JobEdge> it =
 		 * cBO2.iterator(); while(it.hasNext()){ JobEdge jEdge =
-		 * (JobEdge)it.next(); //Ö¸¶¨Ô´ for(int i=0;i<c1.size();i++){ JobGraphCell
+		 * (JobEdge)it.next(); //æŒ‡å®šæº for(int i=0;i<c1.size();i++){ JobGraphCell
 		 * jCell = c1.get(i); if(jEdge.getPrevious().equals(jCell.toString()))
-		 * jEdge.setSource(jCell.getChildAt(0)); } //Ö¸¶¨Ä¿±ê for(int
+		 * jEdge.setSource(jCell.getChildAt(0)); } //æŒ‡å®šç›®æ ‡ for(int
 		 * i=0;i<cBO1.size();i++){ JobGraphCell jCell = cBO1.get(i); if
 		 * (jEdge.getBehind().equals(jCell.toString())) { jCell.add(new
 		 * DefaultPort()); //logger.info("jCell.getChildCount()=" +
-		 * jCell.getChildCount()); ÓĞ¶àÓàµÄport
+		 * jCell.getChildCount()); æœ‰å¤šä½™çš„port
 		 * jEdge.setTarget(jCell.getChildAt(0)); } } }
 		 * this.getGraphLayoutCache().insert(cBO1.toArray());
 		 * this.getGraphLayoutCache().insert(cBO2.toArray());
@@ -720,7 +720,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		 */
 	}
 
-	// ÊÇ·ñÏÔÊ¾¹ıÊ±µÄJob
+	// æ˜¯å¦æ˜¾ç¤ºè¿‡æ—¶çš„Job
 	public void setOutDatedVisible(boolean b) {
 		if (b == false)
 			this.getGraphLayoutCache().setVisible(this.outDatedJobs.toArray(), false);
@@ -728,7 +728,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			this.getGraphLayoutCache().setVisible(this.outDatedJobs.toArray(), true);
 	}
 
-	// ÖØĞÂ²¼¾Ö
+	// é‡æ–°å¸ƒå±€
 	public void rLayout(int arg) {
 		JGraphFacade facade = new JGraphFacade(this); // Pass the facade the
 														// JGraph instance
@@ -742,12 +742,12 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		// JGraphFastOrganicLayout();
 		case 1:
 			layout = new JGraphFastOrganicLayout();
-			break; // ¿ìËÙ
+			break; // å¿«é€Ÿ
 		case 2:
 			jol = new JGraphOrganicLayout();
 			jol.setApproxNodeDimensions(true);
 			layout = jol;
-			break; // ÓĞ»ú
+			break; // æœ‰æœº
 		case 3:
 			treeLayout = new JGraphTreeLayout();
 			treeLayout.setAlignment(SwingConstants.BOTTOM);
@@ -755,18 +755,18 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			treeLayout.setNodeDistance(2);
 			// treeLayout.setRouteTreeEdges(true);
 			layout = treeLayout;
-			break; // Ê÷ĞÎ²¼¾Ö
+			break; // æ ‘å½¢å¸ƒå±€
 		case 4:
 			layout = new JGraphRadialTreeLayout();
-			break; // ·ÅÉä²¼¾Ö
+			break; // æ”¾å°„å¸ƒå±€
 		case 5:
 			jctl = new JGraphCompactTreeLayout();
 			jctl.setPositionMultipleTrees(true);
 			layout = jctl;
-			break; // ¼ò½àÊ÷ĞÎ
+			break; // ç®€æ´æ ‘å½¢
 		case 6:
 			layout = new JGraphHierarchicalLayout();
-			break; // ÇúÏß
+			break; // æ›²çº¿
 		}
 		layout.run(facade); // Run the layout on the facade. Note that layouts
 							// do not implement the Runnable interface, to avoid
@@ -781,7 +781,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 													// actual graph
 	}
 
-	// Ä¬ÈÏ²¼¾Ö
+	// é»˜è®¤å¸ƒå±€
 	public void defaultLayout() {
 		for (int i = 0; i < jobs.size(); i++) {
 			Job jb = jobs.get(i);
@@ -792,10 +792,10 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		// this.setSize(1500, 3000);
 		// GraphConstants.setBounds(jCell.getAttributes(),new
 		// Rectangle2D.Double(jb.x, jb.y, jb.jobname.length()*7, 16)); //
-		// ¿ªÊ¼×ø±êxy,¿í¸ß
+		// å¼€å§‹åæ ‡xy,å®½é«˜
 	}
 
-	// ÒÑÆúÓÃ
+	// å·²å¼ƒç”¨
 	/*
 	 * public ArrayList<DefaultGraphCell> getCellsList(String jobname,String
 	 * filename) { ArrayList<DefaultGraphCell> cells = new
@@ -808,40 +808,40 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 	 * GraphConstants.setBounds(cells.get(0).getAttributes(),new
 	 * Rectangle2D.Double(20, jobInfoList.get(0).y/2, 35, 20));
 	 * GraphConstants.setGradientColor
-	 * (cells.get(0).getAttributes(),Color.orange);//ÉèÖÃÑÕÉ«
-	 * GraphConstants.setOpaque(cells.get(0).getAttributes(), true);//ÉèÖÃÍ¸Ã÷¶È
+	 * (cells.get(0).getAttributes(),Color.orange);//è®¾ç½®é¢œè‰²
+	 * GraphConstants.setOpaque(cells.get(0).getAttributes(), true);//è®¾ç½®é€æ˜åº¦
 	 * cells.get(0).add(new DefaultPort());
 	 * 
 	 * for(int i=1,j=1; i<=jobInfoList.size(); i++){ JobRelation jb =
-	 * jobInfoList.get(i-1); if(jb.rn != 1) continue;//·Ç¶¥µãÍË³ö // ½¨Á¢ÄãµÄµÚÒ»¸övertex¶ÔÏó
+	 * jobInfoList.get(i-1); if(jb.rn != 1) continue;//éé¡¶ç‚¹é€€å‡º // å»ºç«‹ä½ çš„ç¬¬ä¸€ä¸ªvertexå¯¹è±¡
 	 * cells.add(new DefaultGraphCell(jb.behind)); GraphConstants.setBounds(
 	 * cells.get(j).getAttributes(), new
 	 * Rectangle2D.Double(jb.x+jb.pathlength*200, jb.y/2,
-	 * jb.behind.length()*6.5, 20)); // ¿ªÊ¼×ø±êxy,¿í¸ß // ÎªÕâ¸övertex¼ÓÈëÒ»¸öport
+	 * jb.behind.length()*6.5, 20)); // å¼€å§‹åæ ‡xy,å®½é«˜ // ä¸ºè¿™ä¸ªvertexåŠ å…¥ä¸€ä¸ªport
 	 * DefaultPort port0 = new DefaultPort(); cells.get(j).add(port0); j++; }
 	 * 
 	 * for(int i=1; i<=jobInfoList.size(); i++){ DefaultEdge edge1 = new
-	 * DefaultEdge(); //ËÑË÷±ßµÄÄ¿±ê for(int j=1; j<cells.size(); j++){
+	 * DefaultEdge(); //æœç´¢è¾¹çš„ç›®æ ‡ for(int j=1; j<cells.size(); j++){
 	 * if(jobInfoList.get(i-1).behind.equals(cells.get(j).toString()))
 	 * edge1.setTarget(cells.get(j).getChildAt(0));
 	 * if(jobInfoList.get(i-1).pathlength==1)
-	 * edge1.setSource(cells.get(0).getChildAt(0)); } //ËÑË÷±ßµÄÔ´ for(int j=1;
+	 * edge1.setSource(cells.get(0).getChildAt(0)); } //æœç´¢è¾¹çš„æº for(int j=1;
 	 * j<cells.size(); j++){
 	 * if(jobInfoList.get(i-1).previous.equals(cells.get(j).toString()))
-	 * edge1.setSource(cells.get(j).getChildAt(0)); } // ÎªedgeÉèÖÃÒ»¸ö¼ıÍ·
+	 * edge1.setSource(cells.get(j).getChildAt(0)); } // ä¸ºedgeè®¾ç½®ä¸€ä¸ªç®­å¤´
 	 * GraphConstants.setLineEnd(edge1.getAttributes(),
 	 * GraphConstants.ARROW_CLASSIC);
 	 * //GraphConstants.setLineBegin(edge1.getAttributes(),
 	 * GraphConstants.ARROW_CLASSIC);
-	 * GraphConstants.setEndFill(edge1.getAttributes(), true); // Ìî³ä¼ıÍ·
+	 * GraphConstants.setEndFill(edge1.getAttributes(), true); // å¡«å……ç®­å¤´
 	 * cells.add(edge1); }
 	 * 
 	 * return cells; }
 	 */
 
-	// ÏÔÊ¾³õÊ¼»¯µ÷¶È×´Ì¬1-job
+	// æ˜¾ç¤ºåˆå§‹åŒ–è°ƒåº¦çŠ¶æ€1-job
 	public ArrayList<Job> getScheduleJobLocationList(String scheduleType) {
-		// ArrayList<Job> cells = new ArrayList<Job>(); //´´½¨Jobs
+		// ArrayList<Job> cells = new ArrayList<Job>(); //åˆ›å»ºJobs
 		ArrayList<Job> jobs = DBUnit.initScheduleJobLocationList(scheduleType);
 		if (jobs.size() > 0) {
 			// /cells.add(new Job("start", jobs.get(0).isValid,
@@ -854,11 +854,11 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			GraphConstants.setBounds(jobs.get(0).getAttributes(), new Rectangle2D.Double(20, 10, 35, 20));
 		}
 		// GraphConstants.setBackground(cells.get(0).getAttributes(),
-		// Color.GRAY); // ±³¾°ÑÕÉ«
-		// GraphConstants.setOpaque(cells.get(0).getAttributes(), true); // ²»Í¸Ã÷
-		// GraphConstants.setAbsolute(cells.get(0).getAttributes(), true); //Î»ÖÃ?
+		// Color.GRAY); // èƒŒæ™¯é¢œè‰²
+		// GraphConstants.setOpaque(cells.get(0).getAttributes(), true); // ä¸é€æ˜
+		// GraphConstants.setAbsolute(cells.get(0).getAttributes(), true); //ä½ç½®?
 		// GraphConstants.setVerticalAlignment(cells.get(0).getAttributes(), 0);
-		// cells.get(0).add(new DefaultPort()); // ¼ÓÈëport
+		// cells.get(0).add(new DefaultPort()); // åŠ å…¥port
 		// c1.add(cells.get(0));
 		for (int i = 0; i < jobs.size(); i++) {
 			Job jb = jobs.get(i);
@@ -867,18 +867,18 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			// cells.add(jCell);
 			// GraphConstants.setBounds(jCell.getAttributes(), new
 			// Rectangle2D.Double(jb.x * 3 - 200, jb.y / 2, jb.jobname.length()
-			// * 7, 16)); // ¿ªÊ¼×ø±êxy,¿í¸ß
+			// * 7, 16)); // å¼€å§‹åæ ‡xy,å®½é«˜
 			if (jb.jobname.equals("end"))
 				endCell = jb;
 			GraphConstants.setBounds(jb.getAttributes(), new Rectangle2D.Double(jb.x, jb.y, jb.jobname.length() * 7, 16));
-			GraphConstants.setAutoSize(jb.getAttributes(), true); // ×Ô¶¯´óĞ¡
-			GraphConstants.setFont(jb.getAttributes(), new Font("Default Sans Serif", 0, 10)); // ×ÖÌå
+			GraphConstants.setAutoSize(jb.getAttributes(), true); // è‡ªåŠ¨å¤§å°
+			GraphConstants.setFont(jb.getAttributes(), new Font("Default Sans Serif", 0, 10)); // å­—ä½“
 			this.jobs.add(jb);
 			jb.add(new DefaultPort());
 			jb.jobstatus = jb.jobstatus;
-			GraphConstants.setOpaque(jb.getAttributes(), true); // ²»Í¸Ã÷
-			// ÉèÖÃÑÕÉ«-jobstatus: 1000-ÅÅ¶Ó(gray) 100-ready(white) 0-¿ªÊ¼(running/blue)
-			// 1-³É¹¦(green) 2-¾¯¸æ(yellow) 3-Ê§°Ü(red) 4-Ê§°ÜÌø¹ı(orange)
+			GraphConstants.setOpaque(jb.getAttributes(), true); // ä¸é€æ˜
+			// è®¾ç½®é¢œè‰²-jobstatus: 1000-æ’é˜Ÿ(gray) 100-ready(white) 0-å¼€å§‹(running/blue)
+			// 1-æˆåŠŸ(green) 2-è­¦å‘Š(yellow) 3-å¤±è´¥(red) 4-å¤±è´¥è·³è¿‡(orange)
 			switch (jb.jobstatus) {
 			case 1000:
 				GraphConstants.setBackground(jb.getAttributes(), Color.WHITE);
@@ -905,22 +905,22 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		return jobs;
 	}
 
-	// ³õÊ¼»¯µ÷¶È×´Ì¬2-ÒÀÀµ¹ØÏµ
+	// åˆå§‹åŒ–è°ƒåº¦çŠ¶æ€2-ä¾èµ–å…³ç³»
 	public List<JobEdge> getScheduleJobRelationsList(String scheduleType, ArrayList<Job> c1) {
 		List<JobEdge> jobEdges = DBUnit.initScheduleJobRelationList(scheduleType);
-		this.jobRelations.addAll(jobEdges); // È«²¿±ß·Å½øc2
+		this.jobRelations.addAll(jobEdges); // å…¨éƒ¨è¾¹æ”¾è¿›c2
 		if (jobEdges.size() > 0)
 			for (int i = 0; i < jobEdges.size(); i++) {
 				JobEdge edge1 = jobEdges.get(i);
 				for (int j = 0; j < c1.size(); j++) {
 					int f = 0;
 					Job jCell = c1.get(j);
-					// ËÑË÷±ßµÄÔ´
+					// æœç´¢è¾¹çš„æº
 					if (edge1.headJobName.equals(jCell.toString())) {
 						edge1.setSource(jCell.getChildAt(0));
 						f++;
 					}
-					// ËÑË÷±ßµÄÄ¿±ê
+					// æœç´¢è¾¹çš„ç›®æ ‡
 					if (edge1.tailJobName.equals(jCell.toString())) {
 						edge1.setTarget(jCell.getChildAt(0));
 						f++;
@@ -928,26 +928,26 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 					if (f == 2)
 						break;
 				}
-				// ÎªedgeÉèÖÃÒ»¸ö¼ıÍ·
+				// ä¸ºedgeè®¾ç½®ä¸€ä¸ªç®­å¤´
 				GraphConstants.setLineEnd(edge1.getAttributes(), GraphConstants.ARROW_CLASSIC);
 				// GraphConstants.setEndFill(edge1.getAttributes(), true); //
-				// Ìî³ä¼ıÍ·
+				// å¡«å……ç®­å¤´
 			}
 		return jobEdges;
 
 	}
 
-	//Ñ¡ÔñÈ«²¿
+	//é€‰æ‹©å…¨éƒ¨
 	public void selectAll() {
-		// µÃµ½ËùÓĞcells
+		// å¾—åˆ°æ‰€æœ‰cells
 		Object[] allCells = DefaultGraphModel.getAll(this.getModel());
 		this.setSelectionCells(allCells);
 		this.requestFocus();
 	}
 	
-	// Ñ¡Ôñ¸ú½Úµã
+	// é€‰æ‹©è·ŸèŠ‚ç‚¹
 	public void selectRoots(Job job) {
-		// µÃµ½ËùÓĞcells
+		// å¾—åˆ°æ‰€æœ‰cells
 		//Object[] allCells = DefaultGraphModel.getAll(this.getModel());
 		//Object[] roots = DefaultGraphModel.getRoots(this.getModel());
 		Job[] jobs = {job};
@@ -974,7 +974,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		this.requestFocus();
 	}
 	
-	// Ñ¡Ôñ×Ó½Úµã
+	// é€‰æ‹©å­èŠ‚ç‚¹
 	public void selectChildren(Job job) {
 		Job[] jobs = {job};
 		 Set<JobEdge> jobRelations = DefaultGraphModel.getEdges(model, jobs);
@@ -1001,16 +1001,16 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		
 	}
 
-	// ²éÕÒ
+	// æŸ¥æ‰¾
 	public boolean finder(String lookUp) {
 		// String lookUp = txtJobname.getText() + "," + txtFilename.getText();
 		// List<String> fs = Arrays.asList(lookUp.split(","));
 		int i = lookUp.indexOf(",");
 		lookUp = i <= 0 ? lookUp : lookUp.substring(0, i);
-		// µÃµ½ËùÓĞcells
+		// å¾—åˆ°æ‰€æœ‰cells
 		Object[] allCells = DefaultGraphModel.getAll(this.getModel());
 		ArrayList<Object> selectionCells = new ArrayList<Object>();
-		int fed = 0;// Ñ°ÕÒ´ÎÊı,ÕÒµ½×îºóÒ»¸öÊ±Îª1
+		int fed = 0;// å¯»æ‰¾æ¬¡æ•°,æ‰¾åˆ°æœ€åä¸€ä¸ªæ—¶ä¸º1
 		for (fi = fi >= allCells.length ? 0 : fi; fed == 0 || fi < allCells.length; fi++) {
 			if (allCells.length == 0){
 				break;
@@ -1034,23 +1034,23 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		// logger.info("fi=" + fi + " allCells.length=" +
 		// allCells.length);
 		if (fi >= allCells.length)
-			return false; // Ã»ÓĞÕÒµ½,·µ»Øfalse
+			return false; // æ²¡æœ‰æ‰¾åˆ°,è¿”å›false
 		else {
 			// logger.info("11");
 			this.setSelectionCells(selectionCells.toArray());
 			// this.refresh();
 			// this.getGraphLayoutCache().reload();
 			this.requestFocus();
-			// this.jspane.setSize(1600, 1200); //jspane¸úËæ»¬¶¯
+			// this.jspane.setSize(1600, 1200); //jspaneè·Ÿéšæ»‘åŠ¨
 			// this.jspane.getHorizontalScrollBar().setValues(800, 600, 1600,
 			// 1200);
 			// this.setFocusTraversalKeysEnabled(true);
 			fi++;
-			return true; // ÕÒµ½Ôò·µ»Øtrue
+			return true; // æ‰¾åˆ°åˆ™è¿”å›true
 		}
 	}
 
-	// ±£´æ±àÅÅºÃµÄ×÷Òµ
+	// ä¿å­˜ç¼–æ’å¥½çš„ä½œä¸š
 	public void saveAllJobs(String scheduleType) {
 		logger.info("save all jobs");
 		Object[] allCells = DefaultGraphModel.getAll(getModel());
@@ -1096,7 +1096,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 	@Override
 	public void keyTyped(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_T)
-			logger.info("ÎÒÊÇhome");
+			logger.info("æˆ‘æ˜¯home");
 	}
 
 	@Override
@@ -1108,7 +1108,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		}
 		contorl = 1;
 		if (e.getKeyCode() == KeyEvent.VK_DELETE) {
-			Object[] cells = this.getSelectionCells();// ¼ÇÂ¼Ñ¡ÔñµÄcell
+			Object[] cells = this.getSelectionCells();// è®°å½•é€‰æ‹©çš„cell
 			List<Object> listEdges = new ArrayList<Object>();
 			if (e.isShiftDown()) {
 				for (int c = 0; c < cells.length; c++) {
@@ -1124,7 +1124,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 					}
 				}
 			}
-			// ´Ó´æ´¢ÁĞ±íÖĞÉ¾³ı
+			// ä»å­˜å‚¨åˆ—è¡¨ä¸­åˆ é™¤
 			this.jobs.removeAll(Arrays.asList(cells));
 			this.files.removeAll(Arrays.asList(cells));
 			this.boruntimes.removeAll(Arrays.asList(cells));
@@ -1132,7 +1132,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			this.jobRelations.removeAll(listEdges);
 			this.filesEdgs.removeAll(listEdges);
 			this.boruntimesEdgs.removeAll(listEdges);
-			// ´ÓgraphÖĞÒÆ³ı
+			// ä»graphä¸­ç§»é™¤
 			this.getModel().remove(this.getDescendants(listEdges.toArray()));
 		}
 		
@@ -1150,7 +1150,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			} catch (javax.swing.undo.CannotUndoException e1) {
 				WriteLog.writeFile("DsignerGraph.undoManager:" + e1.getMessage());
 			}
-			// 1.ÏÔÊ¾bo¡¢TAB 2.Ë¢ĞÂc1~cb2; 3.ÏÔÊ¾bo tab?
+			// 1.æ˜¾ç¤ºboã€TAB 2.åˆ·æ–°c1~cb2; 3.æ˜¾ç¤ºbo tab?
 			/*
 			 * Object[] allCells = DefaultGraphModel.getAll(this.getModel());
 			 * this.setTabVisible(true); this.setBOVisible(true);
@@ -1160,7 +1160,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			 * if(allCells[0].getClass()==JobGraphCell.class ){ JobGraphCell
 			 * jobCell= (JobGraphCell)allCells[0];
 			 * if(jobCell.getJobtype().equals("bojob")){
-			 * cBO1.add(jobCell);//bojobÀà }else
+			 * cBO1.add(jobCell);//bojobç±» }else
 			 * if(jobCell.getJobtype().equals("TAB")){ cF1.add(jobCell);//TAB
 			 * }else{ c1.add(jobCell);//dsjob } } }
 			 * if(allCells[0].getClass()==JobEdge.class){ JobEdge jobEdge =
@@ -1168,7 +1168,7 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 			 * (JobGraphCell)getModel
 			 * ().getParent(getModel().getTarget(jobEdge));
 			 * if(jobCell.getJobtype().equals("bojob")){
-			 * cBO2.add(jobEdge);//bojobÀà }else
+			 * cBO2.add(jobEdge);//bojobç±» }else
 			 * if(jobCell.getJobtype().equals("TAB")){ cF2.add(jobEdge);//TAB
 			 * }else{ c2.add(jobEdge);//dsjob } }
 			 */
@@ -1187,12 +1187,12 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		Object cell = this.getFirstCellForLocation(x, y);
 		if (e.getButton() == MouseEvent.BUTTON3 && cell != null && cell.getClass() == Job.class) {
 			String lab = this.convertValueToString(cell);
-			PopupMenu cellMenu = new PopupMenu("lab"); // ÓÒ¼ü²Ëµ¥
+			PopupMenu cellMenu = new PopupMenu("lab"); // å³é”®èœå•
 			this.initCellMenu(cellMenu, lab, (Job) cell, this);
 			this.add(cellMenu);
 			cellMenu.show(this, x, y);
 		} else if (e.getButton() == MouseEvent.BUTTON3 && cell == null) {
-			PopupMenu scheduleMenu = new PopupMenu("schedule"); // ÓÒ¼ü²Ëµ¥
+			PopupMenu scheduleMenu = new PopupMenu("schedule"); // å³é”®èœå•
 			this.initScheduleMenu(scheduleMenu, this);
 			this.add(scheduleMenu);
 			scheduleMenu.show(this, x, y);
@@ -1202,9 +1202,9 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		}
 	}
 
-	// ÏìÓ¦Êó±êË«»÷,Ë«»÷²é¿´ÊäÈëÊäÈë
+	// å“åº”é¼ æ ‡åŒå‡»,åŒå‡»æŸ¥çœ‹è¾“å…¥è¾“å…¥
 	public void doubleClickAction(Object cell, String jobtype) {
-		// logger.info("²é¿´ÊäÈëÊä³ö");
+		// logger.info("æŸ¥çœ‹è¾“å…¥è¾“å‡º");
 		DetailFrame detailFrame = new DetailFrame(this.convertValueToString(cell), jobtype);
 		detailFrame.setLocationRelativeTo(backgroundComponent);// backgroundComponent
 		detailFrame.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -1221,21 +1221,21 @@ public class DesignerGraph extends JGraph implements KeyListener, MouseListener,
 		 * (cell != null) { if (cell.getClass() == JobGraphCell.class &&
 		 * this.convertValueToString(cell) != "start") {
 		 * GraphConstants.setGradientColor(((JobGraphCell)
-		 * cell).getAttributes(), Color.WHITE);// ÉèÖÃÑÕÉ«
+		 * cell).getAttributes(), Color.WHITE);// è®¾ç½®é¢œè‰²
 		 * GraphConstants.setOpaque(((JobGraphCell) cell).getAttributes(),
-		 * false);// ÉèÖÃÍ¸Ã÷¶È // graph.refresh(); //
+		 * false);// è®¾ç½®é€æ˜åº¦ // graph.refresh(); //
 		 * GraphConstants.setAutoSize(((DefaultGraphCell) //
 		 * cell).getAttributes(), true); if (((JobGraphCell)
 		 * cell).getJobtype().equals("TAB")) {
 		 * GraphConstants.setGradientColor(((JobGraphCell)
-		 * cell).getAttributes(), Color.ORANGE);// ÉèÖÃÑÕÉ«
+		 * cell).getAttributes(), Color.ORANGE);// è®¾ç½®é¢œè‰²
 		 * GraphConstants.setOpaque(((JobGraphCell) cell).getAttributes(),
-		 * true);// ÉèÖÃÍ¸Ã÷¶È } if (((JobGraphCell)
+		 * true);// è®¾ç½®é€æ˜åº¦ } if (((JobGraphCell)
 		 * cell).getJobtype().equals("bojob")) {
 		 * GraphConstants.setGradientColor(((JobGraphCell)
-		 * cell).getAttributes(), Color.CYAN);// ÉèÖÃÑÕÉ«
+		 * cell).getAttributes(), Color.CYAN);// è®¾ç½®é¢œè‰²
 		 * GraphConstants.setOpaque(((JobGraphCell) cell).getAttributes(),
-		 * true);// ÉèÖÃÍ¸Ã÷¶È } this.getGraphLayoutCache().reload(); } } } else if
+		 * true);// è®¾ç½®é€æ˜åº¦ } this.getGraphLayoutCache().reload(); } } } else if
 		 * (e.getClickCount() == 1) { Object cell =
 		 * this.getFirstCellForLocation(x, y); if (cell!=null && cell.getClass()
 		 * == JobEdge.class) {

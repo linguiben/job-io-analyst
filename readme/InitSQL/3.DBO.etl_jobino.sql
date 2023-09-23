@@ -1,8 +1,8 @@
 /*
- *´´½¨
+ *åˆ›å»º
  */
 
---´´½¨±í
+--åˆ›å»ºè¡¨
 CREATE TABLE DBO.ETL_JOBINO(
 	ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY
 	,STYPE VARCHAR(20)
@@ -31,15 +31,15 @@ create index dbo.IDX1_ETL_JOBINO on dbo.ETL_JOBINO(STYPE,REMARK,ISVALID,JOBNAME,
 create index dbo.IDX2_ETL_JOBINO on dbo.ETL_JOBINO(STYPE,ISVALID,INO,JOBNAME,SND,SCHEMA,INOFILE)allow reverse scans;
 reorg table dbo.etl_jobino;
 CALL SYSPROC.ADMIN_CMD('runstats on table DBO.ETL_JOBINO with distribution and detailed indexes all');
-/*Ô¼Êø
+/*çº¦æŸ
 ALTER TABLE DBO.ETL_JOBINO ADD CONSTRAINT CHECK_INO CHECK (INO IN('in','out')) ENABLE QUERY OPTIMIZATION;
 ALTER TABLE DBO.ETL_JOBINO ADD CONSTRAINT CHECK_JOBTYPE CHECK (JOBTYPE IN('bojob','ds_sequence','ds_server','ds_sp','dsjob','shell','shell_sp','unv')) ENABLE QUERY OPTIMIZATION;
---¸üĞÂÓĞĞ§±ê¼Ç
+--æ›´æ–°æœ‰æ•ˆæ ‡è®°
 update dbo.etl_jobino a set ISVALID = 1 where exists (select 1 from dbo.etl_job b where a.seqjobname = b.jobname);
 update dbo.etl_jobino a set ISVALID = 1 where exists (select 1 from dbo.etl_job b where a.jobname = b.jobname);
 */
---´¥·¢Æ÷
---1.¸üĞÂ´¥·¢Æ÷
+--è§¦å‘å™¨
+--1.æ›´æ–°è§¦å‘å™¨
 CREATE TRIGGER DBO.TRI_JOBINO_UPDATE
 AFTER UPDATE OF STYPE,JOBNAME,JOBTYPE,INO,SND,INOFILE,SRSNAME,REMARK,ISVALID,JOBLOCATE,BO_REPORTFOLDER,RMS_REPORTCODE,RMS_REPORTNAME ON DBO.ETL_JOBINO
 REFERENCING NEW AS N
@@ -52,25 +52,25 @@ BEGIN ATOMIC
 
 END;
 
---±í×´Ì¬
+--è¡¨çŠ¶æ€
 SELECT TABNAME,STATUS,ACCESS_MODE,CHECKCOUNT,SUBSTR(CONST_CHECKED,2,1) AS CONST_CHECKED FROM SYSCAT.TABLES WHERE TABNAME='ETL_JOBINO'
---±íÔ¼Êø
+--è¡¨çº¦æŸ
 SELECT TABNAME,CONSTNAME FROM SYSCAT.CHECKS WHERE TABNAME='ETL_JOBINO'
 
---±íÎªÈ«·ÃÎÊ
+--è¡¨ä¸ºå…¨è®¿é—®
 SET INTEGRITY FOR DBO.ETL_JOBINO ALL IMMEDIATE UNCHECKED;
---±íÖ»¶Á
+--è¡¨åªè¯»
 SET INTEGRITY FOR DBO.ETL_JOBINO OFF READ ACCESS;
 
 /*
- *Jupiter.Lin 20171227 Î¬»¤²½Öè
+ *Jupiter.Lin 20171227 ç»´æŠ¤æ­¥éª¤
  */
---1¡¢Êı¾İ¿â×¼±¸
-create table dbo.etl_jobino_20181030 like dbo.etl_jobino in dwspace index in dwidxspace; /*»á¶ªÊ§GENERATED ALWAYS AS IDENTITY*/
+--1ã€æ•°æ®åº“å‡†å¤‡
+create table dbo.etl_jobino_20181030 like dbo.etl_jobino in dwspace index in dwidxspace; /*ä¼šä¸¢å¤±GENERATED ALWAYS AS IDENTITY*/
 alter table dbo.etl_jobino_20181030 alter column ID drop not null;
 db2 reorg table DBO.ETL_JOBINO_20181030;
---2¡¢ÕûÀíxls
-	--Ôö¼Ó4ÁĞ£ºSTYPE	ISVALID	JOBTYPE	REMARK (Ä¬ÈÏÖµ:bus	1	dsjob)
+--2ã€æ•´ç†xls
+	--å¢åŠ 4åˆ—ï¼šSTYPE	ISVALID	JOBTYPE	REMARK (é»˜è®¤å€¼:bus	1	dsjob)
     --=""&A2&","&I2&","&J2&","&K2&","&L2&","&M2&","&N2&","&O2&","&P2&","&Q2&","&R2&""
 /*fin*/
 db2 connect to dwmot3 user db2inst1 using password
@@ -81,16 +81,16 @@ cd D:\jupiter\workplace\012.dsjob_analysis\1.business\2.analysis\bus_20181030
 db2 "import from InOutMap_bus_20181030.csv of del insert into dbo.etl_jobino_20181030(JOBLOCATE,SEQJOBNAME,JOBNAME,INO,SND,SCHEMA,INOFILE,STYPE,ISVALID,JOBTYPE,REMARK)"
 update dbo.ETL_JOBINO_tmp set STYPE = 'bus' where STYPE = 'bus_20200511';
 update dbo.ETL_JOBINO_tmp set STYPE = 'fin' where STYPE = 'fin_20200511';
---3¡¢²¹³äboruntimeµÈ:
+--3ã€è¡¥å……boruntimeç­‰:
 insert into dbo.ETL_JOBINO_tmp(STYPE,SEQJOBNAME,JOBNAME,JOBTYPE,INO,SND,SCHEMA,INOFILE,JOBLOCATE,SRSNAME,REMARK,ISVALID,INSERTDATE,BO_REPORTFOLDER,RMS_REPORTCODE,RMS_REPORTNAME)
 select STYPE,SEQJOBNAME,JOBNAME,JOBTYPE,INO,SND,SCHEMA,INOFILE,JOBLOCATE,SRSNAME,REMARK,ISVALID,INSERTDATE,BO_REPORTFOLDER,RMS_REPORTCODE,RMS_REPORTNAME 
 from dbo.ETL_JOBINO_20180403 a 
 where not exists(select 1 from dbo.ETL_JOBINO_tmp b where a.jobname = b.jobname)
 and a.stype = 'bus'
 and a.jobname not like 'CopyOfjb%'
-and a.jobname not like '¸±±¾%';
+and a.jobname not like 'å‰¯æœ¬%';
 select * from DBO.etl_jobino_tmp;
---3.1¡¢inofile¸üĞÂÎª´óĞ´
+--3.1ã€inofileæ›´æ–°ä¸ºå¤§å†™
 update(
 select * from dbo.etl_jobino_tmp 
 where stype = 'bus'
@@ -101,9 +101,9 @@ and inofile not like 'hf%'
 and inofile not like '%#%' 
 and schema not like '%path'
 )set INOFILE = upper(INOFILE);
---3.2¡¢update JOBLOCATE
+--3.2ã€update JOBLOCATE
 update dbo.etl_jobino_tmp a set JOBLOCATE =(select CATEGORY from dsxml_Jobinfo b where a.jobname = b.jobname and a.stype = b.STYPE);
---4¡¢--isvalid -> 0
+--4ã€--isvalid -> 0
          --select * from dbo.etl_jobino_tmp a where exists(select 1 from dbo.etl_jobino b where a.jobname = b.jobname and b.isvalid = 0)and stype = 'bus';
 update dbo.etl_jobino_tmp a set ISVALID = 1;
 update(select * from dbo.etl_jobino_tmp a
@@ -116,29 +116,29 @@ and jobname not like 'pro%'
 and jobtype in('dsjob')
 and isvalid = 1)
 set ISVALID = 0;
---5¡¢--jobÊä³ö¡¢ÊäÈëÍ¬Ò»ÁÙÊ±±í(¶ÀÕ¼±í)
+--5ã€--jobè¾“å‡ºã€è¾“å…¥åŒä¸€ä¸´æ—¶è¡¨(ç‹¬å è¡¨)
 declare global temporary table session.temp1(jobname varchar(128),inofile varchar(50))not logged with replace on commit preserve rows;
 create index session.idx_temp1 on session.temp1(jobname,inofile)ALLOW REVERSE SCANS;
 insert into session.temp1 
 select jobname,inofile from dbo.etl_jobino_tmp where isvalid = 1 and (upper(inofile) like '%TEMP%' or inofile like '%TMP%')
 group by jobname,inofile having count(distinct ino) > 1;--select count(1) from session.temp1 
-update dbo.etl_jobino_tmp a --±ê¼Ç¶ÀÕ¼µÄ±í
+update dbo.etl_jobino_tmp a --æ ‡è®°ç‹¬å çš„è¡¨
 set remark = 'independence'
 where exists(select 1 from session.temp1 b where a.jobname = b.jobname and a.inofile = b.inofile)
 and ino = 'out';
---6¡¢--Í³Ò»schema
+--6ã€--ç»Ÿä¸€schema
 merge into dbo.etl_jobino_tmp a using dbo.etl_jobparamconfig b on a.schema = b.NAME and b.name like '%schema' 
 when matched and a.stype = 'bus' then update set a.schema = b.value;
 update dbo.etl_jobino_tmp set SCHEMA = lower(SCHEMA) where stype = 'bus';
 select distinct snd,schema from dbo.etl_jobino where stype = 'bus' and isvalid = 1
---6.1ÌØÊâ´¦Àí
+--6.1ç‰¹æ®Šå¤„ç†
 update(select * from dbo.etl_jobino where snd is null)set snd = '';
 delete from(select * from dbo.etl_jobino where jobname = 'jb_etl_circsubject_m_fact_5' and (inofile,ino)=('ECHDPF','out'));
 update(select * from dbo.etl_jobino where jobname = 'jb_dwn_vatxpf_to_vat_acct_20160824')set ISVALID = 0;
---ÈôËùÓĞÊäÈëÔ´isvalis=0,ÔòÎªisvalid
+--è‹¥æ‰€æœ‰è¾“å…¥æºisvalis=0,åˆ™ä¸ºisvalid
 --update(select * from dbo.etl_jobino where schema in('v_jb_dqx_schema'))set schema = 'citicdqx';
 --update(select * from dbo.etl_jobino where schema in('v_jb_etl_schema'))set schema = 'DBO';
---7¡¢¸üĞÂseqjobname
+--7ã€æ›´æ–°seqjobname
 merge into dbo.ETL_JOBINO_tmp t using(
 select b.*
 from dsxml_Jobinfo a,dsxml_StageInfo b 
@@ -147,16 +147,16 @@ and a.JOBTYPE = '2'
 and b.record = 'JSJobActivity' 
 and b.key = 'Name'
 and a.jobname = 'jbs_xzb_seq_all'
-and a.jobname not like '¸±±¾%' and a.jobname not like 'Copy%')s
+and a.jobname not like 'å‰¯æœ¬%' and a.jobname not like 'Copy%')s
 on t.stype = s.stype and t.jobname = s."VALUE" 
 when matched then update set t.SEQJOBNAME = s.JOBNAME;
---8¡¢¼ì²é
+--8ã€æ£€æŸ¥
 select * from dbo.etl_jobino_tmp where stype = 'bus' and jobtype = 'dsjob'
 select * from dbo.etl_jobino where stype = 'bus';
 select * from dbo.etl_jobino where schema in('citicdqx') and inofile = 'fidatatransresult'
 insert into dbo.etl_jobino(STYPE,SEQJOBNAME,JOBNAME,JOBTYPE,INO,SND,SCHEMA,INOFILE,JOBLOCATE,SRSNAME,REMARK,ISVALID,INSERTDATE,UPDATEDATE,BO_REPORTFOLDER,RMS_REPORTCODE,RMS_REPORTNAME)
 select STYPE,SEQJOBNAME,JOBNAME,JOBTYPE,INO,SND,SCHEMA,INOFILE,JOBLOCATE,SRSNAME,REMARK,ISVALID,INSERTDATE,UPDATEDATE,BO_REPORTFOLDER,RMS_REPORTCODE,RMS_REPORTNAME from dbo.etl_jobino_tmp;
-	--¶Ô±È¼ì²é
+	--å¯¹æ¯”æ£€æŸ¥
 select a.*,b.*,a.ca-b.cb cc from
 (select jobname,count(1) ca
 from dbo.etl_Jobino
@@ -169,7 +169,7 @@ where stype = 'bus_20190328'
 group by jobname)b
 where a.jobname = b.jobname and a.ca <> b.cb
 order by cc
---9¡¢±¸·İ+×Ü½á
+--9ã€å¤‡ä»½+æ€»ç»“
 drop table dbo.etl_jobino_bk20181031;
 create table dbo.etl_jobino_bk20181031 like dbo.etl_jobino in dwspace;
 insert into dbo.etl_jobino_bk20181031 select * from dbo.etL_jobino;
@@ -189,7 +189,7 @@ select * from dbo.etl_jobparamconfig where name like '%schema'
 select * from dbo.etl_jobino_bk20171227 where remark = 'independence'
 select distinct snd,schema from dbo.etl_jobino_bk20171227 where stype = 'business';
 select distinct snd,schema from dbo.etl_jobino where stype = 'business'
---upper(inofile),Ê¹¹ØÁªÉÏbojob
+--upper(inofile),ä½¿å…³è”ä¸Šbojob
 update(
 select * from dbo.etl_jobino a
 where schema not like '%path' or not schema like '%/%' or not schema like '%replocate'
@@ -198,15 +198,15 @@ set INOFILE = upper(INOFILE)
 
 
 /*
- *ĞŞ¸Ä
+ *ä¿®æ”¹
  */
  
-------ĞŞ¸ÄÈË£ºAchilles Liao
----ĞŞ¸ÄÈÕÆÚ£º2011-02-12
----ĞŞ¸ÄÄÚÈİ£ºÔö¼Ó×Ö¶ÎBO_REPORTFOLDER/RMS_REPORTCODE/RMS_REPORTNAME
+------ä¿®æ”¹äººï¼šAchilles Liao
+---ä¿®æ”¹æ—¥æœŸï¼š2011-02-12
+---ä¿®æ”¹å†…å®¹ï¼šå¢åŠ å­—æ®µBO_REPORTFOLDER/RMS_REPORTCODE/RMS_REPORTNAME
 --ALTER TABLE DBO.ETL_JOBINO  ADD COLUMN BO_REPORTFOLDER VARCHAR(20) ADD COLUMN RMS_REPORTCODE VARCHAR(10) ADD COLUMN RMS_REPORTNAME VARCHAR(200);
 
----ÖØ»ãÊı¾İ
+---é‡æ±‡æ•°æ®
 --1.BO_REPORTFOLDER
 merge into dbo.etl_jobino a
 using etl_jobino b
@@ -242,7 +242,7 @@ and a.jobtype='bojob' and a.ino='out' and a.snd='rms'
 when matched then
 update set a.rms_reportcode=b.rms_reportcode,a.rms_reportname=b.rms_reportname;
 
-update dbo.etl_jobino set rms_reportcode='09040081',rms_reportname='ĞÂµ¥²úÆ·²ÎÊı¼ì²é±¨±í' where id=7319;
+update dbo.etl_jobino set rms_reportcode='09040081',rms_reportname='æ–°å•äº§å“å‚æ•°æ£€æŸ¥æŠ¥è¡¨' where id=7319;
 
 merge into dbo.etl_jobino a
 using ino_tmp b
@@ -251,4 +251,4 @@ and a.jobtype='bojob' and a.ino='in'
 when matched then
 update set a.rms_reportcode=b.rms_reportcode,a.rms_reportname=b.rms_reportname;
 
-update dbo.etl_jobino set rms_reportcode='09040081',rms_reportname='ĞÂµ¥²úÆ·²ÎÊı¼ì²é±¨±í' where id=7320;
+update dbo.etl_jobino set rms_reportcode='09040081',rms_reportname='æ–°å•äº§å“å‚æ•°æ£€æŸ¥æŠ¥è¡¨' where id=7320;

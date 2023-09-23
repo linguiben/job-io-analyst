@@ -12,7 +12,7 @@ import com.jupiter.mybatis.po.User;
 * @Description:
 * @author: Jupiter.Lin
 * @version: V1.0 
-* @date: 2021Äê4ÔÂ15ÈÕ ÏÂÎç12:14:22
+* @date: 2021å¹´4æœˆ15æ—¥ ä¸‹åˆ12:14:22
 */
 @Controller("userController")
 public class UserController {
@@ -20,30 +20,30 @@ public class UserController {
     @Autowired
     private UserMapper userDao;
     public void test() {
-        // ²éÑ¯Ò»¸öÓÃ»§
+        // æŸ¥è¯¢ä¸€ä¸ªç”¨æˆ·
         User auser = userDao.selectUserById(1);
         System.out.println(auser);
         System.out.println("============================");
-        // Ìí¼ÓÒ»¸öÓÃ»§
+        // æ·»åŠ ä¸€ä¸ªç”¨æˆ·
         User addmu = new User();
-        addmu.setUsername("³Âºã");
-        addmu.setRemark("ÄĞ");
+        addmu.setUsername("é™ˆæ’");
+        addmu.setRemark("ç”·");
         int add = userDao.addUser(addmu);
-        System.out.println("Ìí¼ÓÁË" + add + "Ìõ¼ÇÂ¼");
+        System.out.println("æ·»åŠ äº†" + add + "æ¡è®°å½•");
         System.out.println("============================");
-        // ĞŞ¸ÄÒ»¸öÓÃ»§
+        // ä¿®æ”¹ä¸€ä¸ªç”¨æˆ·
         User updatemu = new User();
         updatemu.setId(1);
-        updatemu.setUsername("ÕÅÈı");
-        updatemu.setRemark("Å®");
+        updatemu.setUsername("å¼ ä¸‰");
+        updatemu.setRemark("å¥³");
         int up = userDao.updateUserById(updatemu);
-        System.out.println("ĞŞ¸ÄÁË" + up + "Ìõ¼ÇÂ¼");
+        System.out.println("ä¿®æ”¹äº†" + up + "æ¡è®°å½•");
         System.out.println("============================");
-        // É¾³ıÒ»¸öÓÃ»§
+        // åˆ é™¤ä¸€ä¸ªç”¨æˆ·
         int dl = userDao.deleteUserById(0);
-        System.out.println("É¾³ıÁË" + dl + "Ìõ¼ÇÂ¼");
+        System.out.println("åˆ é™¤äº†" + dl + "æ¡è®°å½•");
         System.out.println("============================");
-        // ²éÑ¯ËùÓĞÓÃ»§
+        // æŸ¥è¯¢æ‰€æœ‰ç”¨æˆ·
         List<User> list = userDao.selectAllUser();
         for (User User : list) {
             System.out.println(User);

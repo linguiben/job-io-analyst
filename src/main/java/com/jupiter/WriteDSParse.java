@@ -24,7 +24,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class WriteDSParse {
 
 	private static ComboPooledDataSource ds = new ComboPooledDataSource();
-	public SimpleDateFormat dfstr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");//ÉèÖÃÈÕÆÚ¸ñÊ½
+	public SimpleDateFormat dfstr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");//è®¾ç½®æ—¥æœŸæ ¼å¼
 
 	//0.Job
 	public static boolean writeJob(int JobID, String Identifier, String DateModified, String TimeModified) {
@@ -76,13 +76,13 @@ public class WriteDSParse {
 		return true;
 	}
 	
-	// 1.±£´æJobList
+	// 1.ä¿å­˜JobList
 	public static boolean writeJobs(ArrayList<Job> jobs) {
-		// 1.É¾³ı½«Òª²åÈëµÄÊı¾İ
+		// 1.åˆ é™¤å°†è¦æ’å…¥çš„æ•°æ®
 		//String sqlPre1 = "delete from dbo.parse_job ";
-		// 2.Éú³ÉjobPropertyµÄSQLÓï¾ä
+		// 2.ç”ŸæˆjobPropertyçš„SQLè¯­å¥
 		Job jb = jobs.get(0);
-		// µÚÒ»¶ÎÇ°ÃæÎŞĞè¶ººÅ
+		// ç¬¬ä¸€æ®µå‰é¢æ— éœ€é€—å·
 		String sql1 = "INSERT INTO DBO.PARSE_JOB" 
 			+ "(JobID,Identifier,DateModified,TimeModified)VALUES" 
 			+ "("+jb.getJobID()+",'"+jb.getIdentifier()+"','"+jb.getDateModified()+"','"+jb.getTimeModified()+"')\n";
@@ -92,32 +92,32 @@ public class WriteDSParse {
 		}
 		//com.WriteLog.writeFile(sqlPre1);
 		com.jupiter.WriteLog.writeFile(sql1);
-		// 3.Ö´ĞĞSQLÓï¾ä
+		// 3.æ‰§è¡ŒSQLè¯­å¥
 		try {
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 			try {
 				//stmt.executeUpdate(sqlPre1);
 				stmt.executeUpdate(sql1);
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "Ö´ĞĞSQL´íÎó", 0);
+				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 			}
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "´íÎó", 0);
+			WriteLog.writeFile("æœªçŸ¥é”™è¯¯,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "é”™è¯¯", 0);
 		}
 		return true;
 	}
 
-	// 2.±£´æRecordList
+	// 2.ä¿å­˜RecordList
 	public static boolean writeRecords(ArrayList<Record> records) {
-		// 1.É¾³ı½«Òª²åÈëµÄÊı¾İ
+		// 1.åˆ é™¤å°†è¦æ’å…¥çš„æ•°æ®
 		//String sqlPre1 = "delete from dbo.Parse_Record ";
-		// 2.Éú³ÉjobPropertyµÄSQLÓï¾ä
+		// 2.ç”ŸæˆjobPropertyçš„SQLè¯­å¥
 		Record rc = records.get(0);
-		// µÚÒ»¶ÎÇ°ÃæÎŞĞè¶ººÅ
+		// ç¬¬ä¸€æ®µå‰é¢æ— éœ€é€—å·
 		String sql1 = "INSERT INTO DBO.Parse_Record" 
 			+ "(JobID,RecordID,Readonly,Identifier,Type)VALUES" 
 			+ "("+rc.getJobID()+","+rc.getRecordID()+","+rc.getReadonly()+",'"+rc.getIdentifier()+"','"+rc.getType()+"')\n";
@@ -127,32 +127,32 @@ public class WriteDSParse {
 		}
 		//com.WriteLog.writeFile(sqlPre1);
 		com.jupiter.WriteLog.writeFile(sql1);
-		// 3.Ö´ĞĞSQLÓï¾ä
+		// 3.æ‰§è¡ŒSQLè¯­å¥
 		try {
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 			try {
 				//stmt.executeUpdate(sqlPre1);
 				stmt.executeUpdate(sql1);
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "Ö´ĞĞSQL´íÎó", 0);
+				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 			}
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "´íÎó", 0);
+			WriteLog.writeFile("æœªçŸ¥é”™è¯¯,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "é”™è¯¯", 0);
 		}
 		return true;
 	}
 	
-	// 3.±£´æPropertyList
+	// 3.ä¿å­˜PropertyList
 	public static boolean writePropertys(ArrayList<Property> propertys) {
-		// 1.É¾³ı½«Òª²åÈëµÄÊı¾İ
+		// 1.åˆ é™¤å°†è¦æ’å…¥çš„æ•°æ®
 		//String sqlPre1 = "delete from dbo.Parse_Property ";
-		// 2.Éú³ÉjobPropertyµÄSQLÓï¾ä
+		// 2.ç”ŸæˆjobPropertyçš„SQLè¯­å¥
 		Property pp = propertys.get(0);
-		// µÚÒ»¶ÎÇ°ÃæÎŞĞè¶ººÅ
+		// ç¬¬ä¸€æ®µå‰é¢æ— éœ€é€—å·
 		String sql1 = "INSERT INTO DBO.Parse_Property" 
 			+ "(JobID,RecordID,PropertyID,CollectionID,SubRecordID,SubPropertyID,Name,Value,PreFormatted)VALUES" 
 			+ "("+pp.getJobID()+","+pp.getRecordID()+","+pp.getPropertyID()+","+pp.getCollectionID()+","+pp.getSubRecordID()+","+pp.getSubPropertyID()+",'"+pp.getName()+"','"+pp.getValue()+"','"+pp.getPreFormatted()+"')\n";
@@ -162,32 +162,32 @@ public class WriteDSParse {
 		}
 		//com.WriteLog.writeFile(sqlPre1);
 		com.jupiter.WriteLog.writeFile(sql1);
-		// 3.Ö´ĞĞSQLÓï¾ä
+		// 3.æ‰§è¡ŒSQLè¯­å¥
 		try {
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 			try {
 				//stmt.executeUpdate(sqlPre1);
 				stmt.executeUpdate(sql1);
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "Ö´ĞĞSQL´íÎó", 0);
+				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 			}
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "´íÎó", 0);
+			WriteLog.writeFile("æœªçŸ¥é”™è¯¯,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "é”™è¯¯", 0);
 		}
 		return true;
 	}
 	
-	// 4.±£´æCollectionList
+	// 4.ä¿å­˜CollectionList
 	public static boolean writeCollections(ArrayList<Collection> collections) {
-		// 1.É¾³ı½«Òª²åÈëµÄÊı¾İ
+		// 1.åˆ é™¤å°†è¦æ’å…¥çš„æ•°æ®
 		//String sqlPre1 = "delete from dbo.Parse_Collection ";
-		// 2.Éú³ÉjobPropertyµÄSQLÓï¾ä
+		// 2.ç”ŸæˆjobPropertyçš„SQLè¯­å¥
 		Collection clt = collections.get(0);
-		// µÚÒ»¶ÎÇ°ÃæÎŞĞè¶ººÅ
+		// ç¬¬ä¸€æ®µå‰é¢æ— éœ€é€—å·
 		String sql1 = "INSERT INTO DBO.Parse_Collection" 
 			+ "(JobID,RecordID,CollectionID,Name,Type)VALUES" 
 			+ "("+clt.getJobID()+","+clt.getRecordID()+","+clt.getCollectionID()+",'"+clt.getName()+"','"+clt.getType()+"')\n";
@@ -197,32 +197,32 @@ public class WriteDSParse {
 		}
 		//com.WriteLog.writeFile(sqlPre1);
 		com.jupiter.WriteLog.writeFile(sql1);
-		// 3.Ö´ĞĞSQLÓï¾ä
+		// 3.æ‰§è¡ŒSQLè¯­å¥
 		try {
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 			try {
 				//stmt.executeUpdate(sqlPre1);
 				stmt.executeUpdate(sql1);
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "Ö´ĞĞSQL´íÎó", 0);
+				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 			}
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "´íÎó", 0);
+			WriteLog.writeFile("æœªçŸ¥é”™è¯¯,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "é”™è¯¯", 0);
 		}
 		return true;
 	}
 	
-	// 5.±£´æSubRecordList
+	// 5.ä¿å­˜SubRecordList
 	public static boolean writeSubRecords(ArrayList<SubRecord> subRecords) {
-		// 1.É¾³ı½«Òª²åÈëµÄÊı¾İ
+		// 1.åˆ é™¤å°†è¦æ’å…¥çš„æ•°æ®
 		//String sqlPre1 = "delete from dbo.Parse_SubRecord ";
-		// 2.Éú³ÉjobPropertyµÄSQLÓï¾ä
+		// 2.ç”ŸæˆjobPropertyçš„SQLè¯­å¥
 		SubRecord sr = subRecords.get(0);
-		// µÚÒ»¶ÎÇ°ÃæÎŞĞè¶ººÅ
+		// ç¬¬ä¸€æ®µå‰é¢æ— éœ€é€—å·
 		String sql1 = "INSERT INTO DBO.Parse_SubRecord" 
 			+ "(JobID,RecordID,CollectionID,SubRecordID)VALUES" 
 			+ "("+sr.getJobID()+","+sr.getRecordID()+","+sr.getCollectionID()+","+sr.getSubRecordID()+")\n";
@@ -232,21 +232,21 @@ public class WriteDSParse {
 		}
 		//com.WriteLog.writeFile(sqlPre1);
 		com.jupiter.WriteLog.writeFile(sql1);
-		// 3.Ö´ĞĞSQLÓï¾ä
+		// 3.æ‰§è¡ŒSQLè¯­å¥
 		try {
 			Connection conn = ds.getConnection();
-			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // ½â¾ö36001´íÎó
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY); // è§£å†³36001é”™è¯¯
 			try {
 				//stmt.executeUpdate(sqlPre1);
 				stmt.executeUpdate(sql1);
 			} catch (Exception e) {
-				WriteLog.writeFile("Ö´ĞĞSQL´íÎó:" + e.getMessage());
-				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "Ö´ĞĞSQL´íÎó", 0);
+				WriteLog.writeFile("æ‰§è¡ŒSQLé”™è¯¯:" + e.getMessage());
+				JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "æ‰§è¡ŒSQLé”™è¯¯", 0);
 			}
 			conn.close();
 		} catch (Exception e) {
-			WriteLog.writeFile("Î´Öª´íÎó,Çë¼ì²éÊı¾İ¿âÁ¬½Ó »ò ÁªÏµ¹ÜÀíÔ±...\n" + e.getMessage());
-			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "´íÎó", 0);
+			WriteLog.writeFile("æœªçŸ¥é”™è¯¯,è¯·æ£€æŸ¥æ•°æ®åº“è¿æ¥ æˆ– è”ç³»ç®¡ç†å‘˜...\n" + e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage() + "\nurl = " + ds.getJdbcUrl(), "é”™è¯¯", 0);
 		}
 		return true;
 	}

@@ -14,7 +14,6 @@ import java.io.InputStreamReader;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -25,9 +24,10 @@ import com.jupiter.WriteLog;
 
 public class SQLStrFormat {
 
-    private static List<String> lineKey = Arrays.asList("FROM","JOIN","WHERE","AND","GROUP","ORDER","UNION","INTERSECT","EXCEPT","MINUS");
+    private static List<String> lineKey = Arrays.asList("FROM","JOIN","WHERE","AND","GROUP","ORDER","UNION",
+			"INTERSECT","EXCEPT","MINUS","HAVING");
     private static List<String> comma = Arrays.asList(",");
-    private static List<String> joinMode = Arrays.asList("INNER","LEFT","RIGHT","CORSS");
+    private static List<String> joinMode = Arrays.asList("INNER","LEFT","RIGHT","CROSS","FULL");
     
 	public static void main(String[] args) {
 		
@@ -77,7 +77,7 @@ public class SQLStrFormat {
         //还原子查询
         String mainSQL = subQeryies.get("__main__");
         subQeryies.remove("__main__");
-        mainSQL = SQLStrFormat.format1(mainSQL,1);
+        mainSQL = SQLStrFormat.format(mainSQL,1);
         for(String key : subQeryies.keySet()) {
             String subquery = subQeryies.get(key);
             mainSQL = mainSQL.replace(key,subquery);
@@ -143,7 +143,7 @@ public class SQLStrFormat {
 		 return str;
 	}
 	
-	public static ArrayList<String> split(String str) {
+	public static List<String> split(String str) {
 	    //去除"."两边的 和 "]"左边的空白,[ ``不用考虑
 	    str = str.replaceAll("\\s*(?=\\]|\\.)", "").replaceAll("(?<=\\.)\\s*", "");
 	    
@@ -165,7 +165,7 @@ public class SQLStrFormat {
 
 		// 转成ArrayList
 		// ArrayList<String> ws = new ArrayList<String>(Arrays.asList(words));
-		ArrayList<String> ws = new ArrayList<String>();
+		List<String> ws = new ArrayList<>();
 
 		/* 加入分隔符 */
 		if (words.length > 0) {
@@ -218,18 +218,18 @@ public class SQLStrFormat {
 	}
 	
 	public static String format(String sql){
-		return format1(sql,0);
+		return format(sql,0);
 	}
 	
 	/**
 	 * @param f:0-单行返回 非0-多行返回
 	 */
-	public static String format1(String sql,int f){
-	    List<String> lineKeys = new ArrayList<String>();
+	public static String format(String sql, int f){
+	    List<String> lineKeys = new ArrayList<>();
 	    lineKeys.addAll(lineKey);
 	    //lineKeys.addAll(joinMode);
 		String str = "";
-		ArrayList<String> ws = SQLStrFormat.split(sql);
+		List<String> ws = SQLStrFormat.split(sql);
 		if(f==0){
 		    for(int i=0;i<ws.size();i++){
                 str += (ws.get(i) + " ");
@@ -244,7 +244,7 @@ public class SQLStrFormat {
                 //若为FROM，判断逗号
                 else if (card.toUpperCase().equals("FROM"))
                     lineKeys.addAll(comma);
-                // 若遇到inner left right corss,忽略join,否则不忽略
+                // 若遇到inner left right cross,忽略join,否则不忽略
                 else if (joinMode.contains(card.toUpperCase()) && i < ws.size()-2) {
                     str += "\n" + card + " " + ws.get(++i) + " ";
                     card = ws.get(++i);
@@ -259,7 +259,7 @@ public class SQLStrFormat {
 	}
 	
 	/**
-	 * @param 提取SQL类型
+	 *  提取SQL类型
 	 */
 	public static String getSQLType(String sql) {
 		String t = "";
@@ -270,9 +270,11 @@ public class SQLStrFormat {
 		return t;
 	}
 	
-    /**
-     * @param 将长SQL拆分成多个子SQL
-     */
+	/**
+	 * @param sql sql to be analyzed.
+	 * @param i 0-return in 1 line, !0-return in multi lines.
+	 * @return 将长SQL拆分成多个子SQL
+	 */
     public static Map<String, String> getSubSQLStr(String sql, int i) {
        
         SQLInfo sqlInfo = getSubSQLStr(sql);
@@ -321,7 +323,7 @@ public class SQLStrFormat {
     }
 	
 	/**
-	 * @param 将长SQL拆分成多个子SQL
+	 * @Desc 将长SQL拆分成多个子SQL
 	 */
 	public static SQLInfo getSubSQLStr(String sql){
 	  //HashMap<String, String> SQLStrs = new HashMap<String, String>();
@@ -385,7 +387,7 @@ public class SQLStrFormat {
 	}
 	
 	/**
-	 * @param 将所有括号替换
+	 * @Desc 将所有括号替换
 	 */
 	public static String replaceAllBrackets(String sql) {
 		String brackets = "\\(((?!( select | from |\\(|\\))).)+\\)"; // 匹配一对括号

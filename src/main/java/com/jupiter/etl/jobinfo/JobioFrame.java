@@ -94,29 +94,29 @@ public class JobioFrame extends JFrame{
 //	}
 //
 //	public JobioFrame(){
-//		// ÉèÖÃÍ¼ĞÎ½çÃæÍâ¹Û
+//		// è®¾ç½®å›¾å½¢ç•Œé¢å¤–è§‚
 //		try {
 //			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
 //		
-//		// ×°ÔØ¿ÉÑ¡ÔñµÄÖ÷Ìâ  
+//		// è£…è½½å¯é€‰æ‹©çš„ä¸»é¢˜  
 //        /*try {  
-//            //ÉèÖÃÍâ¹Û  
+//            //è®¾ç½®å¤–è§‚  
 //            UIManager.setLookAndFeel(new SubstanceBusinessBlackSteelLookAndFeel());  
 //            JFrame.setDefaultLookAndFeelDecorated(true);  
-//            //ÉèÖÃÖ÷Ìâ   
+//            //è®¾ç½®ä¸»é¢˜   
 //            SubstanceLookAndFeel.setCurrentTheme(new SubstanceEbonyTheme());  
-//            //ÉèÖÃ°´Å¥Íâ¹Û  
+//            //è®¾ç½®æŒ‰é’®å¤–è§‚  
 //            SubstanceLookAndFeel.setCurrentButtonShaper(new ClassicButtonShaper());  
-//            //ÉèÖÃË®Ó¡  
+//            //è®¾ç½®æ°´å°  
 //            SubstanceLookAndFeel.setCurrentWatermark(new SubstanceBinaryWatermark());  
-//            //ÉèÖÃ±ß¿ò  
+//            //è®¾ç½®è¾¹æ¡†  
 //            SubstanceLookAndFeel.setCurrentBorderPainter(new StandardBorderPainter());  
-//            //ÉèÖÃ½¥±ääÖÈ¾  
+//            //è®¾ç½®æ¸å˜æ¸²æŸ“  
 //            SubstanceLookAndFeel.setCurrentGradientPainter(new StandardGradientPainter());  
-//            //ÉèÖÃ±êÌâ  
+//            //è®¾ç½®æ ‡é¢˜  
 //            SubstanceLookAndFeel.setCurrentTitlePainter(new FlatTitlePainter());  
 //        } catch (Exception e) {  
 //            System.out.println(e.getMessage());  
@@ -138,21 +138,21 @@ public class JobioFrame extends JFrame{
 //	static ArrayList<DefaultGraphCell> c2 = new ArrayList<DefaultGraphCell>();
 //	
 //	public ArrayList<DefaultGraphCell> initCellsList() {
-//		// ¶¨ÒåÒ»¸ö´æ·ÅcellµÄ¼¯ºÏÀà
+//		// å®šä¹‰ä¸€ä¸ªå­˜æ”¾cellçš„é›†åˆç±»
 //		ArrayList<DefaultGraphCell> cells = new ArrayList<DefaultGraphCell>();
-//		// ½¨Á¢ÄãµÄµÚÒ»¸övertex¶ÔÏó
+//		// å»ºç«‹ä½ çš„ç¬¬ä¸€ä¸ªvertexå¯¹è±¡
 //		cells.add(new DefaultGraphCell(new String("jb_dwn_chdrpf_to_chdrpf")));
 //		GraphConstants.setBounds(
 //				cells.get(0).getAttributes(),
-//				new Rectangle2D.Double(20, 80, "jb_dwn_chdrpf_to_chdrpf".length()*7, 20)); // ¿ªÊ¼×ø±êxy,¿í¸ß
-//		// ÉèÖÃÑÕÉ«ºÍÍ¸Ã÷ÊôĞÔ
+//				new Rectangle2D.Double(20, 80, "jb_dwn_chdrpf_to_chdrpf".length()*7, 20)); // å¼€å§‹åæ ‡xy,å®½é«˜
+//		// è®¾ç½®é¢œè‰²å’Œé€æ˜å±æ€§
 //		GraphConstants.setGradientColor(cells.get(0).getAttributes(),
 //				Color.orange);
 //		GraphConstants.setOpaque(cells.get(0).getAttributes(), true);
-//		// ÎªÕâ¸övertex¼ÓÈëÒ»¸öport
+//		// ä¸ºè¿™ä¸ªvertexåŠ å…¥ä¸€ä¸ªport
 //		DefaultPort port0 = new DefaultPort();
 //		cells.get(0).add(port0);
-//		// Í¬Àí¼ÓÈëµÚ¶ş¸övertex
+//		// åŒç†åŠ å…¥ç¬¬äºŒä¸ªvertex
 //		cells.add(new DefaultGraphCell(new String(
 //				"jb_hq_commission_file_month_temp2")));
 //		GraphConstants
@@ -169,7 +169,7 @@ public class JobioFrame extends JFrame{
 //		GraphConstants.setOpaque(cells.get(1).getAttributes(), true);
 //		DefaultPort port1 = new DefaultPort();
 //		cells.get(1).add(port1);
-//		// Í¬Àí¼ÓÈëµÚÈı¸övertex
+//		// åŒç†åŠ å…¥ç¬¬ä¸‰ä¸ªvertex
 //		cells.add(new DefaultGraphCell(new String(
 //				"jb_hq_policy_file_temp3_first")));
 //		GraphConstants.setBounds(cells.get(2).getAttributes(),
@@ -183,29 +183,29 @@ public class JobioFrame extends JFrame{
 //		DefaultPort port2 = new DefaultPort();
 //		cells.get(2).add(port2);
 //
-//		// ¼ÓÈëÒ»Ìõ±ß£¬½«jb_dwn_chdrpf_to_chdrpfºÍjb_hq_commission_file_month_temp2µÄÁ½¸öportÁ¬½ÓÆğÀ´
+//		// åŠ å…¥ä¸€æ¡è¾¹ï¼Œå°†jb_dwn_chdrpf_to_chdrpfå’Œjb_hq_commission_file_month_temp2çš„ä¸¤ä¸ªportè¿æ¥èµ·æ¥
 //		DefaultEdge edge = new DefaultEdge();
 //		edge.setSource(cells.get(0).getChildAt(0));
 //		edge.setTarget(cells.get(1).getChildAt(0));
-//		// ÎªedgeÉèÖÃÒ»¸ö¼ıÍ·
+//		// ä¸ºedgeè®¾ç½®ä¸€ä¸ªç®­å¤´
 //		int arrow = GraphConstants.ARROW_CLASSIC;
 //		GraphConstants.setLineEnd(edge.getAttributes(), arrow);
-//		GraphConstants.setEndFill(edge.getAttributes(), true); // Ìî³ä¼ıÍ·
-//		// ½«edge¼ÓÈëcell¼¯ºÏÀà
+//		GraphConstants.setEndFill(edge.getAttributes(), true); // å¡«å……ç®­å¤´
+//		// å°†edgeåŠ å…¥cellé›†åˆç±»
 //		cells.add(edge);
-//		// Í¬Àí
+//		// åŒç†
 //		DefaultEdge edge1 = new DefaultEdge();
 //		edge1.setSource(cells.get(0).getChildAt(0));
 //		edge1.setTarget(cells.get(2).getChildAt(0));
-//		GraphConstants.setLineEnd(edge1.getAttributes(), arrow); // Îªedge1ÉèÖÃÒ»¸ö¼ıÍ·
-//		// ½«edge¼ÓÈëcell¼¯ºÏÀà
+//		GraphConstants.setLineEnd(edge1.getAttributes(), arrow); // ä¸ºedge1è®¾ç½®ä¸€ä¸ªç®­å¤´
+//		// å°†edgeåŠ å…¥cellé›†åˆç±»
 //		cells.add(edge1);
-//		// Í¬Àí
+//		// åŒç†
 //		DefaultEdge edge2 = new DefaultEdge();
 //		edge2.setSource(cells.get(2).getChildAt(0));
 //		edge2.setTarget(cells.get(1).getChildAt(0));
-//		GraphConstants.setLineEnd(edge2.getAttributes(), arrow); // Îªedge1ÉèÖÃÒ»¸ö¼ıÍ·
-//		// ½«edge¼ÓÈëcell¼¯ºÏÀà
+//		GraphConstants.setLineEnd(edge2.getAttributes(), arrow); // ä¸ºedge1è®¾ç½®ä¸€ä¸ªç®­å¤´
+//		// å°†edgeåŠ å…¥cellé›†åˆç±»
 //		cells.add(edge2);
 //		
 //		this.setX(1200);
@@ -236,9 +236,9 @@ public class JobioFrame extends JFrame{
 //			cells.add(new DefaultGraphCell(jb.jobname));
 //			GraphConstants.setBounds(
 //					cells.get(j).getAttributes(),
-//					new Rectangle2D.Double(jb.x*3-200, jb.y/2, jb.jobname.length()*7, 16)); // ¿ªÊ¼×ø±êxy,¿í¸ß
-//			//GraphConstants.setFont(cells.get(j).getAttributes(),new Font("ËÎÌå",1,9));
-//			if(jb.jobname.equalsIgnoreCase(filename)){//ÉèÖÃÑªÔµ·ÖÎöÖÕµãÑÕÉ«
+//					new Rectangle2D.Double(jb.x*3-200, jb.y/2, jb.jobname.length()*7, 16)); // å¼€å§‹åæ ‡xy,å®½é«˜
+//			//GraphConstants.setFont(cells.get(j).getAttributes(),new Font("å®‹ä½“",1,9));
+//			if(jb.jobname.equalsIgnoreCase(filename)){//è®¾ç½®è¡€ç¼˜åˆ†æç»ˆç‚¹é¢œè‰²
 //				GraphConstants.setBackground(cells.get(j).getAttributes(),Color.ORANGE);
 //				GraphConstants.setOpaque(cells.get(j).getAttributes(), true);
 //			}
@@ -259,18 +259,18 @@ public class JobioFrame extends JFrame{
 //			DefaultEdge edge1 = new DefaultEdge();
 //			for (int j = 0; j < c1.size(); j++) {
 //				int f = 0;
-//				// ËÑË÷±ßµÄÄ¿±ê
+//				// æœç´¢è¾¹çš„ç›®æ ‡
 //				if (jobInfoList.get(i).behind.equals(c1.get(j).toString()))
 //					{edge1.setTarget(c1.get(j).getChildAt(0)); f++;
 //					}//c1.get(j).getChildAt(0)
-//				// ËÑË÷±ßµÄÔ´
+//				// æœç´¢è¾¹çš„æº
 //				if (jobInfoList.get(i).previous.equals(c1.get(j).toString()))
 //					{edge1.setSource(c1.get(j).getChildAt(0)); f++;}
 //				if (f==2) break;
 //			}
-//			// ÎªedgeÉèÖÃÒ»¸ö¼ıÍ·
+//			// ä¸ºedgeè®¾ç½®ä¸€ä¸ªç®­å¤´
 //			GraphConstants.setLineEnd(edge1.getAttributes(),GraphConstants.ARROW_CLASSIC);
-////			GraphConstants.setEndFill(edge1.getAttributes(), true); // Ìî³ä¼ıÍ·
+////			GraphConstants.setEndFill(edge1.getAttributes(), true); // å¡«å……ç®­å¤´
 //			c2.add(edge1);
 //		}
 //
@@ -285,19 +285,19 @@ public class JobioFrame extends JFrame{
 //	
 //		cells.add(new DefaultGraphCell("start"));
 //		GraphConstants.setBounds(cells.get(0).getAttributes(),new Rectangle2D.Double(20, jobInfoList.get(0).y/2, 35, 20)); 
-//		GraphConstants.setGradientColor(cells.get(0).getAttributes(),Color.orange);//ÉèÖÃÑÕÉ«
-//		GraphConstants.setOpaque(cells.get(0).getAttributes(), true);//ÉèÖÃÍ¸Ã÷¶È
+//		GraphConstants.setGradientColor(cells.get(0).getAttributes(),Color.orange);//è®¾ç½®é¢œè‰²
+//		GraphConstants.setOpaque(cells.get(0).getAttributes(), true);//è®¾ç½®é€æ˜åº¦
 //		cells.get(0).add(new DefaultPort());
 //		
 //		for(int i=1,j=1; i<=jobInfoList.size(); i++){
 //		JobRelation jb = jobInfoList.get(i-1);
-//		if(jb.rn != 1) continue;//·Ç¶¥µãÍË³ö
-//		// ½¨Á¢ÄãµÄµÚÒ»¸övertex¶ÔÏó
+//		if(jb.rn != 1) continue;//éé¡¶ç‚¹é€€å‡º
+//		// å»ºç«‹ä½ çš„ç¬¬ä¸€ä¸ªvertexå¯¹è±¡
 //		cells.add(new DefaultGraphCell(jb.behind));
 //		GraphConstants.setBounds(
 //				cells.get(j).getAttributes(),
-//				new Rectangle2D.Double(jb.x+jb.pathlength*200, jb.y/2, jb.behind.length()*6.5, 20)); // ¿ªÊ¼×ø±êxy,¿í¸ß
-//		// ÎªÕâ¸övertex¼ÓÈëÒ»¸öport
+//				new Rectangle2D.Double(jb.x+jb.pathlength*200, jb.y/2, jb.behind.length()*6.5, 20)); // å¼€å§‹åæ ‡xy,å®½é«˜
+//		// ä¸ºè¿™ä¸ªvertexåŠ å…¥ä¸€ä¸ªport
 //		DefaultPort port0 = new DefaultPort();
 //		cells.get(j).add(port0);
 //		j++;
@@ -305,22 +305,22 @@ public class JobioFrame extends JFrame{
 //		
 //		for(int i=1; i<=jobInfoList.size(); i++){
 //			DefaultEdge edge1 = new DefaultEdge();
-//			//ËÑË÷±ßµÄÄ¿±ê
+//			//æœç´¢è¾¹çš„ç›®æ ‡
 //			for(int j=1; j<cells.size(); j++){
 //				if(jobInfoList.get(i-1).behind.equals(cells.get(j).toString()))
 //					edge1.setTarget(cells.get(j).getChildAt(0)); 
 //				if(jobInfoList.get(i-1).pathlength==1)
 //					edge1.setSource(cells.get(0).getChildAt(0));
 //			}
-//			//ËÑË÷±ßµÄÔ´
+//			//æœç´¢è¾¹çš„æº
 //			for(int j=1; j<cells.size(); j++){
 //				if(jobInfoList.get(i-1).previous.equals(cells.get(j).toString()))
 //					edge1.setSource(cells.get(j).getChildAt(0)); 
 //			}
-//			// ÎªedgeÉèÖÃÒ»¸ö¼ıÍ· 
+//			// ä¸ºedgeè®¾ç½®ä¸€ä¸ªç®­å¤´ 
 //			  GraphConstants.setLineEnd(edge1.getAttributes(), GraphConstants.ARROW_CLASSIC);
 //			  //GraphConstants.setLineBegin(edge1.getAttributes(), GraphConstants.ARROW_CLASSIC);
-//			  GraphConstants.setEndFill(edge1.getAttributes(), true); // Ìî³ä¼ıÍ· 
+//			  GraphConstants.setEndFill(edge1.getAttributes(), true); // å¡«å……ç®­å¤´ 
 //			cells.add(edge1);
 //		}
 //	
@@ -329,12 +329,12 @@ public class JobioFrame extends JFrame{
 //
 //	public void init(final JobioFrame jobioFrame){
 //
-//		// modelÓÃÓÚ¿ØÖÆÕû¸öÄ£ĞÍÏÔÊ¾ÊôĞÔµÈ£¬viewÓÃÓÚ¿ØÖÆÄãµÄÍ¼ĞÎÏÔÊ¾ÊôĞÔ£¬ÕâÀï¶¼ÓÃÄ¬ÈÏ¼´¿É
+//		// modelç”¨äºæ§åˆ¶æ•´ä¸ªæ¨¡å‹æ˜¾ç¤ºå±æ€§ç­‰ï¼Œviewç”¨äºæ§åˆ¶ä½ çš„å›¾å½¢æ˜¾ç¤ºå±æ€§ï¼Œè¿™é‡Œéƒ½ç”¨é»˜è®¤å³å¯
 //		final GraphModel model = new DefaultGraphModel();
 //		GraphLayoutCache view = new GraphLayoutCache(model,new DefaultCellViewFactory());
-//		// JGraph¶ÔÏó
+//		// JGraphå¯¹è±¡
 //		final JGraph graph = new JGraph(model, view);
-//		// ½«ÒÔÉÏ¶¨ÒåµÄcells¶ÔÏó¼ÓÈëgraph¶ÔÏó
+//		// å°†ä»¥ä¸Šå®šä¹‰çš„cellså¯¹è±¡åŠ å…¥graphå¯¹è±¡
 //		/*if (c1.isEmpty()){
 //		}else{
 //			Iterator it = c1.iterator();
@@ -343,29 +343,29 @@ public class JobioFrame extends JFrame{
 //			}
 //		}*/
 //		
-//		// Ò»Ğ©graph¶ÔÏóµÄ¼òµ¥µ÷Õû
-//		// graph.setMoveable(false);//¿É·ñÒÆ¶¯Õû¸öÍ¼ĞÎ
-//		graph.setDisconnectable(false);//²»ÄÜÒÆ¶¯±ßµÄÖ¸Ïò,µ«ÊÇ¿ÉÒÔÒÆ¶¯Í¼ĞÎ
+//		// ä¸€äº›graphå¯¹è±¡çš„ç®€å•è°ƒæ•´
+//		// graph.setMoveable(false);//å¯å¦ç§»åŠ¨æ•´ä¸ªå›¾å½¢
+//		graph.setDisconnectable(false);//ä¸èƒ½ç§»åŠ¨è¾¹çš„æŒ‡å‘,ä½†æ˜¯å¯ä»¥ç§»åŠ¨å›¾å½¢
 //		graph.setSizeable(false);
-//		// graph.setDisconnectOnMove(false);//¿É·ñÒÆ¶¯Õû¸ö±ß,µ«ÊÇÔÚ±ßµÄÔ´µãÖÕµã¸Ä±äºóÊ§Ğ§
+//		// graph.setDisconnectOnMove(false);//å¯å¦ç§»åŠ¨æ•´ä¸ªè¾¹,ä½†æ˜¯åœ¨è¾¹çš„æºç‚¹ç»ˆç‚¹æ”¹å˜åå¤±æ•ˆ
 //		/*
-//		 * ÏÔÊ¾Íø¸ñ { graph.setGridEnabled(true); graph.setGridVisible(true); }
+//		 * æ˜¾ç¤ºç½‘æ ¼ { graph.setGridEnabled(true); graph.setGridVisible(true); }
 //		 * graph.setGridMode(JGraph.CROSS_GRID_MODE);
 //		 */
-//		// graph.setMoveBelowZero(true); //ÊÇ·ñÔÊĞícellÔ½³ö×óÉÏ½Ç.Í¨³£ÉèÖÃÎªfalse,³ı·ÇÓĞÌØÊâÓÃ´¦
-//		graph.setAntiAliased(true);// Ô²»¬Í¼ÏñÏßÌõ
-//		// graph.setSelectionEnabled(false);//ÄÜ·ñÑ¡Ôñµ¥¸öcell
+//		// graph.setMoveBelowZero(true); //æ˜¯å¦å…è®¸cellè¶Šå‡ºå·¦ä¸Šè§’.é€šå¸¸è®¾ç½®ä¸ºfalse,é™¤éæœ‰ç‰¹æ®Šç”¨å¤„
+//		graph.setAntiAliased(true);// åœ†æ»‘å›¾åƒçº¿æ¡
+//		// graph.setSelectionEnabled(false);//èƒ½å¦é€‰æ‹©å•ä¸ªcell
 //		graph.setCloneable(true);
 //		graph.setBendable(true);
 //		graph.setConnectable(true);
-//		graph.setFont(new Font("ËÎÌå",1,12));
+//		graph.setFont(new Font("å®‹ä½“",1,12));
 //		graph.getSelectionModel().setChildrenSelectable(true);
 //		graph.setLockedHandleColor(Color.black);
 //		graph.setMarqueeColor(Color.black);
 //		graph.setHighlightColor(Color.black);
 //		//graph.setJumpToDefaultPort(true);
 //		/*
-//		 * ¼ÓÈë¸Ä±ä±ßÊôĞÔ´úÂëÎ»ÖÃ
+//		 * åŠ å…¥æ”¹å˜è¾¹å±æ€§ä»£ç ä½ç½®
 //		 */
 //		
 //		///final JFrame jobioFrame = new JFrame();
@@ -378,19 +378,19 @@ public class JobioFrame extends JFrame{
 //		final TextField txtFilename = new TextField(20);
 //		txtJobname.setText("jb_");
 //		
-//		Button btnStart = new Button("¿ªÊ¼·ÖÎö");
-//		Button btnFinder = new Button("²éÕÒ");
-//		Button btnLayout = new Button("ÖØĞÂÅÅ²¼");
-//		Button btnHelp = new Button("°ïÖú");
+//		Button btnStart = new Button("å¼€å§‹åˆ†æ");
+//		Button btnFinder = new Button("æŸ¥æ‰¾");
+//		Button btnLayout = new Button("é‡æ–°æ’å¸ƒ");
+//		Button btnHelp = new Button("å¸®åŠ©");
 //		
 //		JTable table = null;  
-//		//³õÊ¼»¯ÏÂÀ­ÁĞ±í¿ò  
+//		//åˆå§‹åŒ–ä¸‹æ‹‰åˆ—è¡¨æ¡†  
 //        final JComboBox box = new JComboBox();  
-//        box.addItem("¿ìËÙ²¼¾Ö");  
-//        box.addItem("ÓĞ»ú²¼¾Ö");
-//        box.addItem("·ÅÉä²¼¾Ö");  
-//        box.addItem("¼ò½à²¼¾Ö"); 
-//        box.addItem("ÇúÏß²¼¾Ö"); 
+//        box.addItem("å¿«é€Ÿå¸ƒå±€");  
+//        box.addItem("æœ‰æœºå¸ƒå±€");
+//        box.addItem("æ”¾å°„å¸ƒå±€");  
+//        box.addItem("ç®€æ´å¸ƒå±€"); 
+//        box.addItem("æ›²çº¿å¸ƒå±€"); 
 //        
 //        
 //		pnlPanel.add(labelJobname);
@@ -403,7 +403,7 @@ public class JobioFrame extends JFrame{
 //		pnlPanel.add(btnLayout);
 //		pnlPanel.add(btnHelp);
 //		
-//		//¿ªÊ¼·ÖÎö
+//		//å¼€å§‹åˆ†æ
 //		btnStart.addActionListener(new ActionListener(){
 //			public void actionPerformed(ActionEvent e) {
 //				/*ArrayList<DefaultGraphCell> cells1 = jobioFrame.getCellsList(txtJobname.getText(),txtFilename.getText());
@@ -438,14 +438,14 @@ public class JobioFrame extends JFrame{
 //			}
 //		});
 //		
-//		// ²éÕÒ
+//		// æŸ¥æ‰¾
 //		btnFinder.addActionListener(new ActionListener() {
 //			public void actionPerformed(ActionEvent e) {
 //				String lookUp = txtJobname.getText();
 //				for (int i = 0; i < c1.size(); i++) {
 //					if (c1.get(i).toString().equalsIgnoreCase(lookUp)) {
-//						GraphConstants.setGradientColor(c1.get(i).getAttributes(), Color.GREEN);// ÉèÖÃÑÕÉ«
-//						GraphConstants.setOpaque(c1.get(i).getAttributes(),true);// ÉèÖÃÍ¸Ã÷¶È
+//						GraphConstants.setGradientColor(c1.get(i).getAttributes(), Color.GREEN);// è®¾ç½®é¢œè‰²
+//						GraphConstants.setOpaque(c1.get(i).getAttributes(),true);// è®¾ç½®é€æ˜åº¦
 //						graph.refresh();
 //						graph.getGraphLayoutCache().reload();
 //						//graph.setSelectionCell(c1.get(i));
@@ -454,22 +454,22 @@ public class JobioFrame extends JFrame{
 //			}
 //		});
 //		
-//		//°ïÖú
+//		//å¸®åŠ©
 //		btnHelp.addActionListener(new ActionListener() {
 //			public void actionPerformed(ActionEvent e) {
-//				JOptionPane.showMessageDialog(jobioFrame,"×¢£ºjobnameÁô¿ÕÔòÎªÑªÔµ·ÖÎö£¬·ñÔòÎªÓ°Ïì·ÖÎö\n\n"
-//						+"¿ì½İ¼ü:\n"
-//			+"¸´ÖÆ£ºctrl+Êó±êÍÏÒ·\n"
-//						+"Ëõ·Å£ºctrl+¹öÂÖ\n"
-//			+"Ç¿Ñ¡£ºalt+×ó¼ü\n"
-//						+"É¾³ı£ºdel\n"
-//			+"ÏûÉ«£ºË«»÷\n"
-//						+"Èô²¼¾Ö½ÏÂÒ£¬¶à³¢ÊÔ¼¸´ÎÆäËû²¼¾Ö·½Ê½\n"
-//						+"\n×÷Õß£º¦á¨ãÄ¾Ä¾©dÍõ×Ó,2017-07","jbio......", 0);
+//				JOptionPane.showMessageDialog(jobioFrame,"æ³¨ï¼šjobnameç•™ç©ºåˆ™ä¸ºè¡€ç¼˜åˆ†æï¼Œå¦åˆ™ä¸ºå½±å“åˆ†æ\n\n"
+//						+"å¿«æ·é”®:\n"
+//			+"å¤åˆ¶ï¼šctrl+é¼ æ ‡æ‹–æ›³\n"
+//						+"ç¼©æ”¾ï¼šctrl+æ»šè½®\n"
+//			+"å¼ºé€‰ï¼šalt+å·¦é”®\n"
+//						+"åˆ é™¤ï¼šdel\n"
+//			+"æ¶ˆè‰²ï¼šåŒå‡»\n"
+//						+"è‹¥å¸ƒå±€è¾ƒä¹±ï¼Œå¤šå°è¯•å‡ æ¬¡å…¶ä»–å¸ƒå±€æ–¹å¼\n"
+//						+"\nä½œè€…ï¼šï¸¶ã„£æœ¨æœ¨ãƒ¾ç‹å­,2017-07","jbio......", 0);
 //			}
 //		});
 //		
-//		//ÖØĞÂ²¼¾Ö
+//		//é‡æ–°å¸ƒå±€
 //		btnLayout.addActionListener(new ActionListener(){
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
@@ -478,11 +478,11 @@ public class JobioFrame extends JFrame{
 //				JGraphLayout layout = null;
 //				switch (box.getSelectedIndex()) {
 //				//new JGraphRadialTreeLayout();// new JGraphCompactTreeLayout();//new JGraphFastOrganicLayout(); 
-//				case 1:layout = new JGraphOrganicLayout(); break;   //ÓĞ»ú
-//				case 2: layout = new JGraphRadialTreeLayout(); break;   //·ÅÉä²¼¾Ö
-//				case 3: layout = new JGraphCompactTreeLayout(); break;  //¼ò½àÊ÷ĞÎ
-//				case 4: layout = new JGraphHierarchicalLayout(); break; //ÇúÏß
-//				default: layout = new JGraphFastOrganicLayout(); break; //¿ìËÙ
+//				case 1:layout = new JGraphOrganicLayout(); break;   //æœ‰æœº
+//				case 2: layout = new JGraphRadialTreeLayout(); break;   //æ”¾å°„å¸ƒå±€
+//				case 3: layout = new JGraphCompactTreeLayout(); break;  //ç®€æ´æ ‘å½¢
+//				case 4: layout = new JGraphHierarchicalLayout(); break; //æ›²çº¿
+//				default: layout = new JGraphFastOrganicLayout(); break; //å¿«é€Ÿ
 //				}
 //				layout.run(facade); // Run the layout on the facade. Note that layouts do not implement the Runnable interface, to avoid confusion
 //				Map nested = facade.createNestedMap(true, true); // Obtain a map of the resulting attribute changes from the facade
@@ -491,7 +491,7 @@ public class JobioFrame extends JFrame{
 //			}
 //		});
 //		
-//		/*//¹öÂÖ·Å´óËõĞ¡
+//		/*//æ»šè½®æ”¾å¤§ç¼©å°
 //		graph.addMouseWheelListener(new MouseWheelListener() {
 //			public void mouseWheelMoved(MouseWheelEvent e) {
 //				double d0 = jobioFrame.updatePreferredSize(e.getWheelRotation(), e.getPoint());
@@ -501,7 +501,7 @@ public class JobioFrame extends JFrame{
 //				graph.setScale(jobioFrame.d);
 //			}
 //		});*/
-//		//Êó±ê¹öÂÖÊÂ¼ş
+//		//é¼ æ ‡æ»šè½®äº‹ä»¶
 //				graph.addMouseWheelListener(new MouseWheelListener() {
 //					public void mouseWheelMoved(MouseWheelEvent e) {
 //						if(jobioFrame.contorl==1){
@@ -519,7 +519,7 @@ public class JobioFrame extends JFrame{
 //		graph.addMouseListener(new MouseAdapter() {
 //			public void mousePressed(MouseEvent e) {
 //				// System.out.println(graph.getSelectionCells().length)
-//				// ÓÒ¼üË«»÷É¾³ı
+//				// å³é”®åŒå‡»åˆ é™¤
 //				// Get Selected Cells
 //				/*Object[] cells = graph.getSelectionCells();
 //				if (e.isMetaDown() & e.getClickCount() == 2 & cells != null) {
@@ -537,8 +537,8 @@ public class JobioFrame extends JFrame{
 //						//System.out.println("lab = " + lab);
 //						//Object clone = DefaultGraphModel.cloneCell(graph.getModel(), cell);
 //						//graph.getGraphLayoutCache().insert(clone);
-//						GraphConstants.setGradientColor(((DefaultGraphCell) cell).getAttributes(), Color.WHITE);// ÉèÖÃÑÕÉ«
-//						//GraphConstants.setOpaque(((DefaultGraphCell)cell).getAttributes(),true);// ÉèÖÃÍ¸Ã÷¶È
+//						GraphConstants.setGradientColor(((DefaultGraphCell) cell).getAttributes(), Color.WHITE);// è®¾ç½®é¢œè‰²
+//						//GraphConstants.setOpaque(((DefaultGraphCell)cell).getAttributes(),true);// è®¾ç½®é€æ˜åº¦
 //						//graph.refresh();
 //						graph.getGraphLayoutCache().reload();
 //						}
@@ -553,19 +553,19 @@ public class JobioFrame extends JFrame{
 //		jobioFrame.getContentPane().add(jspane);
 //		jspane.setWheelScrollingEnabled(true);
 //		
-//		/*//¼üÅÌÉ¾³ıDELETE
+//		/*//é”®ç›˜åˆ é™¤DELETE
 //		KeyStroke stroke = KeyStroke.getKeyStroke("DELETE");
 //		InputMap inputMap = jspane
 //				.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 //		inputMap.put(stroke, "DELETE");
 //		jspane.getActionMap().put("DELETE", new AbstractAction() {
 //			public void actionPerformed(ActionEvent e) {
-//				System.out.println("ÎÒÊÇdel");
+//				System.out.println("æˆ‘æ˜¯del");
 //				Object[] cells = graph.getSelectionCells();
 //				graph.getModel().remove(graph.getDescendants(cells));
 //			}
 //		});*/
-//		//¼üÅÌÊÂ¼ş
+//		//é”®ç›˜äº‹ä»¶
 //				graph.addKeyListener(new KeyAdapter(){
 //					public void keyPressed(KeyEvent e) {
 //						Object[] cells = graph.getSelectionCells();
@@ -583,21 +583,21 @@ public class JobioFrame extends JFrame{
 //				    }
 //					public void keyTyped(KeyEvent e) {
 //						if(e.getKeyCode()==KeyEvent.VK_T)
-//							System.out.println("ÎÒÊÇhome");
+//							System.out.println("æˆ‘æ˜¯home");
 //				    }
 //				});
 //		
 //		
 //		jobioFrame.pack();
 //		jobioFrame.setSize(jobioFrame.x, jobioFrame.y); //1200 600
-//		int windowWidth = jobioFrame.getWidth(); // »ñµÃ´°¿Ú¿í
-//		int windowHeight = jobioFrame.getHeight(); // »ñµÃ´°¿Ú¸ß
-//		Toolkit kit = Toolkit.getDefaultToolkit(); // ¶¨Òå¹¤¾ß°ü
-//		Dimension screenSize = kit.getScreenSize(); // »ñÈ¡ÆÁÄ»µÄ³ß´ç
-//		int screenWidth = screenSize.width; // »ñÈ¡ÆÁÄ»µÄ¿í
-//		int screenHeight = screenSize.height; // »ñÈ¡ÆÁÄ»µÄ¸ß
+//		int windowWidth = jobioFrame.getWidth(); // è·å¾—çª—å£å®½
+//		int windowHeight = jobioFrame.getHeight(); // è·å¾—çª—å£é«˜
+//		Toolkit kit = Toolkit.getDefaultToolkit(); // å®šä¹‰å·¥å…·åŒ…
+//		Dimension screenSize = kit.getScreenSize(); // è·å–å±å¹•çš„å°ºå¯¸
+//		int screenWidth = screenSize.width; // è·å–å±å¹•çš„å®½
+//		int screenHeight = screenSize.height; // è·å–å±å¹•çš„é«˜
 //		jobioFrame.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 2
-//				- windowHeight / 2); // ¾ÓÖĞ
+//				- windowHeight / 2); // å±…ä¸­
 //		jobioFrame.setVisible(true);
 //		jobioFrame.setDefaultCloseOperation(3);
 //		jobioFrame.setTitle("jbio");
@@ -611,9 +611,9 @@ public class JobioFrame extends JFrame{
 //				+ graph.getModel().contains("jb_dwn_chdrpf_to_chdrpf"));
 //		//System.out.println("===" + model.getChildCount(cells1.get(2)));
 //		System.out.println("cells.size=" + c1.size());
-//		// µÃµ½Ö¸¶¨±ßµÄÔ´
+//		// å¾—åˆ°æŒ‡å®šè¾¹çš„æº
 //		System.out.println("===" + graph.getModel().getParent(graph.getModel().getSource(c2.get(4))));
-//		// µ¥Ôª¿ËÂ¡
+//		// å•å…ƒå…‹éš†
 //		Object clone = DefaultGraphModel.cloneCell(graph.getModel(), c1);*/
 //	}
 //	

@@ -21,7 +21,7 @@ public class JobEdge extends DefaultEdge{
 	public int dependence;
 	
 public JobEdge(String p,String b) {
-	//super(s); //µ÷ÓÃ¸¸ÀàµÄ¹¹Ôì·½·¨
+	//super(s); //è°ƒç”¨çˆ¶ç±»çš„æž„é€ æ–¹æ³•
 	headJobName = p;
 	tailJobName = b;
 	}
@@ -40,7 +40,7 @@ public JobEdge(String p,String b) {
 		this.setTarget(job2.getChildAt(0));
 		if (job1.isValid*job2.isValid == 0)
 		GraphConstants.setLineColor(this.getAttributes(), Color.lightGray);
-		GraphConstants.setLineEnd(this.getAttributes(), GraphConstants.ARROW_CLASSIC); //ÉèÖÃ¼ýÍ·
+		GraphConstants.setLineEnd(this.getAttributes(), GraphConstants.ARROW_CLASSIC); //è®¾ç½®ç®­å¤´
 	}
 
 public String getPrevious() {

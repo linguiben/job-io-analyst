@@ -367,7 +367,7 @@ public class EditJobProperty extends javax.swing.JDialog {
 	}
 
 	/** 
-	 * ´¦ÀíESCAPE°´¼ü¡£×ÓÀà¿ÉÒÔÖØĞÂ¸²¸Ç¸Ã·½·¨£¬ÊµÏÖ×Ô¼ºµÄ´¦Àí·½Ê½¡£ 
+	 * å¤„ç†ESCAPEæŒ‰é”®ã€‚å­ç±»å¯ä»¥é‡æ–°è¦†ç›–è¯¥æ–¹æ³•ï¼Œå®ç°è‡ªå·±çš„å¤„ç†æ–¹å¼ã€‚ 
 	 */
 	protected void escapeKeyProc() {
 		doClose(RET_CANCEL);
@@ -411,17 +411,17 @@ public class EditJobProperty extends javax.swing.JDialog {
 	}
 
 	private void save(java.awt.event.WindowEvent evt) {
-		//ÕÒµ½Job,ĞŞ¸ÄÆäÊôĞÔ
+		//æ‰¾åˆ°Job,ä¿®æ”¹å…¶å±æ€§
 		//System.out.println("close");
 	}
 
 	private void saveThis(java.awt.event.WindowEvent evt) {
 		//System.out.print("saveThis");
 		//System.out.println(job.getAttributes());
-		GraphConstants.setValue(job.getAttributes(), jobnameTextField.getText());//ĞŞ¸ÄÃû³Æ
+		GraphConstants.setValue(job.getAttributes(), jobnameTextField.getText());//ä¿®æ”¹åç§°
 		//GraphConstants.setAutoSize(job.getAttributes(), isShowing());
 		//System.out.println(job.getAttributes());
-		//ĞŞ¸ÄÊôĞÔ
+		//ä¿®æ”¹å±æ€§
 		job.jobname = jobnameTextField.getText();
 		job.jobtype = jComboBox1.getSelectedItem().toString();
 		job.isValid = jCheckBox2.isSelected() ? 1 : 0;

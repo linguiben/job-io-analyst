@@ -27,7 +27,7 @@ import com.jupiter.mybatis.po.User;
 @Controller("login")
 public class Login {
 	
-	//°æ±¾ºÅ
+	//ç‰ˆæœ¬å·
 	final private double version = 3.2;
 	
 	@Autowired
@@ -45,9 +45,9 @@ public class Login {
 	public String loginInit() {
 		final JFrame loginFrame = new JFrame();
 		Panel pnlPanel = new Panel();
-		Label lblUsername = new Label("ÓÃ»§Ãû");
+		Label lblUsername = new Label("ç”¨æˆ·å");
 		final TextField txtUsername = new TextField(9);
-		Label lblPassword = new Label("ÃÜÂë");
+		Label lblPassword = new Label("å¯†ç ");
 		final TextField txtPassword = new TextField(9);
 		final InitProperty ip = new InitProperty();
 		
@@ -56,11 +56,11 @@ public class Login {
 		txtUsername.setEditable(true);
 		txtPassword.setEchoChar('*');
 		txtPassword.setText(ip.getLoginPassword());
-		Button settingButton = new Button("ÉèÖÃ");
-		//Label lblRptDate = new Label("»¶Ó­Ê¹ÓÃ!");
-		final Button loginButton = new Button("µÇÂ¼");
-		Button closeButton = new Button("¹Ø±Õ");
-		Button scheduleButton = new Button("ÔËĞĞµ÷¶È");
+		Button settingButton = new Button("è®¾ç½®");
+		//Label lblRptDate = new Label("æ¬¢è¿ä½¿ç”¨!");
+		final Button loginButton = new Button("ç™»å½•");
+		Button closeButton = new Button("å…³é—­");
+		Button scheduleButton = new Button("è¿è¡Œè°ƒåº¦");
 		
 		final SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
 		Calendar calendar = Calendar.getInstance();
@@ -69,16 +69,16 @@ public class Login {
 		
 		final User user = new User();
 	
-		//ÏìÓ¦µÇÂ¼ÊÂ¼ş
+		//å“åº”ç™»å½•äº‹ä»¶
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if ((txtPassword.getText()).length() == 0) {
-					JOptionPane.showMessageDialog(loginFrame, "ÇëÊäÈëÃÜÂë");
+					JOptionPane.showMessageDialog(loginFrame, "è¯·è¾“å…¥å¯†ç ");
 					loginButton.transferFocusUpCycle();
 					return;
 				}
 				if ((txtUsername.getText()).length() == 0) {
-					JOptionPane.showMessageDialog(loginFrame, "ÓÃ»§ÃûÎª¿Õ");
+					JOptionPane.showMessageDialog(loginFrame, "ç”¨æˆ·åä¸ºç©º");
 					loginButton.transferFocusUpCycle();
 					return;
 				}
@@ -89,14 +89,14 @@ public class Login {
 					ip.setLoginUser(txtUsername.getText());
 					int loginStatus = login(ip);
 					if(loginStatus == -1){
-						com.jupiter.WriteLog.writeFile(this.getClass().getName()+":Á¬½ÓÊ§°Ü!");
-						JOptionPane.showMessageDialog(loginFrame, "Á¬½ÓÊ§°Ü!");
+						com.jupiter.WriteLog.writeFile(this.getClass().getName()+":è¿æ¥å¤±è´¥!");
+						JOptionPane.showMessageDialog(loginFrame, "è¿æ¥å¤±è´¥!");
 						loginFrame.getFocusableWindowState();
 						loginButton.transferFocusUpCycle();
 						return;
 					}else if(loginStatus == 0){
-						com.jupiter.WriteLog.writeFile("ÓÃ»§Ãû»òÕßÃÜÂë´íÎó!");
-						JOptionPane.showMessageDialog(loginFrame, "ÓÃ»§Ãû»òÕßÃÜÂë´íÎó!");
+						com.jupiter.WriteLog.writeFile("ç”¨æˆ·åæˆ–è€…å¯†ç é”™è¯¯!");
+						JOptionPane.showMessageDialog(loginFrame, "ç”¨æˆ·åæˆ–è€…å¯†ç é”™è¯¯!");
 						loginButton.transferFocusUpCycle();
 						return;
 					}
@@ -105,26 +105,26 @@ public class Login {
 					jobioFrame.init(jobioFrame);
 					loginFrame.setVisible(false);*/
 					//JOptionPane.showMessageDialog(frmFrame, "OK.\n" );
-					{  //µÇÂ¼³É¹¦´ò¿ªJobio Analysis
+					{  //ç™»å½•æˆåŠŸæ‰“å¼€Jobio Analysis
 						user.setUserID(txtUsername.getText());
 						user.setPassword(txtPassword.getText());
 						user.setOptionTime(new Date());
 						user.setVersion(version);
 //						JobioAnalyst3_0 ds = new JobioAnalyst3_0(user);
 						JobioAnalyst3 jobioAnalyst = new JobioAnalyst3(user);
-						int windowWidth = jobioAnalyst.getWidth(); // »ñµÃ´°¿Ú¿í
-						int windowHeight = jobioAnalyst.getHeight(); // »ñµÃ´°¿Ú¸ß
-						Toolkit kit = Toolkit.getDefaultToolkit(); // ¶¨Òå¹¤¾ß°ü
-						Dimension screenSize = kit.getScreenSize(); // »ñÈ¡ÆÁÄ»µÄ³ß´ç
-						int screenWidth = screenSize.width; // »ñÈ¡ÆÁÄ»µÄ¿í
-						int screenHeight = screenSize.height; // »ñÈ¡ÆÁÄ»µÄ¸ß
-						jobioAnalyst.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 3 - windowHeight / 3); // ¾ÓÖĞ
+						int windowWidth = jobioAnalyst.getWidth(); // è·å¾—çª—å£å®½
+						int windowHeight = jobioAnalyst.getHeight(); // è·å¾—çª—å£é«˜
+						Toolkit kit = Toolkit.getDefaultToolkit(); // å®šä¹‰å·¥å…·åŒ…
+						Dimension screenSize = kit.getScreenSize(); // è·å–å±å¹•çš„å°ºå¯¸
+						int screenWidth = screenSize.width; // è·å–å±å¹•çš„å®½
+						int screenHeight = screenSize.height; // è·å–å±å¹•çš„é«˜
+						jobioAnalyst.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 3 - windowHeight / 3); // å±…ä¸­
 						jobioAnalyst.setVisible(true);
 						loginFrame.setVisible(false);
 					}
 					
 				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(loginFrame, "Ê§°Ü,ÇëÖØÊÔ»òÁªÏµ¹ÜÀíÔ±");
+					JOptionPane.showMessageDialog(loginFrame, "å¤±è´¥,è¯·é‡è¯•æˆ–è”ç³»ç®¡ç†å‘˜");
 					e1.printStackTrace();
 					return;
 				}
@@ -132,36 +132,36 @@ public class Login {
 			
 		});
 		
-		//ÏìÓ¦¹Ø±ÕÊÂ¼ş
+		//å“åº”å…³é—­äº‹ä»¶
 		closeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
 		
-		// ´ò¿ªµ÷¶È´°¿Ú
+		// æ‰“å¼€è°ƒåº¦çª—å£
 		scheduleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Monitor monior = new Monitor();
-				int windowWidth = monior.getWidth(); // »ñµÃ´°¿Ú¿í
-				int windowHeight = monior.getHeight(); // »ñµÃ´°¿Ú¸ß
-				Toolkit kit = Toolkit.getDefaultToolkit(); // ¶¨Òå¹¤¾ß°ü
-				Dimension screenSize = kit.getScreenSize(); // »ñÈ¡ÆÁÄ»µÄ³ß´ç
-				int screenWidth = screenSize.width; // »ñÈ¡ÆÁÄ»µÄ¿í
-				int screenHeight = screenSize.height; // »ñÈ¡ÆÁÄ»µÄ¸ß
-				monior.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 3 - windowHeight / 3); // ¾ÓÖĞ
+				int windowWidth = monior.getWidth(); // è·å¾—çª—å£å®½
+				int windowHeight = monior.getHeight(); // è·å¾—çª—å£é«˜
+				Toolkit kit = Toolkit.getDefaultToolkit(); // å®šä¹‰å·¥å…·åŒ…
+				Dimension screenSize = kit.getScreenSize(); // è·å–å±å¹•çš„å°ºå¯¸
+				int screenWidth = screenSize.width; // è·å–å±å¹•çš„å®½
+				int screenHeight = screenSize.height; // è·å–å±å¹•çš„é«˜
+				monior.setLocation(screenWidth / 2 - windowWidth / 2, screenHeight / 3 - windowHeight / 3); // å±…ä¸­
 				loginFrame.setVisible(false);
 				monior.setVisible(true);
 			}
 		});
 		
 		loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		int windowWidth = loginFrame.getWidth(); // »ñµÃ´°¿Ú¿í
-		int windowHeight = loginFrame.getHeight(); // »ñµÃ´°¿Ú¸ß
-		Toolkit kit = Toolkit.getDefaultToolkit(); // ¶¨Òå¹¤¾ß°ü
-		Dimension screenSize = kit.getScreenSize(); // »ñÈ¡ÆÁÄ»µÄ³ß´ç
-		int screenWidth = screenSize.width; // »ñÈ¡ÆÁÄ»µÄ¿í
-		int screenHeight = screenSize.height; // »ñÈ¡ÆÁÄ»µÄ¸ß
+		int windowWidth = loginFrame.getWidth(); // è·å¾—çª—å£å®½
+		int windowHeight = loginFrame.getHeight(); // è·å¾—çª—å£é«˜
+		Toolkit kit = Toolkit.getDefaultToolkit(); // å®šä¹‰å·¥å…·åŒ…
+		Dimension screenSize = kit.getScreenSize(); // è·å–å±å¹•çš„å°ºå¯¸
+		int screenWidth = screenSize.width; // è·å–å±å¹•çš„å®½
+		int screenHeight = screenSize.height; // è·å–å±å¹•çš„é«˜
 		loginFrame.setLocation(screenWidth / 3 - windowWidth / 2, screenHeight / 3 - windowHeight / 2);
 
 		pnlPanel.add(lblUsername);
@@ -183,7 +183,7 @@ public class Login {
 	}
 	
 	/**
-	 * µÇÂ¼
+	 * ç™»å½•
 	 */
 	public int login(InitProperty ip) {
 		return DBUnit.login(ip);
@@ -203,10 +203,10 @@ public class Login {
         boolean isVersionUseable = dbUnit.isVersionUseable(login.version);
         double lastVersion = dbUnit.getLastVersion();
 		if(!isVersionUseable){
-			JOptionPane.showMessageDialog(null, "µ±Ç°°æ±¾²»¿ÉÓÃ¡£\n×îĞÂ°æ±¾£ºV"+lastVersion);
+			JOptionPane.showMessageDialog(null, "å½“å‰ç‰ˆæœ¬ä¸å¯ç”¨ã€‚\næœ€æ–°ç‰ˆæœ¬ï¼šV"+lastVersion);
 			System.exit(0);
 		}else if(lastVersion > login.version){
-			int n = JOptionPane.showConfirmDialog(null, "µ±Ç°°æ±¾£ºV"+login.version+"\nÊÇ·ñ¼ÌĞøÊ¹ÓÃ´Ë°æ±¾?", "ÒÑÓĞĞÂ°æ±¾£¬×îĞÂ°æ±¾£ºV"+lastVersion, JOptionPane.YES_NO_OPTION);
+			int n = JOptionPane.showConfirmDialog(null, "å½“å‰ç‰ˆæœ¬ï¼šV"+login.version+"\næ˜¯å¦ç»§ç»­ä½¿ç”¨æ­¤ç‰ˆæœ¬?", "å·²æœ‰æ–°ç‰ˆæœ¬ï¼Œæœ€æ–°ç‰ˆæœ¬ï¼šV"+lastVersion, JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				// ......
 			} else if (n == JOptionPane.NO_OPTION) {

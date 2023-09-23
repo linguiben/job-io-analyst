@@ -10,11 +10,11 @@ import com.jupiter.mybatis.dao.DBUnit;
 
 public class Dsjob extends Job implements Runnable {
 
-	private String dsjobServer;  //·şÎñÆ÷
-	private String user;         //ÓÃ»§
-	private String password;    //ÃÜÂë
-	private String dsjobProject; //¹¤³Ì
-	private String dsjobResetCommand;  //ÃüÁî
+	private String dsjobServer;  //æœåŠ¡å™¨
+	private String user;         //ç”¨æˆ·
+	private String password;    //å¯†ç 
+	private String dsjobProject; //å·¥ç¨‹
+	private String dsjobResetCommand;  //å‘½ä»¤
 	private String dsjobRunCommand;
 	private String dsjobGetLogCommand;
 	private String dsjobStopCommand;
@@ -39,10 +39,10 @@ public class Dsjob extends Job implements Runnable {
 	}
 
 	public void runDsjob() {
-		// 1.Í¨ÖªÏÂ¼ÒÎÒÒÑ¾­¿ªÊ¼.²¢½«×Ô¼ºµÄÏÂ¼ÒÀ­½øµÈ´ı³Ø£¬²¢¸æËßËüĞèµÈ´ıµÄÉÏÏßÃûµ¥. ÈÕÖ¾¼ÇÂ¼ 0-start
+		// 1.é€šçŸ¥ä¸‹å®¶æˆ‘å·²ç»å¼€å§‹.å¹¶å°†è‡ªå·±çš„ä¸‹å®¶æ‹‰è¿›ç­‰å¾…æ± ï¼Œå¹¶å‘Šè¯‰å®ƒéœ€ç­‰å¾…çš„ä¸Šçº¿åå•. æ—¥å¿—è®°å½• 0-start
 		this.jobstatus = 0;
 		DBUnit.jobStart(this.scheduleType,batchno, jobtype, jobname, this.jobstatus);
-		// 2.ÔËĞĞ
+		// 2.è¿è¡Œ
 		int jobstatus = (new Random()).nextInt(4) + 1;
 		WriteLog.writeFile(dsjobRunCommand);
 		try {
@@ -67,7 +67,7 @@ public class Dsjob extends Job implements Runnable {
 		} catch (Exception e) {
 		}
 		this.jobstatus = jobstatus;
-		// 3.ÔËĞĞÍê³É£¬¸üĞÂjob×´Ì¬£¬1000-unready 100-ready(waiting) 1-³É¹¦ 2-¾¯¸æ 3-Ê§°Ü 4-Ê§°Üµ«¿ÉºöÂÔ£¬Í¨ÖªÏÂ¼Ò×Ô¼ºµÄ×´Ì¬
+		// 3.è¿è¡Œå®Œæˆï¼Œæ›´æ–°jobçŠ¶æ€ï¼Œ1000-unready 100-ready(waiting) 1-æˆåŠŸ 2-è­¦å‘Š 3-å¤±è´¥ 4-å¤±è´¥ä½†å¯å¿½ç•¥ï¼Œé€šçŸ¥ä¸‹å®¶è‡ªå·±çš„çŠ¶æ€
 				DBUnit.jobEnd(scheduleType,batchno, jobtype, jobname, this.jobstatus);
 				System.out.println(Monitor.batchno + "  " + this.jobname + " run finished! jobstatus:" + jobstatus);
 	}

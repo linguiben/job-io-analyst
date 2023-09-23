@@ -92,7 +92,7 @@ public class SaveScheduleType extends javax.swing.JDialog {
 		jRadioButton2.setText("\u8986\u76d6\u539f\u6709\u8c03\u5ea6\u7c7b\u578b");
 
 		jList1.setModel(new javax.swing.AbstractListModel() {
-			//¼ÓÔØµ÷¶ÈÀàĞÍ
+			//åŠ è½½è°ƒåº¦ç±»å‹
 			ArrayList<String> batchnos = DBUnit.getScheduleType();
 			String[] strings = batchnos.toArray(new String[batchnos.size()]);
 
@@ -182,7 +182,7 @@ public class SaveScheduleType extends javax.swing.JDialog {
 	}
 
 	/** 
-	 * ´¦ÀíESCAPE°´¼ü¡£×ÓÀà¿ÉÒÔÖØĞÂ¸²¸Ç¸Ã·½·¨£¬ÊµÏÖ×Ô¼ºµÄ´¦Àí·½Ê½¡£ 
+	 * å¤„ç†ESCAPEæŒ‰é”®ã€‚å­ç±»å¯ä»¥é‡æ–°è¦†ç›–è¯¥æ–¹æ³•ï¼Œå®ç°è‡ªå·±çš„å¤„ç†æ–¹å¼ã€‚ 
 	 */
 	protected void escapeKeyProc() {
 		doClose(RET_CANCEL);
@@ -203,7 +203,7 @@ public class SaveScheduleType extends javax.swing.JDialog {
 
 	private void doClose(int retStatus) {
 		if (retStatus == RET_OK) {
-			//±£´æµ÷¶ÈµÄ×÷Òµ
+			//ä¿å­˜è°ƒåº¦çš„ä½œä¸š
 			String schuduleType;
 			if (jRadioButton2.isSelected())
 				schuduleType = jList1.getSelectedValue().toString();

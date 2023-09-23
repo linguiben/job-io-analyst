@@ -27,20 +27,20 @@ public class MonitorGraph extends DesignerGraph {
 	
 	private java.util.Timer timer;
 	private Monitor monitor;
-	private volatile DefaultGraphCell infoCell = new DefaultGraphCell("µ÷¶ÈÀàĞÍ:"+Monitor.scheduleType+" Åú´ÎºÅ:"+Monitor.batchno );           //ÏÔÊ¾µ÷¶ÈÀàĞÍºÍÅú´ÎºÅ
+	private volatile DefaultGraphCell infoCell = new DefaultGraphCell("è°ƒåº¦ç±»å‹:"+Monitor.scheduleType+" æ‰¹æ¬¡å·:"+Monitor.batchno );           //æ˜¾ç¤ºè°ƒåº¦ç±»å‹å’Œæ‰¹æ¬¡å·
 	
 	public MonitorGraph(){
 		GraphConstants.setBounds(infoCell.getAttributes(), new Rectangle2D.Double(10, 10, 35, 20));
 		GraphConstants.setAbsolute(infoCell.getAttributes(), true);
 		GraphConstants.setAbsoluteX(infoCell.getAttributes(), false);
-		GraphConstants.setFont(infoCell.getAttributes(),new Font("ºÚÌå",0,16));
+		GraphConstants.setFont(infoCell.getAttributes(),new Font("é»‘ä½“",0,16));
 		GraphConstants.setAutoSize(infoCell.getAttributes(),true);
 		GraphConstants.setEditable(infoCell.getAttributes(),true);
 		this.getGraphLayoutCache().insert(infoCell);
 		
 	}
 	
-	//³õÊ¼»¯²Ëµ¥(jobCell)
+	//åˆå§‹åŒ–èœå•(jobCell)
 	public void initCellMenu(PopupMenu menu,final String jobname,final Job job,final DesignerGraph graph){
 		MenuItem viewDetail = new MenuItem("View Input/Output Detail");
 		MenuItem runLonelyItem = new MenuItem("Run lonely");
@@ -60,7 +60,7 @@ public class MonitorGraph extends DesignerGraph {
 		viewDetail.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("²é¿´ÊäÈëÊä³ö");
+				System.out.println("æŸ¥çœ‹è¾“å…¥è¾“å‡º");
 				DetailFrame detailFrame = new DetailFrame(jobname,"dsjob");
 				detailFrame.setLocationRelativeTo(backgroundComponent);//backgroundComponent
 				detailFrame.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -68,11 +68,11 @@ public class MonitorGraph extends DesignerGraph {
 				detailFrame.setAlwaysOnTop(true);
 			}
 		});
-		//ÔËĞĞÖ¸¶¨job
+		//è¿è¡ŒæŒ‡å®šjob
 		runLonelyItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("ÔËĞĞÑ¡ÔñµÄ×÷Òµ");
+				System.out.println("è¿è¡Œé€‰æ‹©çš„ä½œä¸š");
 				System.out.println(getSelectionCell());
 				System.out.println("x:"+getCellBounds(getSelectionCell()).getX());
 				System.out.println("y:"+getCellBounds(getSelectionCell()).getY());
@@ -82,7 +82,7 @@ public class MonitorGraph extends DesignerGraph {
 				 runBlankJob.start();
 			}
 		});
-		//±à¼­jobÊôĞÔ
+		//ç¼–è¾‘jobå±æ€§
 		editItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -91,7 +91,7 @@ public class MonitorGraph extends DesignerGraph {
 				edit.setVisible(true);
 			}
 		});
-		//ÕÛµş
+		//æŠ˜å 
 		collapseItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -101,7 +101,7 @@ public class MonitorGraph extends DesignerGraph {
 		});
 	}
 
-	// ³õÊ¼»¯²Ëµ¥(schedule)
+	// åˆå§‹åŒ–èœå•(schedule)
 	public void initScheduleMenu(PopupMenu menu,final DesignerGraph graph) {
 		MenuItem refresh = new MenuItem("Refresh");
 		MenuItem cacelAutoRefresh = new MenuItem("Cancel Auto refresh");
@@ -152,8 +152,8 @@ public class MonitorGraph extends DesignerGraph {
 		});
 	}
 
-	//Ë¢ĞÂµ÷¶È×´Ì¬
-	//Ë¢ĞÂµ÷¶È×´Ì¬
+	//åˆ·æ–°è°ƒåº¦çŠ¶æ€
+	//åˆ·æ–°è°ƒåº¦çŠ¶æ€
 		public void refreshScheduleJobLocationList(String batchno){
 			List<JobLocation> jobLocationList = DBUnit.refreshScheduleJobLocationList(batchno);
 			for (int i = 0; i < jobLocationList.size(); i++) {
@@ -161,10 +161,10 @@ public class MonitorGraph extends DesignerGraph {
 				int status = jb.status;
 				for(int j=0;j<this.jobs.size();j++){
 					Job jCell = this.jobs.get(j);
-					//ÈôÃû³ÆÏàÍ¬,ÇÒ×´Ì¬²»Í¬,Ôò¸üĞÂ×´Ì¬ºÍÏÔÊ¾ÑÕÉ«
+					//è‹¥åç§°ç›¸åŒ,ä¸”çŠ¶æ€ä¸åŒ,åˆ™æ›´æ–°çŠ¶æ€å’Œæ˜¾ç¤ºé¢œè‰²
 					if(jb.jobname.equals(this.convertValueToString(jCell)) && jb.status!=jCell.jobstatus){
 						jCell.jobstatus = status;
-						GraphConstants.setOpaque(jCell.getAttributes(), true);// ÉèÖÃ·ÇÍ¸Ã÷¶È
+						GraphConstants.setOpaque(jCell.getAttributes(), true);// è®¾ç½®éé€æ˜åº¦
 						switch (status) {
 						case 1000:GraphConstants.setBackground(jCell.getAttributes(), Color.WHITE);break;  //unready
 						case 100:GraphConstants.setBackground(jCell.getAttributes(), new Color(232,232,232));break;        //ready - waiting
@@ -185,15 +185,15 @@ public class MonitorGraph extends DesignerGraph {
 			//getGraphLayoutCache().setVisible(c1.toArray(),false);
 		}
 		
-		//ÏìÓ¦Êó±êË«»÷,Ë«»÷±à¼­µ÷¶ÈÊôĞÔ
+		//å“åº”é¼ æ ‡åŒå‡»,åŒå‡»ç¼–è¾‘è°ƒåº¦å±æ€§
 		public void doubleClickAction(Object cell){
 			EditJobProperty edit = new EditJobProperty(null,this.convertValueToString(cell), true,(Job)cell,this);
 			edit.setLocationRelativeTo(backgroundComponent);
 			edit.setVisible(true);
 			//this.refresh();
-			//this.getGraphLayoutCache().insert(cell);  //ÖØĞÂ²åÈë½«Ë¢ĞÂ cellview
-			//new DefaultCellViewFactory().createView(model, cell);//µÃµ½cellview
-			this.getGraphLayoutCache().editCell(cell, ((Job)cell).getAttributes());  //±à¼­Ò²¿ÉÒÔË¢ĞÂcellview
+			//this.getGraphLayoutCache().insert(cell);  //é‡æ–°æ’å…¥å°†åˆ·æ–° cellview
+			//new DefaultCellViewFactory().createView(model, cell);//å¾—åˆ°cellview
+			this.getGraphLayoutCache().editCell(cell, ((Job)cell).getAttributes());  //ç¼–è¾‘ä¹Ÿå¯ä»¥åˆ·æ–°cellview
 			//this.getGraphLayoutCache().reload();
 			//getGraphLayoutCache().setVisible(cell, false);
 			//getGraphLayoutCache().setVisible(cell, true);

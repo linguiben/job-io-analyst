@@ -16,7 +16,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 public class ParseXML {
-	//»ñÈ¡ÎÄ¼şÃû³Æ
+	//è·å–æ–‡ä»¶åç§°
 	private static File getFile(String cFileName) {
 		File tFile = new File(cFileName);
 		if (!tFile.exists()) {
@@ -24,14 +24,14 @@ public class ParseXML {
 		}
 		return tFile;
 	}
-	//¿ªÊ¼½âÎö
+	//å¼€å§‹è§£æ
 	private static String parseXML(File cFile) throws Exception {
 	      InputSource in = new InputSource(new FileInputStream(cFile));
 	      DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
 	      dfactory.setNamespaceAware(true);
 	      Document doc = dfactory.newDocumentBuilder().parse(in);
 	      Element ele = doc.getDocumentElement();
-	      //µÃµ½jobList
+	      //å¾—åˆ°jobList
 	      NodeList jobList = XPathAPI.selectNodeList(ele, "/DSExport/Job");
 	      for (int i=0; i<jobList.getLength(); i++) {
 	        Node tJobNode = jobList.item(i);
@@ -109,7 +109,7 @@ public class ParseXML {
 		String tFileName= "D:\\jupiter\\workplace\\012.dsjob_analysis\\1.business\\4.ddbkpf\\jb_dwn_covrpf_to_covrpf_ins.xml";
 		File tFile= getFile(tFileName);
 		if(tFile==null) {
-			System.out.println("ÕÒ²»µ½ÎÄ¼ş£º"+tFileName);
+			System.out.println("æ‰¾ä¸åˆ°æ–‡ä»¶ï¼š"+tFileName);
 			return;
 		}
 		parseXML(tFile); 
