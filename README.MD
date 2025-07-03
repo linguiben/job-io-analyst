@@ -22,7 +22,7 @@
 > 1）登录界面  
 > ![img.png](assets/login.png)  
 ---
-> 2）血缘分析、影响分析界面
+> 2）血缘分析、影响分析界面  
 > ![img_1.png](assets/job_analysis_1.png)  
 > 3）血缘分析、影响分析界面（双击/或右键作业查看详细信息）  
 > ![img_2.png](assets/job_analysis_2.png)
